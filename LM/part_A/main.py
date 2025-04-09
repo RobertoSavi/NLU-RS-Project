@@ -3,6 +3,7 @@
 import copy
 import numpy as np
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 # -------------------- Import functions from other files --------------------
 from functions import *
 from utils import *
