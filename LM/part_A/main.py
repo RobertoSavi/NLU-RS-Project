@@ -44,7 +44,7 @@ final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model)
 print('Test PPL:', final_ppl)
 
 # -------------------- Model saving --------------------
-path = 'models/standard.pt'
+path = 'models/double_batch_size.pt'
 torch.save(model.state_dict(), path)
 
 # To load the model:

@@ -128,17 +128,3 @@ def collate_fn(data, pad_token):
     new_item["number_tokens"] = sum(lengths)
     
     return new_item
-
-# -------------------- DataLoader initialization --------------------
-train_loader = DataLoader(
-    train_dataset, batch_size=64, shuffle=True,
-    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
-)
-dev_loader = DataLoader(
-    dev_dataset, batch_size=128,
-    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
-)
-test_loader = DataLoader(
-    test_dataset, batch_size=128,
-    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
-)

@@ -9,13 +9,63 @@ from functions import *
 from utils import *
 
 # -------------------- Define hyperparameters for the model --------------------
-n_epochs = 100
-patience = 3
+n_epochs = 100  # Number of epochs
+patience = 3    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
-lr = 0.0001  # Learning rate (adjust if needed)
+lr = 0.05  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
+
+lr_values = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0, 5]
+
+hyperparams_to_try = [
+    {"lr": lr, "hid_size": 200, "emb_size": 300, "patience": 5, "clip": 5} for lr in lr_values
+]
+
+# -------------------- Model initialization function --------------------
+def init_weights(mat):
+    for m in mat.modules():
+        if isinstance(m, (nn.GRU, nn.LSTM, nn.RNN)):
+            for name, param in m.named_parameters():
+                if 'weight_ih' in name:
+                    for idx in range(4):
+                        mul = param.shape[0] // 4
+                        torch.nn.init.xavier_uniform_(param[idx * mul:(idx + 1) * mul])
+                elif 'weight_hh' in name:
+                    for idx in range(4):
+                        mul = param.shape[0] // 4
+                        torch.nn.init.orthogonal_(param[idx * mul:(idx + 1) * mul])
+                elif 'bias' in name:
+                    param.data.fill_(0)
+        elif isinstance(m, nn.Linear):
+            torch.nn.init.uniform_(m.weight, -0.01, 0.01)
+            if m.bias is not None:
+                m.bias.data.fill_(0.01)
+
+# -------------------- Model and training configuration --------------------
+# Initialize model
+model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+model.apply(init_weights)
+
+# Optimizer and loss functions
+optimizer = optim.SGD(model.parameters(), lr=lr)
+criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
+criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')
+
+# -------------------- DataLoader initialization --------------------
+train_loader = DataLoader(
+    train_dataset, batch_size=128, shuffle=True,
+    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
+)
+dev_loader = DataLoader(
+    dev_dataset, batch_size=256,
+    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
+)
+test_loader = DataLoader(
+    test_dataset, batch_size=256,
+    collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
+)
 
 # -------------------- Training loop function --------------------
 def train_loop(data, optimizer, criterion, model, clip=5):
@@ -54,32 +104,7 @@ def eval_loop(data, eval_criterion, model):
     loss_to_return = sum(loss_array) / sum(number_of_tokens)
     return ppl, loss_to_return
 
-# -------------------- Model initialization function --------------------
-def init_weights(mat):
-    for m in mat.modules():
-        if isinstance(m, (nn.GRU, nn.LSTM, nn.RNN)):
-            for name, param in m.named_parameters():
-                if 'weight_ih' in name:
-                    for idx in range(4):
-                        mul = param.shape[0] // 4
-                        torch.nn.init.xavier_uniform_(param[idx * mul:(idx + 1) * mul])
-                elif 'weight_hh' in name:
-                    for idx in range(4):
-                        mul = param.shape[0] // 4
-                        torch.nn.init.orthogonal_(param[idx * mul:(idx + 1) * mul])
-                elif 'bias' in name:
-                    param.data.fill_(0)
-        elif isinstance(m, nn.Linear):
-            torch.nn.init.uniform_(m.weight, -0.01, 0.01)
-            if m.bias is not None:
-                m.bias.data.fill_(0.01)
 
-# -------------------- Model and training configuration --------------------
-# Initialize model
-model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
-model.apply(init_weights)
 
-# Optimizer and loss functions
-optimizer = optim.SGD(model.parameters(), lr=lr)
-criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
-criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')
+
+
