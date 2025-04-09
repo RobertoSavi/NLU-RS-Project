@@ -25,6 +25,7 @@ for model, optimizer in zip(models, optimizers):
     best_ppl = math.inf
     best_model = None
     pbar = tqdm(range(1, n_epochs))
+    print(optimizer.param_groups[0]['lr'])
 
     # For each epoch in each model and optimizer
     for epoch in pbar:
@@ -62,7 +63,7 @@ for model, optimizer in zip(models, optimizers):
 
 # -------------------- Model saving --------------------
 path = 'models/best_lr_model.pt'
-torch.save(model.state_dict(), path)
+torch.save(best_model_overall.state_dict(), path)
 
 # To load the model:
 # model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)

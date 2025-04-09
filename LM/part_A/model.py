@@ -59,8 +59,6 @@ for hyperparam in hyperparams_to_try:
     optimizers.append(optimizer)
 
 
-
-
 # Optimizer and loss functions
 #optimizer = optim.SGD(model.parameters(), lr=lr)
 criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
