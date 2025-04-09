@@ -11,42 +11,74 @@ from model import *
 
 # -------------------- Training process --------------------
 
-losses_train = []
-losses_dev = []
-sampled_epochs = []
-best_ppl = math.inf
-best_model = None
+# Multi training parameters
+best_ppls = []
+best_ppl_overall = math.inf
+best_model_overall = None
 
-pbar = tqdm(range(1, n_epochs))
-for epoch in pbar:
-    loss = train_loop(train_loader, optimizer, criterion_train, model, clip)    
-    if epoch % 1 == 0:
-        sampled_epochs.append(epoch)
-        losses_train.append(np.asarray(loss).mean())
+# For each model and optimizer
+for model, optimizer in zip(models, optimizers):
+    # Single training parameters
+    losses_train = []
+    losses_dev = []
+    sampled_epochs = []
+    best_ppl = math.inf
+    best_model = None
+    pbar = tqdm(range(1, n_epochs))
 
-        ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
-        losses_dev.append(np.asarray(loss_dev).mean())
-        pbar.set_description("PPL: %f" % ppl_dev)
+    # For each epoch in each model and optimizer
+    for epoch in pbar:
+        loss = train_loop(train_loader, optimizer, criterion_train, model, clip)    
+        if epoch % 1 == 0:
+            sampled_epochs.append(epoch)
+            losses_train.append(np.asarray(loss).mean())
 
-        if ppl_dev < best_ppl:  # The lower, the better
-            best_ppl = ppl_dev
-            best_model = copy.deepcopy(model).to('cpu')
-            patience = 3
-        else:
-            patience -= 1
-            
-        if patience <= 0:  # Early stopping with patience
-            break  # Clean exit when training stops
+            ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
+            losses_dev.append(np.asarray(loss_dev).mean())
+            pbar.set_description("PPL: %f" % ppl_dev)
 
-# -------------------- Final evaluation --------------------
-best_model.to(DEVICE)
-final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model)
-print('Test PPL:', final_ppl)
+            if ppl_dev < best_ppl:  # The lower, the better
+                best_ppl = ppl_dev
+                best_model = copy.deepcopy(model).to('cpu')
+                patience = 3
+            else:
+                patience -= 1
+                
+            if patience <= 0:  # Early stopping with patience
+                break  # Clean exit when training stops
+
+    # -------------------- Final evaluation --------------------
+    best_model.to(DEVICE)
+    final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model)
+    print('Test PPL:', final_ppl)
+
+    # Store the best ppl of this configuration
+    best_ppls.append(final_ppl)
+    
+    # Track the best overall model
+    if final_ppl < best_overall_ppl:
+        best_overall_ppl = final_ppl
+        best_overall_model = copy.deepcopy(best_model)
 
 # -------------------- Model saving --------------------
-path = 'models/double_batch_size.pt'
+path = 'models/best_lr_model.pt'
 torch.save(model.state_dict(), path)
 
 # To load the model:
 # model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
 # model.load_state_dict(torch.load(path))
+
+# -------------------- Save best PPL results --------------------
+with open('results/models_best_lr.txt', 'w') as f:
+    for i, (ppl, model, optimizer) in enumerate(zip(best_ppls, models, optimizers)):
+        f.write(f'Model {i}: PPL={ppl}, Model ={model}, Optimizer={optimizer}\n')
+
+# -------------------- Plot PPL results --------------------
+plt.figure(figsize=(10, 5))
+plt.plot(range(len(best_ppls)), best_ppls, marker='o', linestyle='-', label='Best PPL per Model')
+plt.xlabel('Model index')
+plt.ylabel('Perplexity (PPL)')
+plt.title('Best PPL for each Model-Optimizer configuration')
+plt.legend()
+plt.savefig('images/models_best_lr.jpg')  # Save the plot as an image
+plt.show()

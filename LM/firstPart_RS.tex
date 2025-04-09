@@ -22,8 +22,10 @@ here you can find a complete description of the sections that you need to write 
 \section{Introduction (approx. 100 words)}
 \begin{itemize}
     \item \textit{I first let the training perform with the stadanrd parameters provided in the lab, saving the results in standard_lr0_001.pt}
-    \item \textit{Then I tried to increase the learning rate to 0.05, saving the results in standard_lr0_05.pt}
-    \item \textit{Then, I tried to increase the batch size of training from 64 to 128 and the batch size of development and test from 128 to 256, saving the results in double_batch_size.pt}
+    \item \textit{Then I increased the learning rate to 0.05, saving the results in standard_lr0_05.pt}
+    \item \textit{Then, I increased the batch size of training from 64 to 128 and the batch size of development and test from 128 to 256, saving the results in double_batch_size.pt. This has been done to save time at the expenses of more memory, however the time spent for training was actually higher than expected so this change was reverted.}
+    \item \textit{Then, I tried different learning rates, starting from 0.0001 to 5, to see which was giving the best results without touching the rest of the hyperparameters. The model was saved in best_lr_model.pt.}
+    \item \textit{I also tried to change the dropout rate from 0.1 to 0.5, but it was not giving better results.}
 \end{itemize}
 \section{Implementation details (max approx. 200-300 words)}
 Do not explain the backbone deep neural network (e.g. RNN or BERT). Instead, focus on what you did on top of it. \textbf{Add references if you take inspiration from the code of others}

@@ -45,25 +45,38 @@ def init_weights(mat):
 
 # -------------------- Model and training configuration --------------------
 # Initialize model
-model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
-model.apply(init_weights)
+#model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+#model.apply(init_weights)
+
+# -------------------- Multi training model configuration --------------------
+models = []
+optimizers = []
+for hyperparam in hyperparams_to_try:
+    model = LM_RNN(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+    model.apply(init_weights)
+    models.append(model)
+    optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
+    optimizers.append(optimizer)
+
+
+
 
 # Optimizer and loss functions
-optimizer = optim.SGD(model.parameters(), lr=lr)
+#optimizer = optim.SGD(model.parameters(), lr=lr)
 criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
 criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')
 
 # -------------------- DataLoader initialization --------------------
 train_loader = DataLoader(
-    train_dataset, batch_size=128, shuffle=True,
+    train_dataset, batch_size=64, shuffle=True,
     collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
 )
 dev_loader = DataLoader(
-    dev_dataset, batch_size=256,
+    dev_dataset, batch_size=128,
     collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
 )
 test_loader = DataLoader(
-    test_dataset, batch_size=256,
+    test_dataset, batch_size=128,
     collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
 )
 
