@@ -56,9 +56,9 @@ for model, optimizer in zip(models, optimizers):
     best_ppls.append(final_ppl)
     
     # Track the best overall model
-    if final_ppl < best_overall_ppl:
-        best_overall_ppl = final_ppl
-        best_overall_model = copy.deepcopy(best_model)
+    if final_ppl < best_ppl_overall:
+        best_ppl_overall = final_ppl
+        best_model_overall = copy.deepcopy(best_model)
 
 # -------------------- Model saving --------------------
 path = 'models/best_lr_model.pt'
