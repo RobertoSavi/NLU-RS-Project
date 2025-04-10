@@ -1,0 +1,150 @@
+Model 0: PPL=6407.8057956605135, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.0001
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 1: PPL=747.2568336785237, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.0005
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 2: PPL=583.8911064979336, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.001
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 3: PPL=363.73244126396213, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.005
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 4: PPL=293.4603256435953, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.01
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 5: PPL=188.98923416259106, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 6: PPL=174.0900587460096, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.1
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 7: PPL=163.21949816006685, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.5
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 8: PPL=159.87650643819364, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 1.0
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 9: PPL=279.25899471916233, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer=SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 5
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
