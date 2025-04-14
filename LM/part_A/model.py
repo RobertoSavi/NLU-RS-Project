@@ -31,6 +31,9 @@ hid_emb_values = [
     {"emb_size": 300, "hid_size": 100},
     {"emb_size": 300, "hid_size": 150},
     {"emb_size": 300, "hid_size": 200},
+    {"emb_size": 300, "hid_size": 300},
+    {"emb_size": 400, "hid_size": 200},
+    {"emb_size": 400, "hid_size": 300},
 ]
 
 
