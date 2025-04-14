@@ -13,22 +13,14 @@ n_epochs = 100  # Number of epochs
 patience = 3    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
-lr = 1  # Learning rate
+lr = 0.05  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 
-hid_emb_values = [
-    {"emb_size": 50,  "hid_size": 100},
-    {"emb_size": 100, "hid_size": 100},
-    {"emb_size": 100, "hid_size": 150},
-    {"emb_size": 150, "hid_size": 150},
-    {"emb_size": 200, "hid_size": 200},
-    {"emb_size": 300, "hid_size": 200},
-]
-
+lr_values = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0, 5]
 
 hyperparams_to_try = [
-    {"lr": 1, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": 5, "clip": 5} for value in hid_emb_values
+    {"lr": lr, "hid_size": 200, "emb_size": 300, "patience": 5, "clip": 5} for lr in lr_values
 ]
 
 # -------------------- Model initialization function --------------------
@@ -58,17 +50,17 @@ def init_weights(mat):
 
 # -------------------- Multi training model configuration --------------------
 models = []
-#optimizers = []
+optimizers = []
 for hyperparam in hyperparams_to_try:
     model = LM_RNN(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
-    #optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
-    #optimizers.append(optimizer)
+    optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
+    optimizers.append(optimizer)
 
 
 # Optimizer and loss functions
-optimizer = optim.SGD(model.parameters(), lr=lr)
+#optimizer = optim.SGD(model.parameters(), lr=lr)
 criterion_train = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"])
 criterion_eval = nn.CrossEntropyLoss(ignore_index=lang.word2id["<pad>"], reduction='sum')
 

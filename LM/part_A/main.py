@@ -17,7 +17,7 @@ best_ppl_overall = math.inf
 best_model_overall = None
 
 # For each model and optimizer
-for model in models:
+for model, optimizer in zip(models, optimizers):
     # Single training parameters
     losses_train = []
     losses_dev = []
@@ -25,7 +25,7 @@ for model in models:
     best_ppl = math.inf
     best_model = None
     pbar = tqdm(range(1, n_epochs))
-    print(model)
+    print(optimizer.param_groups[0]['lr'])
 
     # For each epoch in each model and optimizer
     for epoch in pbar:
@@ -62,7 +62,7 @@ for model in models:
         best_model_overall = copy.deepcopy(best_model)
 
 # -------------------- Model saving --------------------
-path = 'models/best_hid_emb_model.pt'
+path = 'models/best_lr_model.pt'
 torch.save(best_model_overall.state_dict(), path)
 
 # To load the model:
@@ -70,9 +70,9 @@ torch.save(best_model_overall.state_dict(), path)
 # model.load_state_dict(torch.load(path))
 
 # -------------------- Save best PPL results --------------------
-with open('results/models_best_hid_emb.txt', 'w') as f:
-    for i, (ppl, model) in enumerate(zip(best_ppls, models)):
-        f.write(f'Model {i}: PPL={ppl}, Model ={model}\n')
+with open('results/models_best_lr.txt', 'w') as f:
+    for i, (ppl, model, optimizer) in enumerate(zip(best_ppls, models, optimizers)):
+        f.write(f'Model {i}: PPL={ppl}, Model ={model}, Optimizer={optimizer}\n')
 
 # -------------------- Plot PPL results --------------------
 plt.figure(figsize=(10, 5))
@@ -81,5 +81,5 @@ plt.xlabel('Model index')
 plt.ylabel('Perplexity (PPL)')
 plt.title('Best PPL for each Model-Optimizer configuration')
 plt.legend()
-plt.savefig('images/models_best_hid_emb.jpg')  # Save the plot as an image
+plt.savefig('images/models_best_lr.jpg')  # Save the plot as an image
 plt.show()
