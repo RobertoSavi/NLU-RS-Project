@@ -16,8 +16,9 @@ best_ppls = []
 best_ppl_overall = math.inf
 best_model_overall = None
 
+print(models, optimizers)
 # For each model and optimizer
-for model in models:
+for model, optimizer in zip(models, optimizers):
     # Single training parameters
     losses_train = []
     losses_dev = []
@@ -26,6 +27,7 @@ for model in models:
     best_model = None
     pbar = tqdm(range(1, n_epochs))
     print(model)
+    print(optimizer)
 
     # For each epoch in each model and optimizer
     for epoch in pbar:
@@ -62,7 +64,7 @@ for model in models:
         best_model_overall = copy.deepcopy(best_model)
 
 # -------------------- Model saving --------------------
-path = 'models/LSTM_0_05.pt'
+path = 'models/LSTM_best_lr.pt'
 torch.save(best_model_overall.state_dict(), path)
 
 # To load the model:
@@ -70,7 +72,7 @@ torch.save(best_model_overall.state_dict(), path)
 # model.load_state_dict(torch.load(path))
 
 # -------------------- Save best PPL results --------------------
-with open('results/models_LSTM_0_05', 'w') as f:
+with open('results/models_LSTM_best_lr', 'w') as f:
     for i, (ppl, model) in enumerate(zip(best_ppls, models)):
         f.write(f'Model {i}: PPL = {ppl}, Model = {model}, Optimizer = {optimizer}\n')
 
@@ -81,5 +83,5 @@ plt.xlabel('Model index')
 plt.ylabel('Perplexity (PPL)')
 plt.title('Best PPL for each Model-Optimizer configuration')
 plt.legend()
-plt.savefig('images/models_LSTM_0_05.jpg')  # Save the plot as an image
+plt.savefig('images/models_LSTM_best_lr.jpg')  # Save the plot as an image
 plt.show()
