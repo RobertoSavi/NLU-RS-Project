@@ -62,7 +62,7 @@ for model in models:
         best_model_overall = copy.deepcopy(best_model)
 
 # -------------------- Model saving --------------------
-path = 'models/best_hid_emb_model_0_05_good_hemb.pt'
+path = 'models/LSTM.pt'
 torch.save(best_model_overall.state_dict(), path)
 
 # To load the model:
@@ -70,7 +70,7 @@ torch.save(best_model_overall.state_dict(), path)
 # model.load_state_dict(torch.load(path))
 
 # -------------------- Save best PPL results --------------------
-with open('results/models_best_hid_emb_0_05good_hemb.txt', 'w') as f:
+with open('results/models_LSTM', 'w') as f:
     for i, (ppl, model) in enumerate(zip(best_ppls, models)):
         f.write(f'Model {i}: PPL = {ppl}, Model = {model}, Optimizer = {optimizer}\n')
 
@@ -81,5 +81,5 @@ plt.xlabel('Model index')
 plt.ylabel('Perplexity (PPL)')
 plt.title('Best PPL for each Model-Optimizer configuration')
 plt.legend()
-plt.savefig('images/models_best_hid_emb_0_05good_hemb.jpg')  # Save the plot as an image
+plt.savefig('images/models_LSTM.jpg')  # Save the plot as an image
 plt.show()
