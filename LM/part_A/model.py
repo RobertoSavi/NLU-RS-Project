@@ -13,7 +13,7 @@ n_epochs = 100  # Number of epochs
 patience = 5    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
-lr = 0.1  # Learning rate
+lr = 0.05  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 
