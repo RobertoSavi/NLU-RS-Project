@@ -10,7 +10,7 @@ from utils import *
 
 # -------------------- Define hyperparameters for the model --------------------
 n_epochs = 100  # Number of epochs
-patience = 3    # Early stopping patience
+patience = 5    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
 lr = 0.5  # Learning rate
@@ -35,7 +35,7 @@ hid_emb_values = [
 
 
 hyperparams_to_try = [
-    {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": 5, "clip": 5} for value in hid_emb_values
+    {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": patience, "clip": clip} for value in hid_emb_values
 ]
 
 # -------------------- Model initialization function --------------------

@@ -72,7 +72,7 @@ torch.save(best_model_overall.state_dict(), path)
 # -------------------- Save best PPL results --------------------
 with open('results/models_best_hid_emb_0_5.txt', 'w') as f:
     for i, (ppl, model) in enumerate(zip(best_ppls, models)):
-        f.write(f'Model {i}: PPL={ppl}, Model ={model}\n')
+        f.write(f'Model {i}: PPL = {ppl}, Model = {model}, Optimizer = {optimizer}\n')
 
 # -------------------- Plot PPL results --------------------
 plt.figure(figsize=(10, 5))
