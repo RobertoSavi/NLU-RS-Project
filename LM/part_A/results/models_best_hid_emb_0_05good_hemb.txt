@@ -1,0 +1,105 @@
+Model 0: PPL = 10012.952607486244, Model = LM_RNN(
+  (embedding): Embedding(10001, 200, padding_idx=0)
+  (rnn): RNN(200, 300, batch_first=True)
+  (output): Linear(in_features=300, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 1: PPL = 10006.680835679233, Model = LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 100, batch_first=True)
+  (output): Linear(in_features=100, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 2: PPL = 10002.739908823265, Model = LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 3: PPL = 10040.60939432124, Model = LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 4: PPL = 10028.04535111011, Model = LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 5: PPL = 10012.73919283005, Model = LM_RNN(
+  (embedding): Embedding(10001, 400, padding_idx=0)
+  (rnn): RNN(400, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 6: PPL = 168.71750440900772, Model = LM_RNN(
+  (embedding): Embedding(10001, 400, padding_idx=0)
+  (rnn): RNN(400, 300, batch_first=True)
+  (output): Linear(in_features=300, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)

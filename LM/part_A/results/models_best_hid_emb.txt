@@ -1,0 +1,30 @@
+Model 0: PPL=10011.386719510721, Model =LM_RNN(
+  (embedding): Embedding(10001, 50, padding_idx=0)
+  (rnn): RNN(50, 100, batch_first=True)
+  (output): Linear(in_features=100, out_features=10001, bias=True)
+)
+Model 1: PPL=10018.06522913908, Model =LM_RNN(
+  (embedding): Embedding(10001, 100, padding_idx=0)
+  (rnn): RNN(100, 100, batch_first=True)
+  (output): Linear(in_features=100, out_features=10001, bias=True)
+)
+Model 2: PPL=10019.050580865654, Model =LM_RNN(
+  (embedding): Embedding(10001, 100, padding_idx=0)
+  (rnn): RNN(100, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)
+Model 3: PPL=10014.560883544573, Model =LM_RNN(
+  (embedding): Embedding(10001, 150, padding_idx=0)
+  (rnn): RNN(150, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)
+Model 4: PPL=9996.114425824539, Model =LM_RNN(
+  (embedding): Embedding(10001, 200, padding_idx=0)
+  (rnn): RNN(200, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)
+Model 5: PPL=157.70413111986753, Model =LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)
