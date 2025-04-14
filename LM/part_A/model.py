@@ -17,25 +17,25 @@ lr = 0.05  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 
-hid_emb_values = [
+""" hid_emb_values = [
     {"emb_size": 50,  "hid_size": 100},
     {"emb_size": 100, "hid_size": 100},
     {"emb_size": 100, "hid_size": 150},
     {"emb_size": 150, "hid_size": 150},
     {"emb_size": 200, "hid_size": 200},
     {"emb_size": 300, "hid_size": 200},
-]
+] """
 
-""" hid_emb_values = [
+hid_emb_values = [
     {"emb_size": 200, "hid_size": 300},
     {"emb_size": 300, "hid_size": 100},
     {"emb_size": 300, "hid_size": 150},
     {"emb_size": 300, "hid_size": 200},
-] """
+]
 
 
 hyperparams_to_try = [
-    {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": patience, "clip": clip} for value in hid_emb_values
+    {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"]} for value in hid_emb_values
 ]
 
 # -------------------- Model initialization function --------------------
