@@ -13,7 +13,7 @@ n_epochs = 100  # Number of epochs
 patience = 3    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
-lr = 0.05  # Learning rate
+lr = 0.5  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 
@@ -26,9 +26,16 @@ hid_emb_values = [
     {"emb_size": 300, "hid_size": 200},
 ]
 
+""" hid_emb_values = [
+    {"emb_size": 200, "hid_size": 300},
+    {"emb_size": 300, "hid_size": 100},
+    {"emb_size": 300, "hid_size": 150},
+    {"emb_size": 300, "hid_size": 200},
+] """
+
 
 hyperparams_to_try = [
-    {"lr": 1, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": 5, "clip": 5} for value in hid_emb_values
+    {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"], "patience": 5, "clip": 5} for value in hid_emb_values
 ]
 
 # -------------------- Model initialization function --------------------
