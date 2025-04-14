@@ -13,33 +13,13 @@ n_epochs = 100  # Number of epochs
 patience = 5    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
-lr = 0.05  # Learning rate
+lr = 0.1  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 
-""" hid_emb_values = [
-    {"emb_size": 50,  "hid_size": 100},
-    {"emb_size": 100, "hid_size": 100},
-    {"emb_size": 100, "hid_size": 150},
-    {"emb_size": 150, "hid_size": 150},
-    {"emb_size": 200, "hid_size": 200},
-    {"emb_size": 300, "hid_size": 200},
-] """
-
-hid_emb_values = [
-    {"emb_size": 200, "hid_size": 300},
-    {"emb_size": 300, "hid_size": 100},
-    {"emb_size": 300, "hid_size": 150},
-    {"emb_size": 300, "hid_size": 200},
-    {"emb_size": 350, "hid_size": 200},
-    {"emb_size": 400, "hid_size": 200},
-    {"emb_size": 400, "hid_size": 300},
-]
-
-
-hyperparams_to_try = [
+""" hyperparams_to_try = [
     {"lr": lr, "hid_size": value["hid_size"], "emb_size": value["emb_size"]} for value in hid_emb_values
-]
+] """
 
 # -------------------- Model initialization function --------------------
 def init_weights(mat):
@@ -63,18 +43,19 @@ def init_weights(mat):
 
 # -------------------- Model and training configuration --------------------
 # Initialize model
-#model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
-#model.apply(init_weights)
+model = LM_LSTM(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+model.apply(init_weights)
 
 # -------------------- Multi training model configuration --------------------
 models = []
+models.append(model)
 #optimizers = []
-for hyperparam in hyperparams_to_try:
+""" for hyperparam in hyperparams_to_try:
     model = LM_RNN(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
     #optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
-    #optimizers.append(optimizer)
+    #optimizers.append(optimizer) """
 
 
 # Optimizer and loss functions
