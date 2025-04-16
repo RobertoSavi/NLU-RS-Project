@@ -1,0 +1,45 @@
+Model 0: PPL = 147.89969588853327, Model = LM_LSTM(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): LSTM(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 5
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 1: PPL = 143.99075635383997, Model = LM_LSTM(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): LSTM(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 5
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
+Model 2: PPL = 140.2114221430236, Model = LM_LSTM(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): LSTM(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+), Optimizer = SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 5
+    maximize: False
+    momentum: 0
+    nesterov: False
+    weight_decay: 0
+)
