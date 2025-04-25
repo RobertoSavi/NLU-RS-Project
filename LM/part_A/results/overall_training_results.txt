@@ -1,0 +1,10 @@
+Model 0: [Best PPL: 5866.7950, Hidden-size: 200, Embedding-size: 300, Optimizer: SGD, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 1: [Best PPL: 189.4557, Hidden-size: 200, Embedding-size: 300, Optimizer: SGD, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
