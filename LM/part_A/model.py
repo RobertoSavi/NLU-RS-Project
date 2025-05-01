@@ -17,22 +17,22 @@ emb_size = 300  # Embedding layer size
 lr = 0.0001  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
-lr_values = [0.0001, 0.05]
-""" lr_values = [0.05, 0.1, 0.5, 1]  # Learning rates to try
+""" lr_values = [0.0001, 0.05] """
+lr_values = [0.05, 0.1, 0.5, 1]  # Learning rates to try
 hid_size_values = [150, 200, 250]  # Hidden layer sizes to try
 emb_size_values = [250, 300, 350]  # Hidden layer sizes to try
- """
 
-hyperparams_to_try = [
+
+""" hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr in lr_values
-]
+] """
 
-""" # Create all combinations of hyperparameters using itertools.product
+# Create all combinations of hyperparameters using itertools.product
 hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr, hid_size, emb_size in itertools.product(lr_values, hid_size_values, emb_size_values)
-] """
+]
 
 # -------------------- Model initialization function --------------------
 def init_weights(mat):

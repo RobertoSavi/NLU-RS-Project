@@ -17,6 +17,7 @@ from model import *
 best_ppls = []
 best_ppl_overall = math.inf
 best_model_overall = None
+best_model_filename = None
 
 # For each model and optimizer
 for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try):
@@ -87,18 +88,19 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     if final_ppl < best_ppl_overall:
         best_ppl_overall = final_ppl
         best_model_overall = copy.deepcopy(best_model)
+        best_model_filename = filename
 
-    # -------------------- Model saving --------------------
-    # Create 'models' folder if it doesn't exist
-    os.makedirs("models", exist_ok=True)
-    # Full path to the file
-    path = os.path.join("models", filename)
-    torch.save(best_model.state_dict(), path)
+# -------------------- Model saving --------------------
+# Create 'models' folder if it doesn't exist
+os.makedirs("models", exist_ok=True)
+# Full path to the file
+path = os.path.join("models", best_model_filename)
+torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------
-with open('results/overall_training_results.txt', 'w') as f:
+with open('results/overall_training_results_grid_search.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
-        entry = f"Model {i}: [Best PPL: {ppl:.4f}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Optimizer: {type(optimizer).__name__}, Model: {model}]\n"
+        entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
 
 # To load the model:
