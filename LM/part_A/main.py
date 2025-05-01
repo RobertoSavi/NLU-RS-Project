@@ -28,6 +28,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     best_ppl = math.inf
     best_model = None
     pbar = tqdm(range(1, n_epochs))
+    patience = patience  # Reset patience for each model
 
     learning_rate = hyperparams['lr']
     hidden_size = hyperparams['hid_size']
