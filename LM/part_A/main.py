@@ -80,7 +80,9 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     print('Test PPL:', final_ppl)
     final_log = f"[Final PPL: {final_ppl:.4f}]\n"
     with open(path, 'a') as f:
-        f.write(log)
+        f.write(final_log)
+    
+    print(f"Finished training model with {model_params.strip()} | Final PPL: {final_ppl:.4f}")
 
     # Store the best ppl of this configuration
     best_ppls.append(final_ppl)
@@ -90,6 +92,23 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         best_ppl_overall = final_ppl
         best_model_overall = copy.deepcopy(best_model)
         best_model_filename = filename
+
+    # Log GPU memory before cleanup
+    allocated_before = torch.cuda.memory_allocated() / 1024**2
+    reserved_before = torch.cuda.memory_reserved() / 1024**2
+    print(f"[Memory before cleanup] Allocated: {allocated_before:.2f} MB, Reserved: {reserved_before:.2f} MB")
+
+    # Release GPU memory right after evaluation
+    del best_model  
+    model.to("cpu")
+    del model
+    del optimizer
+    torch.cuda.empty_cache()
+
+    # Log GPU memory after cleanup
+    allocated_after = torch.cuda.memory_allocated() / 1024**2
+    reserved_after = torch.cuda.memory_reserved() / 1024**2
+    print(f"[Memory after cleanup] Allocated: {allocated_after:.2f} MB, Reserved: {reserved_after:.2f} MB")
 
 # -------------------- Model saving --------------------
 # Create 'models' folder if it doesn't exist
