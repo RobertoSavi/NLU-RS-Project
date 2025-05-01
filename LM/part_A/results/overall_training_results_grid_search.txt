@@ -1,0 +1,180 @@
+Model 0: [Best PPL: 206.9701, Optimizer: SGD, Hidden-size: 150, Embedding-size: 250, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 1: [Best PPL: 203.6902, Optimizer: SGD, Hidden-size: 150, Embedding-size: 300, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 2: [Best PPL: 198.2970, Optimizer: SGD, Hidden-size: 150, Embedding-size: 350, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 3: [Best PPL: 192.0430, Optimizer: SGD, Hidden-size: 200, Embedding-size: 250, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 4: [Best PPL: 186.9686, Optimizer: SGD, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 5: [Best PPL: 185.1575, Optimizer: SGD, Hidden-size: 200, Embedding-size: 350, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 6: [Best PPL: 184.0568, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 7: [Best PPL: 179.9007, Optimizer: SGD, Hidden-size: 250, Embedding-size: 300, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 8: [Best PPL: 175.1462, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.05, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 9: [Best PPL: 180.7629, Optimizer: SGD, Hidden-size: 150, Embedding-size: 250, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 10: [Best PPL: 177.8877, Optimizer: SGD, Hidden-size: 150, Embedding-size: 300, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 11: [Best PPL: 175.4086, Optimizer: SGD, Hidden-size: 150, Embedding-size: 350, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 12: [Best PPL: 168.9398, Optimizer: SGD, Hidden-size: 200, Embedding-size: 250, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 13: [Best PPL: 166.7524, Optimizer: SGD, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 14: [Best PPL: 162.7989, Optimizer: SGD, Hidden-size: 200, Embedding-size: 350, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 15: [Best PPL: 162.5883, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 16: [Best PPL: 160.1346, Optimizer: SGD, Hidden-size: 250, Embedding-size: 300, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 17: [Best PPL: 159.4526, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 18: [Best PPL: 164.6469, Optimizer: SGD, Hidden-size: 150, Embedding-size: 250, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 19: [Best PPL: 159.6632, Optimizer: SGD, Hidden-size: 150, Embedding-size: 300, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 20: [Best PPL: 161.0591, Optimizer: SGD, Hidden-size: 150, Embedding-size: 350, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 21: [Best PPL: 157.5913, Optimizer: SGD, Hidden-size: 200, Embedding-size: 250, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 22: [Best PPL: 156.7007, Optimizer: SGD, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 23: [Best PPL: 157.2031, Optimizer: SGD, Hidden-size: 200, Embedding-size: 350, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 24: [Best PPL: 157.1367, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 25: [Best PPL: 156.0490, Optimizer: SGD, Hidden-size: 250, Embedding-size: 300, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 26: [Best PPL: 153.9952, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.5, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 27: [Best PPL: 164.2806, Optimizer: SGD, Hidden-size: 150, Embedding-size: 250, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 28: [Best PPL: 160.8511, Optimizer: SGD, Hidden-size: 150, Embedding-size: 300, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 29: [Best PPL: 159.3745, Optimizer: SGD, Hidden-size: 150, Embedding-size: 350, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 150, batch_first=True)
+  (output): Linear(in_features=150, out_features=10001, bias=True)
+)]
+Model 30: [Best PPL: 162.9852, Optimizer: SGD, Hidden-size: 200, Embedding-size: 250, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 31: [Best PPL: 157.7780, Optimizer: SGD, Hidden-size: 200, Embedding-size: 300, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 32: [Best PPL: 156.0309, Optimizer: SGD, Hidden-size: 200, Embedding-size: 350, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 200, batch_first=True)
+  (output): Linear(in_features=200, out_features=10001, bias=True)
+)]
+Model 33: [Best PPL: 159.2966, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (rnn): RNN(250, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 34: [Best PPL: 160.1376, Optimizer: SGD, Hidden-size: 250, Embedding-size: 300, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 300, padding_idx=0)
+  (rnn): RNN(300, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 35: [Best PPL: 156.4749, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 1, Model: LM_RNN(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): RNN(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
