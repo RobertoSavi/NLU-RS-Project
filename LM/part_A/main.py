@@ -28,7 +28,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     best_ppl = math.inf
     best_model = None
     pbar = tqdm(range(1, n_epochs))
-    patience = patience  # Reset patience for each model
+    patience = patience_value  # Reset patience for each model
 
     learning_rate = hyperparams['lr']
     hidden_size = hyperparams['hid_size']
@@ -62,7 +62,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
             if ppl_dev < best_ppl:  # The lower, the better
                 best_ppl = ppl_dev
                 best_model = copy.deepcopy(model).to('cpu')
-                patience = patience  # Reset patience if we get a new best model
+                patience = patience_value  # Reset patience if we get a new best model
             else:
                 patience -= 1
 
@@ -114,7 +114,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
 # Create 'models' folder if it doesn't exist
 os.makedirs("models", exist_ok=True)
 # Full path to the file
-path = os.path.join("models", best_model_filename)
+path = os.path.join("models", f"best_grid_{best_model_filename}")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------

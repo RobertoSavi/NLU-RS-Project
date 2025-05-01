@@ -11,7 +11,7 @@ from utils import *
 
 # -------------------- Define hyperparameters for the model --------------------
 n_epochs = 100  # Number of epochs
-patience = 5    # Early stopping patience
+patience_value = 5    # Early stopping patience
 hid_size = 200  # Hidden layer size
 emb_size = 300  # Embedding layer size
 lr = 0.0001  # Learning rate
