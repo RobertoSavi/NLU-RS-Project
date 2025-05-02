@@ -17,6 +17,7 @@ from model import *
 best_ppls = []
 best_ppl_overall = math.inf
 best_model_overall = None
+best_model_filename = None
 
 # For each model and optimizer
 for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try):
@@ -27,12 +28,13 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     best_ppl = math.inf
     best_model = None
     pbar = tqdm(range(1, n_epochs))
+    patience = patience_value  # Reset patience for each model
 
     learning_rate = hyperparams['lr']
     hidden_size = hyperparams['hid_size']
     embedding_size = hyperparams['emb_size']
     optimizer_name = type(optimizer).__name__
-    model_params = f"[Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]\n"
+    model_params = f"[Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
 
     # Create a file on which to store the results
     filename = f"opt-{optimizer_name}_hid-{hidden_size}_emb-{embedding_size}_lr-{learning_rate:.0e}.txt"
@@ -42,7 +44,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     path = os.path.join("results", filename)
     # Create the file (empty or write something if you want)
     with open(path, 'w') as f:
-        f.write(model_params)
+        f.write(model_params + '\n')
     print(model_params)
 
     # For each epoch in each model and optimizer
@@ -60,7 +62,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
             if ppl_dev < best_ppl:  # The lower, the better
                 best_ppl = ppl_dev
                 best_model = copy.deepcopy(model).to('cpu')
-                patience = patience  # Reset patience if we get a new best model
+                patience = patience_value  # Reset patience if we get a new best model
             else:
                 patience -= 1
 
@@ -78,7 +80,9 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     print('Test PPL:', final_ppl)
     final_log = f"[Final PPL: {final_ppl:.4f}]\n"
     with open(path, 'a') as f:
-        f.write(log)
+        f.write(final_log)
+    
+    print(f"Finished training model with {model_params.strip()} | Final PPL: {final_ppl:.4f}")
 
     # Store the best ppl of this configuration
     best_ppls.append(final_ppl)
@@ -87,18 +91,37 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     if final_ppl < best_ppl_overall:
         best_ppl_overall = final_ppl
         best_model_overall = copy.deepcopy(best_model)
+        best_model_filename = filename
 
-    # -------------------- Model saving --------------------
-    # Create 'models' folder if it doesn't exist
-    os.makedirs("models", exist_ok=True)
-    # Full path to the file
-    path = os.path.join("models", filename)
-    torch.save(best_model.state_dict(), path)
+    # Log GPU memory before cleanup
+    allocated_before = torch.cuda.memory_allocated() / 1024**2
+    reserved_before = torch.cuda.memory_reserved() / 1024**2
+    print(f"[Memory before cleanup] Allocated: {allocated_before:.2f} MB, Reserved: {reserved_before:.2f} MB")
+
+    # Release GPU memory right after evaluation
+    del best_model  
+    model.to("cpu")
+    del model
+    del optimizer
+    torch.cuda.empty_cache()
+
+    # Log GPU memory after cleanup
+    allocated_after = torch.cuda.memory_allocated() / 1024**2
+    reserved_after = torch.cuda.memory_reserved() / 1024**2
+    print(f"[Memory after cleanup] Allocated: {allocated_after:.2f} MB, Reserved: {reserved_after:.2f} MB")
+    print("\n ----------------------------------- \n")
+
+# -------------------- Model saving --------------------
+# Create 'models' folder if it doesn't exist
+os.makedirs("models", exist_ok=True)
+# Full path to the file
+path = os.path.join("models", f"best_LSTM_{best_model_filename}")
+torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------
-with open('results/overall_training_results.txt', 'w') as f:
+with open('results/overall_training_results_LSTM.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
-        entry = f"Model {i}: [Best PPL: {ppl:.4f}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Optimizer: {type(optimizer).__name__}, Model: {model}]\n"
+        entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
 
 # To load the model:
