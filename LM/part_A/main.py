@@ -34,7 +34,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     hidden_size = hyperparams['hid_size']
     embedding_size = hyperparams['emb_size']
     optimizer_name = type(optimizer).__name__
-    model_params = f"[Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]\n"
+    model_params = f"[Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
 
     # Create a file on which to store the results
     filename = f"opt-{optimizer_name}_hid-{hidden_size}_emb-{embedding_size}_lr-{learning_rate:.0e}.txt"
@@ -44,7 +44,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     path = os.path.join("results", filename)
     # Create the file (empty or write something if you want)
     with open(path, 'w') as f:
-        f.write(model_params)
+        f.write(model_params + '\n')
     print(model_params)
 
     # For each epoch in each model and optimizer
@@ -109,16 +109,17 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     allocated_after = torch.cuda.memory_allocated() / 1024**2
     reserved_after = torch.cuda.memory_reserved() / 1024**2
     print(f"[Memory after cleanup] Allocated: {allocated_after:.2f} MB, Reserved: {reserved_after:.2f} MB")
+    print("\n ----------------------------------- \n")
 
 # -------------------- Model saving --------------------
 # Create 'models' folder if it doesn't exist
 os.makedirs("models", exist_ok=True)
 # Full path to the file
-path = os.path.join("models", f"best_grid_{best_model_filename}")
+path = os.path.join("models", f"best_LSTM_{best_model_filename}")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------
-with open('results/overall_training_results_grid_search.txt', 'w') as f:
+with open('results/overall_training_results_LSTM.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)

@@ -12,27 +12,28 @@ from utils import *
 # -------------------- Define hyperparameters for the model --------------------
 n_epochs = 100  # Number of epochs
 patience_value = 5    # Early stopping patience
-hid_size = 200  # Hidden layer size
-emb_size = 300  # Embedding layer size
+hid_size = 250  # Hidden layer size
+emb_size = 350  # Embedding layer size
 lr = 0.0001  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 """ lr_values = [0.0001, 0.05] """
 lr_values = [0.05, 0.1, 0.5, 1]  # Learning rates to try
-hid_size_values = [150, 200, 250]  # Hidden layer sizes to try
-emb_size_values = [250, 300, 350]  # Hidden layer sizes to try
+""" hid_size_values = [150, 200, 250]  # Hidden layer sizes to try
+emb_size_values = [250, 300, 350]  # Hidden layer sizes to try """
 
-
-""" hyperparams_to_try = [
+# Different learning rates to try
+hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr in lr_values
-] """
+] 
 
-# Create all combinations of hyperparameters using itertools.product
+
+""" # Create all combinations of hyperparameters using itertools.product
 hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr, hid_size, emb_size in itertools.product(lr_values, hid_size_values, emb_size_values)
-]
+] """
 
 # -------------------- Model initialization function --------------------
 def init_weights(mat):
@@ -70,7 +71,7 @@ models = []
 optimizers = []
 """ optimizers.append(optimizer) """
 for hyperparam in hyperparams_to_try:
-    model = LM_RNN(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+    model = LM_LSTM(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
     optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
