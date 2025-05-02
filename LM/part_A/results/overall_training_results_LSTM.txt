@@ -1,0 +1,20 @@
+Model 0: [Best PPL: 194.6717, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.05, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 1: [Best PPL: 163.4326, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.1, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 2: [Best PPL: 147.7655, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.5, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 3: [Best PPL: 144.4079, Optimizer: SGD, Hidden-size: 250, Embedding-size: 350, Learning-rate: 1, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
