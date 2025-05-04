@@ -35,7 +35,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     embedding_size = hyperparams['emb_size']
     optimizer_name = type(optimizer).__name__
     model_name = type(model.rnn).__name__
-    model_params = f"[Model: {model_name}, With droput, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
+    model_params = f"[Model: {model_name}, With dropout, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
 
     # Create a file on which to store the results
     filename = f"mod-{model_name}_drop-yes_opt-{optimizer_name}_hid-{hidden_size}_emb-{embedding_size}_lr-{learning_rate:.0e}"
@@ -116,11 +116,11 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
 # Create 'models' folder if it doesn't exist
 os.makedirs("models", exist_ok=True)
 # Full path to the file
-path = os.path.join("models", f"best_LSTM_dropout{best_model_filename}.pt")
+path = os.path.join("models", f"best_LSTM_dropout_adamw{best_model_filename}.pt")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------
-with open('results/overall_training_results_LSTM_dropout.txt', 'w') as f:
+with open('results/overall_training_results_LSTM_dropout_adamw.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
