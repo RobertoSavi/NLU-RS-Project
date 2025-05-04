@@ -1,0 +1,28 @@
+Model 0: [Best PPL: 264.0186, Optimizer: AdamW, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.05, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (emb_dropout): Dropout(p=0.1, inplace=False)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (pre_output_dropout): Dropout(p=0.1, inplace=False)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 1: [Best PPL: 441.0130, Optimizer: AdamW, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.1, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (emb_dropout): Dropout(p=0.1, inplace=False)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (pre_output_dropout): Dropout(p=0.1, inplace=False)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 2: [Best PPL: 17720.6997, Optimizer: AdamW, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.5, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (emb_dropout): Dropout(p=0.1, inplace=False)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (pre_output_dropout): Dropout(p=0.1, inplace=False)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
+Model 3: [Best PPL: 439659750357886398627840.0000, Optimizer: AdamW, Hidden-size: 250, Embedding-size: 350, Learning-rate: 1, Model: LM_LSTM(
+  (embedding): Embedding(10001, 350, padding_idx=0)
+  (emb_dropout): Dropout(p=0.1, inplace=False)
+  (rnn): LSTM(350, 250, batch_first=True)
+  (pre_output_dropout): Dropout(p=0.1, inplace=False)
+  (output): Linear(in_features=250, out_features=10001, bias=True)
+)]
