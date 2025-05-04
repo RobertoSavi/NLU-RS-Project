@@ -116,7 +116,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
 # Create 'models' folder if it doesn't exist
 os.makedirs("models", exist_ok=True)
 # Full path to the file
-path = os.path.join("models", f"best_LSTM_dropout_adamw{best_model_filename}.pt")
+path = os.path.join("models", f"best_LSTM_dropout_adamw_{best_model_filename}.pt")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------

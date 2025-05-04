@@ -1,0 +1,8 @@
+[Model: LSTM, With dropout, Optimizer: AdamW, Hidden-size: 250, Embedding-size: 350, Learning-rate: 0.1]
+[Epoch: 1, PPL: 483.1566, Best PPL: 483.1566]
+[Epoch: 2, PPL: 533.2768, Best PPL: 483.1566]
+[Epoch: 3, PPL: 592.5495, Best PPL: 483.1566]
+[Epoch: 4, PPL: 661.0975, Best PPL: 483.1566]
+[Epoch: 5, PPL: 648.0678, Best PPL: 483.1566]
+[Epoch: 6, PPL: 652.8389, Best PPL: 483.1566]
+[Final PPL: 441.0130]
