@@ -18,9 +18,9 @@ lr = 0.0001  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
 """ lr_values = [0.0001, 0.05] """
-lr_values = [0.05, 0.1, 0.5, 1]  # Learning rates to try
+lr_values = [0.0001, 0.0005, 0.001, 0.005, 0.01]  # Learning rates to try
 """ hid_size_values = [150, 200, 250]  # Hidden layer sizes to try
-emb_size_values = [250, 300, 350]  # Hidden layer sizes to try """
+emb_size_values = [250, 300, 350]  # Embedded layer sizes to try """
 
 # Different learning rates to try
 hyperparams_to_try = [
@@ -74,7 +74,7 @@ for hyperparam in hyperparams_to_try:
     model = LM_LSTM(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
-    optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
+    optimizer = optim.AdamW(model.parameters(), lr=hyperparam["lr"])
     optimizers.append(optimizer)
 
 # -------------------- DataLoader initialization --------------------
