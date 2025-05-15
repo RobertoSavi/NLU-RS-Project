@@ -19,6 +19,8 @@ best_ppl_overall = math.inf
 best_model_overall = None
 best_model_filename = None
 
+print(hyperparams_to_try)
+
 # For each model and optimizer
 for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try):
     # Single training parameters
@@ -35,7 +37,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     embedding_size = hyperparams['emb_size']
     optimizer_name = type(optimizer).__name__
     model_name = type(model.rnn).__name__
-    model_params = f"[Model: {model_name}, Weight Tying Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
+    model_params = f"[Model: {model_name}, Weight Tying, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
 
     # Create a file on which to store the results
     filename = f"mod-{model_name}__weight-tying_opt-{optimizer_name}_hid-{hidden_size}_emb-{embedding_size}_lr-{learning_rate:.0e}"
@@ -120,7 +122,7 @@ path = os.path.join("models", f"best_LSTM_weight_tying{best_model_filename}.pt")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------
-with open('results/overall_training_results_LSTM_weight_tying.txt', 'w') as f:
+with open('results/overall_training_results_LSTM_weight_tying2.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
