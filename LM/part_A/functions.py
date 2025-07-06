@@ -27,11 +27,11 @@ class RNN_cell(nn.Module):
         return hidden_state, output
 
 # -------------------- RNN-based language model --------------------
+# --- BASELINE RNN
 class LM_RNN(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
                  out_dropout=0.1, emb_dropout=0.1, n_layers=1):
         super(LM_RNN, self).__init__()
-
         # Token IDs to vectors (embedding layer)
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
 
@@ -39,8 +39,7 @@ class LM_RNN(nn.Module):
         self.rnn = nn.RNN(emb_size, hidden_size, n_layers, 
                           bidirectional=False, batch_first=True)
 
-        self.pad_token = pad_index
-        
+        self.pad_token = pad_index   
         # Linear layer to project the hidden layer to output space
         self.output = nn.Linear(hidden_size, output_size)
         
@@ -51,12 +50,35 @@ class LM_RNN(nn.Module):
         return output
     
 # -------------------- LSTM langauge model --------------------
+# --- 1. Replace RNN with a Long-Short Term Memory (LSTM) network
 class LM_LSTM(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
                  out_dropout=0.1, emb_dropout=0.1, n_layers=1):
         super(LM_LSTM, self).__init__()
-
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
+
+        self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
+                           bidirectional=False, batch_first=True)
+
+        self.pad_token = pad_index
+        self.output = nn.Linear(hidden_size, output_size)
+
+    def forward(self, input_sequence):
+        emb = self.embedding(input_sequence)
+
+        rnn_out, _ = self.rnn(emb)
+
+        output = self.output(rnn_out).permute(0, 2, 1)
+        return output
+
+
+# --- 3. Add two LM_LSTM_DROPOUTdropout layers: one after the embedding layer, one before the last linear layer
+class LM_LSTM_DROPOUT(nn.Module):
+    def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
+                 out_dropout=0.1, emb_dropout=0.1, n_layers=1):
+        super(LM_LSTM_DROPOUT, self).__init__()
+        self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
+        
         self.emb_dropout = nn.Dropout(emb_dropout)  # Dropout after embedding
 
         self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
@@ -65,7 +87,6 @@ class LM_LSTM(nn.Module):
         self.pre_output_dropout = nn.Dropout(out_dropout)  # Dropout before output layer
 
         self.pad_token = pad_index
-
         self.output = nn.Linear(hidden_size, output_size)
 
     def forward(self, input_sequence):
@@ -74,6 +95,6 @@ class LM_LSTM(nn.Module):
         rnn_out, _ = self.rnn(emb)
 
         dropped = self.pre_output_dropout(rnn_out)  # Before output linear layer
+        
         output = self.output(dropped).permute(0, 2, 1)
-
         return output
