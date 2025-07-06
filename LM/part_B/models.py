@@ -56,16 +56,35 @@ class LM_LSTM(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
                  out_dropout=0.1, emb_dropout=0.1, n_layers=1):
         super(LM_LSTM, self).__init__()
-
-        assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
-
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
 
         self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
                            bidirectional=False, batch_first=True)
 
         self.pad_token = pad_index
+        self.output = nn.Linear(hidden_size, output_size)
 
+    def forward(self, input_sequence):
+        emb = self.embedding(input_sequence)
+
+        rnn_out, _ = self.rnn(emb)
+
+        output = self.output(rnn_out).permute(0, 2, 1)
+        return output
+
+# --- 1. Apply weight tying
+class LM_LSTM_WEIGHT_TYING(nn.Module):
+    def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
+                 out_dropout=0.1, emb_dropout=0.1, n_layers=1):
+        super(LM_LSTM_WEIGHT_TYING, self).__init__()
+        assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
+        
+        self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
+
+        self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
+                           bidirectional=False, batch_first=True)
+
+        self.pad_token = pad_index
         # Commented as output will be computed via tied embedding weights
         #self.output = nn.Linear(hidden_size, output_size)
 
@@ -75,5 +94,4 @@ class LM_LSTM(nn.Module):
         rnn_out, _ = self.rnn(emb)
 
         output = torch.matmul(rnn_out, self.embedding.weight.T).permute(0, 2, 1)
-
         return output

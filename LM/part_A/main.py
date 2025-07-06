@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 import os
 import logging
 # -------------------- Import functions from other files --------------------
-from functions import *
+from models import *
 from utils import *
-from model import *
+from params import *
 
 # -------------------- Training process --------------------
 
