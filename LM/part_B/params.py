@@ -13,26 +13,26 @@ from utils import *
 n_epochs = 100  # Number of epochs
 patience_value = 5    # Early stopping patience
 hid_size = 250  # Hidden layer size
-emb_size = 350  # Embedding layer size
+emb_size = 250  # Embedding layer size
 lr = 1  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
-lr_values = [ 5, 10, 15, 20]  # Learning rates to try
-hid_size_values = [250, 350]  # Hidden layer sizes to try
-emb_size_values = [250, 350]  # Embedded layer sizes to try
+lr_values = [ 10, 15, 20]  # Learning rates to try
+""" hid_size_values = [250, 350]  # Hidden layer sizes to try
+emb_size_values = [250, 350]  # Embedded layer sizes to try """
 
 # Different learning rates to try
-""" hyperparams_to_try = [
+hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr in lr_values
-]  """
+] 
 
 # Create all combinations of hyperparameters using itertools.product
-hyperparams_to_try = [
+""" hyperparams_to_try = [
     {"lr": lr, "hid_size": hid_size, "emb_size": emb_size}
     for lr, hid_size, emb_size in itertools.product(lr_values, hid_size_values, emb_size_values)
     if hid_size == emb_size and hid_size in [250, 350]
-]
+] """
 
 # -------------------- Model initialization function --------------------
 def init_weights(mat):
@@ -70,7 +70,7 @@ models = []
 optimizers = []
 """ optimizers.append(optimizer) """
 for hyperparam in hyperparams_to_try:
-    model = LM_LSTM_WEIGHT_TYING(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+    model = LM_LSTM_VAR_DROPOUT(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
     optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])
