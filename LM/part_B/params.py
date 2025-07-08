@@ -70,7 +70,7 @@ models = []
 optimizers = []
 """ optimizers.append(optimizer) """
 for hyperparam in hyperparams_to_try:
-    model = LM_LSTM(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
+    model = LM_LSTM_WEIGHT_TYING(hyperparam["emb_size"], hyperparam["hid_size"], vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
     model.apply(init_weights)
     models.append(model)
     optimizer = optim.SGD(model.parameters(), lr=hyperparam["lr"])

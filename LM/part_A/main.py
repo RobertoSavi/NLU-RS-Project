@@ -38,8 +38,8 @@ for model, optimizer in zip(models, optimizers):
     embedding_size = hyperparams['emb_size'] if 'hyperparams' in locals() else emb_size
     optimizer_name = type(optimizer).__name__
     model_name = type(model).__name__
-    model_params = f"[Model: {model_name}{', With dropout' if model_name == 'LM_LSTM_DROPOUT' else ''}, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
-    #model_params = f"[Model: {model_name}, With dropout, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
+    model_params = f"[Model: {model_name}, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
+    #model_params = f"[Model: {model_name}{', With dropout' if model_name == 'LM_LSTM_DROPOUT' else ''}, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
     print(model_params)
     
     if EVAL:
