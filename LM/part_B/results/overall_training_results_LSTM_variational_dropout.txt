@@ -1,0 +1,18 @@
+Model 0: [Best PPL: 151.6710, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 10, Model: LM_LSTM_VAR_DROPOUT(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (emb_dropout): LockedDropout()
+  (out_dropout): LockedDropout()
+  (rnn): LSTM(250, 250, batch_first=True)
+)]
+Model 1: [Best PPL: 159.3100, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 15, Model: LM_LSTM_VAR_DROPOUT(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (emb_dropout): LockedDropout()
+  (out_dropout): LockedDropout()
+  (rnn): LSTM(250, 250, batch_first=True)
+)]
+Model 2: [Best PPL: 175.4475, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 20, Model: LM_LSTM_VAR_DROPOUT(
+  (embedding): Embedding(10001, 250, padding_idx=0)
+  (emb_dropout): LockedDropout()
+  (out_dropout): LockedDropout()
+  (rnn): LSTM(250, 250, batch_first=True)
+)]
