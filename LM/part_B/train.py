@@ -28,12 +28,14 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     losses_dev = []
     sampled_epochs = []
     best_ppl = math.inf
-    best_model = None
+    best_model_state = None
     pbar = tqdm(range(1, n_epochs+1))
     patience = patience_value  # Reset patience for each model
     
     # NT-AvSGD parameter initialization
-    logs = []       # List to store validation perplexity 'v'
+    logs = []      # List to store validation perplexity 'v'
+    L = 1          # Logging interval
+    k = 0          # Step counter
     t = 0          # Logging counter
     T = 0          # Trigger iteration/epoch index
     n = 5          # Non-monotone interval (Paper suggestion: n=5)
@@ -58,89 +60,67 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
 
     # For each epoch in each model and optimizer
     for epoch in pbar:
-
         loss = train_loop(train_loader, optimizer, criterion_train, model, clip)    
-        if epoch % 1 == 0:
-            sampled_epochs.append(epoch)
-            losses_train.append(np.asarray(loss).mean())
-
+            
+        # NT-AvSGD logic
+        # If the trigger is not yet active, check the non-monotonic condition
+        if k % L == 0 and T == 0:
             ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
-            losses_dev.append(np.asarray(loss_dev).mean())
-            
-            # NT-AvSGD logic
-            # If the trigger is not yet active, check the non-monotonic condition
-            if T == 0:
-                # Condition: Current PPL is worse than the minimum PPL recorded n steps ago
-                if t > n and ppl_dev > min(logs[:t - n]):
-                    T = epoch
-                    print(f"Trigger activated at epoch {epoch}. Switching to ASGD.")
-                    # Note: ASGD in PyTorch implements the averaging logic described in the paper [3, 7]
-                    # We switch to ASGD with t0=0 to start averaging from this point forward
-                    optimizer = torch.optim.ASGD(model.parameters(), lr=learning_rate, t0=0, lambd=0.)
-                
-                logs.append(ppl_dev)
-                t += 1
-            # ----------------------------------------
-
-            
             pbar.set_description("PPL: %f" % ppl_dev) 
-
-            if ppl_dev < best_ppl:  # The lower, the better
-                best_ppl = ppl_dev
-                best_model = copy.deepcopy(model).to('cpu')
-                patience = patience_value  # Reset patience if we get a new best model
-            else:
-                patience -= 1
-
-            # Create and write the log line
-            log = f"[Epoch: {epoch}, PPL: {ppl_dev:.4f}, Best PPL: {best_ppl:.4f}]\n"
-            with open(path, 'a') as f:
-                f.write(log)
-                
-            if patience <= 0:  # Early stopping with patience
-                break  # Clean exit when training stops
+            # If the current PPL is worse than the minimum PPL recorded n steps ago
+            if t > n and ppl_dev > min(logs[:t - n]):
+                T = k
+                print(f"Trigger activated at epoch {epoch}. Starting weight averaging.")
+                # ASGD in PyTorch implements the averaging logic described in the paper 
+                # Switch to ASGD with t0=0 to start averaging from this point forward
+                optimizer = torch.optim.ASGD(model.parameters(), lr=learning_rate, t0=0, lambd=0.)
             
-    print("Starting Fine-tuning phase...")
-    model.load_state_dict(best_model.state_dict()) # Load best weights
-    model.to(DEVICE)
-    # Set T=0: Start averaging immediately by using ASGD from the start
-    optimizer = torch.optim.ASGD(model.parameters(), lr=learning_rate, t0=0, lambd=0.)
-    
-    # 3. Reset variables for the non-monotonic stopping criterion [1, 3]
-    logs_ft = []
-    t_ft = 0
-    best_ppl_ft = math.inf
-    best_model_ft = None
+            logs.append(ppl_dev)
+            t += 1
 
-    # Fine-tuning loop: Uses the same non-monotonic criterion to terminate [1]
-    for epoch_ft in range(1, n_epochs + 1):
-        loss = train_loop(train_loader, optimizer, criterion_train, model, clip)
-        ppl_dev, _ = eval_loop(dev_loader, criterion_eval, model)
-        
-        # Termination Logic: "terminate the run using the same non-monotonic criterion" [1]
-        # If current PPL is worse than the best PPL from 'n' epochs ago, stop [3]
-        if t_ft > n and ppl_dev > min(logs_ft[:t_ft - n]):
-            print(f"Fine-tuning terminated by non-monotonic trigger at epoch {epoch_ft}")
-            break
-        
-        logs_ft.append(ppl_dev)
-        t_ft += 1
-        
-        # Keep track of the absolute best weights during fine-tuning
-        if ppl_dev < best_ppl_ft:
-            best_ppl_ft = ppl_dev
-            best_model_ft = copy.deepcopy(model).to('cpu')
+        else:
+            # If T > 0, we still need the dev ppl for early stopping/logging
+            ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
 
+        if ppl_dev < best_ppl:  # The lower, the better
+            best_ppl = ppl_dev
+            best_model_state = copy.deepcopy(model.state_dict())
+            patience = patience_value  # Reset patience if we get a new best model
+        else:
+            patience -= 1
 
+        # Create and write the log line
+        log = f"[Epoch: {epoch}, PPL: {ppl_dev:.4f}, Best PPL: {best_ppl:.4f}]\n"
+        with open(path, 'a') as f:
+            f.write(log)
             
-
+        k += 1   
+        if patience <= 0:  # Early stopping with patience
+            break  # Clean exit when training stops
+        
+        
     # -------------------- Final evaluation --------------------
-    best_model_ft.to(DEVICE)
-    final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model_ft)
+    final_ppl = None
+    # After training, if the trigger was activated, set the model parameters to the averaged weights  
+    if T > 0:
+        print("Training complete. Returning averaged weights (ax).")
+        for param in model.parameters():
+            if param in optimizer.state:
+                # Copy the 'ax' (averaged) weights into the model parameters
+                param.data.copy_(optimizer.state[param]['ax'])
+        final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
+        # Also update best_model if the average is better (usually is)
+        best_model_state = model.state_dict()
+        
+    else:
+        # If never triggered, use the best SGD snapshot
+        model.load_state_dict(best_model_state)
+        final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
+        
     print('Test PPL:', final_ppl)
     final_log = f"[Final PPL: {final_ppl:.4f}]\n"
     with open(path, 'a') as f:
-        f.write(final_log)
+        f.write(final_log)        
     
     print(f"Finished training model with {model_params.strip()} | Final PPL: {final_ppl:.4f}")
 
@@ -150,7 +130,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     # Track the best overall model
     if final_ppl < best_ppl_overall:
         best_ppl_overall = final_ppl
-        best_model_overall = copy.deepcopy(best_model)
+        best_model_overall = copy.deepcopy(best_model_state)
         best_model_filename = filename
 
     # Log GPU memory before cleanup
@@ -159,7 +139,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     print(f"[Memory before cleanup] Allocated: {allocated_before:.2f} MB, Reserved: {reserved_before:.2f} MB")
 
     # Release GPU memory right after evaluation
-    del best_model  
+    del best_model_state
     model.to("cpu")
     del model
     del optimizer
@@ -183,7 +163,3 @@ with open('results/overall_training_results_LSTM_NT-AvSGD.txt', 'w') as f:
     for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
-
-# To load the model:
-# model = LM_RNN(emb_size, hid_size, vocab_len, pad_index=lang.word2id["<pad>"]).to(DEVICE)
-# model.load_state_dict(torch.load(path))
