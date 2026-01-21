@@ -28,7 +28,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     losses_dev = []
     sampled_epochs = []
     best_ppl = math.inf
-    best_model_state = None
+    best_model = None
     pbar = tqdm(range(1, n_epochs+1))
     patience = patience_value  # Reset patience for each model
     
@@ -66,14 +66,15 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         # If the trigger is not yet active, check the non-monotonic condition
         if k % L == 0 and T == 0:
             ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
-            pbar.set_description("PPL: %f" % ppl_dev) 
             # If the current PPL is worse than the minimum PPL recorded n steps ago
             if t > n and ppl_dev > min(logs[:t - n]):
                 T = k
                 print(f"Trigger activated at epoch {epoch}. Starting weight averaging.")
+                # Preserve current learning rate
+                current_lr = optimizer.param_groups[0]['lr']
                 # ASGD in PyTorch implements the averaging logic described in the paper 
                 # Switch to ASGD with t0=0 to start averaging from this point forward
-                optimizer = torch.optim.ASGD(model.parameters(), lr=learning_rate, t0=0, lambd=0.)
+                optimizer = torch.optim.ASGD(model.parameters(), lr=current_lr, t0=0, lambd=0.)
             
             logs.append(ppl_dev)
             t += 1
@@ -81,10 +82,11 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         else:
             # If T > 0, we still need the dev ppl for early stopping/logging
             ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
+        pbar.set_description("PPL: %f" % ppl_dev) 
 
         if ppl_dev < best_ppl:  # The lower, the better
             best_ppl = ppl_dev
-            best_model_state = copy.deepcopy(model.state_dict())
+            best_model = copy.deepcopy(model).to('cpu')
             patience = patience_value  # Reset patience if we get a new best model
         else:
             patience -= 1
@@ -105,17 +107,18 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     if T > 0:
         print("Training complete. Returning averaged weights (ax).")
         for param in model.parameters():
-            if param in optimizer.state:
+            if 'ax' in optimizer.state[param]:
                 # Copy the 'ax' (averaged) weights into the model parameters
                 param.data.copy_(optimizer.state[param]['ax'])
         final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
         # Also update best_model if the average is better (usually is)
-        best_model_state = model.state_dict()
+        if final_ppl < best_ppl:
+            best_model = copy.deepcopy(model).to('cpu')
         
     else:
         # If never triggered, use the best SGD snapshot
-        model.load_state_dict(best_model_state)
-        final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
+        best_model.to(DEVICE)
+        final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model)
         
     print('Test PPL:', final_ppl)
     final_log = f"[Final PPL: {final_ppl:.4f}]\n"
@@ -130,7 +133,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     # Track the best overall model
     if final_ppl < best_ppl_overall:
         best_ppl_overall = final_ppl
-        best_model_overall = copy.deepcopy(best_model_state)
+        best_model_overall = copy.deepcopy(best_model).to('cpu')
         best_model_filename = filename
 
     # Log GPU memory before cleanup
@@ -139,7 +142,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     print(f"[Memory before cleanup] Allocated: {allocated_before:.2f} MB, Reserved: {reserved_before:.2f} MB")
 
     # Release GPU memory right after evaluation
-    del best_model_state
+    del best_model
     model.to("cpu")
     del model
     del optimizer
