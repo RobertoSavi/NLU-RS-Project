@@ -1,8 +1,0 @@
-Model 0: [Best PPL: 305.3399, Optimizer: SGD, Hidden-size: 250, Embedding-size: 250, Learning-rate: 0.1, Model: LM_LSTM(
-  (embedding): Embedding(10001, 250, padding_idx=0)
-  (rnn): LSTM(250, 250, batch_first=True)
-)]
-Model 1: [Best PPL: 311.5051, Optimizer: SGD, Hidden-size: 350, Embedding-size: 350, Learning-rate: 0.1, Model: LM_LSTM(
-  (embedding): Embedding(10001, 350, padding_idx=0)
-  (rnn): LSTM(350, 350, batch_first=True)
-)]

@@ -29,7 +29,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     sampled_epochs = []
     best_ppl = math.inf
     best_model = None
-    pbar = tqdm(range(1, n_epochs))
+    pbar = tqdm(range(1, n_epochs+1))
     patience = patience_value  # Reset patience for each model
 
     learning_rate = hyperparams['lr']
@@ -118,7 +118,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
 # Create 'models' folder if it doesn't exist
 os.makedirs("models", exist_ok=True)
 # Full path to the file
-path = os.path.join("models", f"best{best_model_filename}.pt")
+path = os.path.join("models", f"best-{best_model_filename}.pt")
 torch.save(best_model_overall.state_dict(), path)
 
 # -------------------- Save best PPL results --------------------

@@ -17,7 +17,7 @@ emb_size = 250  # Embedding layer size
 lr = 1  # Learning rate
 clip = 5  # Gradient clipping
 vocab_len = len(lang.word2id)  # Vocabulary size
-lr_values = [ 10, 15, 20]  # Learning rates to try
+lr_values = [ 1, 5, 10, 15, 20]  # Learning rates to try
 """ hid_size_values = [250, 350]  # Hidden layer sizes to try
 emb_size_values = [250, 350]  # Embedded layer sizes to try """
 
