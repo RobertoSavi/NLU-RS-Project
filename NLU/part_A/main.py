@@ -76,7 +76,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
                 # For decreasing the patience you can also use the average between slot f1 and intent accuracy
                 if f1 > best_f1_run:
                     best_f1_run = f1
-                    best_model_run = copy.deepcopy(model).to('cpu')
+                    best_model_run = copy.deepcopy(model)
                     best_optimizer_run = copy.deepcopy(optimizer)
                     patience = patience_value  # Reset patience
                 else:
@@ -127,7 +127,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     if best_f1_config > best_f1_overall:
         best_f1_overall = best_f1_config
         best_model_filename = filename
-        best_model_overall = copy.deepcopy(best_model_config).to('cpu')
+        best_model_overall = copy.deepcopy(best_model_config)
         best_optimizer_overall = copy.deepcopy(best_optimizer_config)
         
     model_data_save = {
