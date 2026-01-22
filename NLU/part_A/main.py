@@ -93,6 +93,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         if results_test['total']['f'] > best_f1_config:
             best_f1_config = results_test['total']['f']
             best_model_config = best_model_run
+            best_optimizer_config = best_optimizer_run
             
         # Log GPU memory before cleanup
         allocated_before = torch.cuda.memory_allocated() / 1024**2
