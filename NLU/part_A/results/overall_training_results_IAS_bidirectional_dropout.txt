@@ -1,0 +1,27 @@
+Model 0: [Result: Slot F1: 0.940 ± 0.002
+ Intent Acc: 0.945 ± 0.005
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.0001, Model: ModelIAS_Bi_Drop(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]
+Model 1: [Result: Slot F1: 0.945 ± 0.002
+ Intent Acc: 0.950 ± 0.002
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.0005, Model: ModelIAS_Bi_Drop(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]
+Model 2: [Result: Slot F1: 0.943 ± 0.002
+ Intent Acc: 0.949 ± 0.003
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.001, Model: ModelIAS_Bi_Drop(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (dropout): Dropout(p=0.1, inplace=False)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]

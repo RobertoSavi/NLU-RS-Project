@@ -1,0 +1,3 @@
+[Model: ModelIAS_Bi_Drop, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.0005]
+Slot F1: 0.945 ± 0.002
+ Intent Acc: 0.950 ± 0.002
