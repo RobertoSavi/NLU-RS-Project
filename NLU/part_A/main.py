@@ -54,7 +54,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         best_model_run = None
         best_optimizer_run = None
         
-        model = ModelIAS(hid_size, out_slot, out_int, emb_size, 
+        model = ModelIAS_Bi(hid_size, out_slot, out_int, emb_size, 
                      vocab_len, pad_index=PAD_TOKEN).to(DEVICE)
         model.apply(init_weights)
         optimizer = optim.Adam(model.parameters(), lr=lr)
@@ -147,7 +147,7 @@ os.makedirs("models", exist_ok=True)
 path = os.path.join("models", f"best-{best_model_filename}.pt")
 torch.save(model_data_save, path)
 
-with open('results/overall_training_results_baseline_IAS.txt', 'w') as f:
+with open('results/overall_training_results_IAS_bidirectional.txt', 'w') as f:
     for i, (result, model, optimizer, hyperparams) in enumerate(zip(results, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Result: {result}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
