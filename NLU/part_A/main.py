@@ -10,7 +10,7 @@ from models import *
 from utils import *
 from params import *
 
-best_f1_overall = 0
+best_f1_overall = -1.0
 best_model_overall = None
 best_optimizer_overall = None
 best_model_filename = None
@@ -22,7 +22,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     slot_f1s = []
     intent_accs = []
     
-    best_f1_config = 0
+    best_f1_config = -1.0
     best_model_config = None
     best_optimizer_config = None
     
@@ -50,7 +50,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         losses_dev = []
         sampled_epochs = []
         
-        best_f1_run = 0
+        best_f1_run = -1.0
         best_model_run = None
         best_optimizer_run = None
         
