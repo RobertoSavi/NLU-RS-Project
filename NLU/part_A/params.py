@@ -20,9 +20,9 @@ emb_size = 300
 lr = 0.0001 # learning rate
 clip = 5 # Clip the gradient """
 
-hid_size_values = [200, 250, 300]
-emb_size_values = [250, 300, 350]
-lr_values = [1e-4, 5e-4, 1e-3, 5e-3, 1e-2]
+hid_size_values = [200]
+emb_size_values = [300]
+lr_values = [1e-4, 5e-4, 1e-3,]
 
 # Create all combinations of hyperparameters using itertools.product
 hyperparams_to_try = [
