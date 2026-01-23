@@ -1,0 +1,24 @@
+Model 0: [Result: Slot F1: 0.937 ± 0.004
+ Intent Acc: 0.942 ± 0.008
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.0001, Model: ModelIAS_Bi(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]
+Model 1: [Result: Slot F1: 0.941 ± 0.003
+ Intent Acc: 0.946 ± 0.003
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.0005, Model: ModelIAS_Bi(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]
+Model 2: [Result: Slot F1: 0.942 ± 0.002
+ Intent Acc: 0.948 ± 0.004
+, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.001, Model: ModelIAS_Bi(
+  (embedding): Embedding(866, 300, padding_idx=0)
+  (utt_encoder): LSTM(300, 200, batch_first=True, bidirectional=True)
+  (slot_out): Linear(in_features=400, out_features=130, bias=True)
+  (intent_out): Linear(in_features=400, out_features=26, bias=True)
+)]
