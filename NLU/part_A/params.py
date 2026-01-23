@@ -39,7 +39,7 @@ optimizers = []
 
 # For each combination of hyperparameters, create model and optimizer
 for hyperparams in hyperparams_to_try:
-    model = ModelIAS_Bi(hyperparams['hid_size'], out_slot, out_int, 
+    model = ModelIAS_Bi_Drop(hyperparams['hid_size'], out_slot, out_int, 
                      hyperparams['emb_size'], vocab_len, 
                      pad_index=PAD_TOKEN).to(DEVICE)
     model.apply(init_weights)
