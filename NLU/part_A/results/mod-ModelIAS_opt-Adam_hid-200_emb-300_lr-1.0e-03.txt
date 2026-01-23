@@ -1,0 +1,3 @@
+[Model: ModelIAS, Optimizer: Adam, Hidden-size: 200, Embedding-size: 300, Learning-rate: 0.001]
+Slot F1: 0.923 ± 0.004
+ Intent Acc: 0.931 ± 0.006
