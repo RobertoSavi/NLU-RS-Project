@@ -66,6 +66,8 @@ def eval_loop(data, criterion_slots, criterion_intents, model, lang):
     
     ref_slots = []
     hyp_slots = []
+    
+    tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     #softmax = nn.Softmax(dim=1) # Use Softmax if you need the actual probability
     with torch.no_grad(): # It used to avoid the creation of computational graph
         for sample in data:
@@ -85,24 +87,33 @@ def eval_loop(data, criterion_slots, criterion_intents, model, lang):
             # Slot inference 
             output_slots = torch.argmax(slots, dim=1)
             for id_seq, seq in enumerate(output_slots):
-                length = sample['slots_len'].tolist()[id_seq]
-                utt_ids = sample['utterance'][id_seq][:length].tolist()
+                utt_ids = sample['utterance'][id_seq].tolist()
                 gt_ids = sample['y_slots'][id_seq].tolist()
-                gt_slots = [lang.id2slot[elem] for elem in gt_ids[:length]]
-                utterance = [lang.id2word[elem] for elem in utt_ids]
-                to_decode = seq[:length].tolist()
-                ref_slots.append([(utterance[id_el], elem) for id_el, elem in enumerate(gt_slots)])
-                tmp_seq = []
-                for id_el, elem in enumerate(to_decode):
-                    tmp_seq.append((utterance[id_el], lang.id2slot[elem]))
-                hyp_slots.append(tmp_seq)
+                
+                utterance = tokenizer.convert_ids_to_tokens(utt_ids)
+                
+                tmp_ref = []
+                tmp_hyp = []
+                for i, gt_id in enumerate(gt_ids):
+                    # Remove subword tokens for evaluation
+                    if gt_id != lang.pad_token:
+                        word = utterance[i]
+                        ref_slot = lang.id2slot[gt_id]
+                        hyp_slot = lang.id2slot[seq[i].item()]
+                        
+                        # Append tuple (word, label) to temp lists
+                        tmp_ref.append((word, ref_slot))
+                        tmp_hyp.append((word, hyp_slot))
+                # Append the filtered sequences to the main lists
+                ref_slots.append(tmp_ref)
+                hyp_slots.append(tmp_hyp)
     try:            
         results = evaluate(ref_slots, hyp_slots)
     except Exception as ex:
         # Sometimes the model predicts a class that is not in REF
         print("Warning:", ex)
-        ref_s = set([x[1] for x in ref_slots])
-        hyp_s = set([x[1] for x in hyp_slots])
+        ref_s = set([label for sent in ref_slots for word, label in sent])
+        hyp_s = set([label for sent in hyp_slots for word, label in sent])
         print(hyp_s.difference(ref_s))
         results = {"total":{"f":0}}
         

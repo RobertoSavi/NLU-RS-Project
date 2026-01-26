@@ -71,10 +71,7 @@ intent2id = {}
 
 # Map the words only from the train set
 # Map slot and intent labels of train, dev and test set. 'unk' is not needed.
-for example in train_raw:
-    for w in example['utterance'].split():
-        if w not in w2id:
-            w2id[w] = len(w2id)   
+for example in train_raw:   
     for slot in example['slots'].split():
         if slot not in slot2id:
             slot2id[slot] = len(slot2id)
@@ -100,23 +97,11 @@ mapping = [w2id[w] if w in w2id else w2id['unk'] for w in sent.split()]
 
 # -------------------- Language class --------------------
 class Lang():
-    def __init__(self, words, intents, slots, cutoff=0):
-        self.word2id = self.w2id(words, cutoff=cutoff, unk=True)
+    def __init__(self, intents, slots, cutoff=0):
         self.slot2id = self.lab2id(slots)
         self.intent2id = self.lab2id(intents, pad=False)
-        self.id2word = {v:k for k, v in self.word2id.items()}
         self.id2slot = {v:k for k, v in self.slot2id.items()}
         self.id2intent = {v:k for k, v in self.intent2id.items()}
-        
-    def w2id(self, elements, cutoff=None, unk=True):
-        vocab = {'pad': PAD_TOKEN}
-        if unk:
-            vocab['unk'] = len(vocab)
-        count = Counter(elements)
-        for k, v in count.items():
-            if v > cutoff:
-                vocab[k] = len(vocab)
-        return vocab
     
     def lab2id(self, elements, pad=True):
         vocab = {}
@@ -125,15 +110,13 @@ class Lang():
         for elem in elements:
                 vocab[elem] = len(vocab)
         return vocab
-
-words = sum([x['utterance'].split() for x in train_raw], []) # No set() since we want to compute 
-                                                            # the cutoff
+    
 corpus = train_raw + dev_raw + test_raw # We do not want unk labels, 
                                         # however this depends on the research purpose
 slots = set(sum([line['slots'].split() for line in corpus],[]))
 intents = set([line['intent'] for line in corpus])
 
-lang = Lang(words, intents, slots, cutoff=0)
+lang = Lang(intents, slots, cutoff=0)
 
 # -------------------- Dataset class --------------------
 class IntentsAndSlots (data.Dataset):
