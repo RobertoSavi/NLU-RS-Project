@@ -10,8 +10,8 @@ from models import *
 from utils import *
 
 # -------------------- Define hyperparameters for the model --------------------
-n_epochs = 30 # Paper selects from [1, 5, 10, 20, 30, 40]
-lr = 5e-5     # "initial learning rate of 5e-5"
+n_epochs = 70
+lr = 5e-5
 batch_size = 128
 dropout = 0.1
 patience_value = 3
