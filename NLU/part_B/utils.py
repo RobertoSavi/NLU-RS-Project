@@ -202,7 +202,7 @@ class IntentsAndSlots (data.Dataset):
                 elif word_id != prev_word_id:
                     # First sub-token of a word
                     label = slot_labels[slot_ptr]
-                    aligned_slots.append(mapper.get(label, mapper[self.unk]))
+                    aligned_slots.append(mapper.get(label, PAD_TOKEN))
                     slot_ptr += 1
                     prev_word_id = word_id
                 else:
