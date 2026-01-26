@@ -1,68 +1,53 @@
-# -\-\-\ Define the architecture of the model /-/-/-
+# -\-\-\ Define the hyperparameters for the model /-/-/-
 # -------------------- Import libraries --------------------
 import torch
-import torch.nn as nn
-from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
+import torch.optim as optim
 from conll import evaluate
 from sklearn.metrics import classification_report
-from transformers import BertModel, BertPreTrainedModel
+import itertools
+# -------------------- Import functions from other files --------------------
+from models import *
+from utils import *
 
+# -------------------- Define hyperparameters for the model --------------------
+n_epochs = 30 # Paper selects from [1, 5, 10, 20, 30, 40]
+lr = 5e-5     # "initial learning rate of 5e-5"
+batch_size = 128
+dropout = 0.1
+patience_value = 3
+runs = 5
 
-class JointBERT(nn.Module):
+hyperparams_to_try = [
+    {"lr": lr, "hid_size": 768, "emb_size": 768} # Hidden size 768 for BERT-base
+]
+
+out_slot = len(lang.slot2id)
+out_int = len(lang.intent2id)
+vocab_len = len(lang.word2id)
+
+models = []
+optimizers = []
+
+# For each combination of hyperparameters, create model and optimizer
+for hyperparams in hyperparams_to_try:
+    model = JointBERT(hyperparams['hid_size'], out_slot, out_int, 
+                     hyperparams['emb_size'], vocab_len, 
+                     pad_index=PAD_TOKEN).to(DEVICE)
+    model.apply(init_weights)
+    models.append(model)
+    optimizer = optim.Adam(model.parameters(), lr=hyperparams['lr'])
+    optimizers.append(optimizer)
     
-    def __init__(self, out_slot, out_int, dropout):
-        super(JointBERT, self).__init__()
+criterion_slots = nn.CrossEntropyLoss(ignore_index=PAD_TOKEN)
+criterion_intents = nn.CrossEntropyLoss() # Because we do not have the pad token
 
-        self.bert = BertModel.from_pretrained("bert-base-uncased")  
-        
-        self.slots_out = nn.Linear(self.bert.config.hidden_size, out_slot)
-        self.int_out = nn.Linear(self.bert.config.hidden_size, out_int)
-        self.dropout = nn.Dropout(dropout)
-
-    def forward(self, input_ids, attention_mask):
-        output = self.bert(input_ids=input_ids, attention_mask=attention_mask)
-        sequence_out = output.last_hidden_state
-        cls_out = output.pooler_output
-
-        sequence_out = self.dropout(sequence_out)
-        cls_out = self.dropout(cls_out)   
-           
-        slots = self.slots_out(sequence_out)
-        # Shape (batch_size, num_slot_labels, seq_len)
-        slots = slots.permute(0, 2, 1) 
-        # Shape (batch_size, num_intent_labels)
-        intent = self.int_out(cls_out) 
-
-        return slots, intent 
-    
-    
-# Init weights
-def init_weights(mat):
-    for m in mat.modules():
-        if type(m) in [nn.GRU, nn.LSTM, nn.RNN]:
-            for name, param in m.named_parameters():
-                if 'weight_ih' in name:
-                    for idx in range(4):
-                        mul = param.shape[0]//4
-                        torch.nn.init.xavier_uniform_(param[idx*mul:(idx+1)*mul])
-                elif 'weight_hh' in name:
-                    for idx in range(4):
-                        mul = param.shape[0]//4
-                        torch.nn.init.orthogonal_(param[idx*mul:(idx+1)*mul])
-                elif 'bias' in name:
-                    param.data.fill_(0)
-        else:
-            if type(m) in [nn.Linear]:
-                torch.nn.init.uniform_(m.weight, -0.01, 0.01)
-                if m.bias != None:
-                    m.bias.data.fill_(0.01)
-
+# -------------------- Train loop and evaluation loop --------------------
 def train_loop(data, optimizer, criterion_slots, criterion_intents, model, clip=5):
     model.train()
     loss_array = []
     for sample in data:
         optimizer.zero_grad() # Zeroing the gradient
-        slots, intent = model(sample['utterances'], sample['attention_mask'])
+        slots, intent = model(sample['utterances'], sample['slots_len'])
         loss_intent = criterion_intents(intent, sample['intents'])
         loss_slot = criterion_slots(slots, sample['y_slots'])
         loss = loss_intent + loss_slot # In joint training we sum the losses. 
@@ -83,12 +68,10 @@ def eval_loop(data, criterion_slots, criterion_intents, model, lang):
     
     ref_slots = []
     hyp_slots = []
-    
-    tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     #softmax = nn.Softmax(dim=1) # Use Softmax if you need the actual probability
     with torch.no_grad(): # It used to avoid the creation of computational graph
         for sample in data:
-            slots, intents = model(sample['utterances'], sample['attention_mask'])
+            slots, intents = model(sample['utterances'], sample['slots_len'])
             loss_intent = criterion_intents(intents, sample['intents'])
             loss_slot = criterion_slots(slots, sample['y_slots'])
             loss = loss_intent + loss_slot 
