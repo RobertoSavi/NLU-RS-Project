@@ -54,8 +54,7 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
         best_model_run = None
         best_optimizer_run = None
         
-        model = JointBERT(hid_size, out_slot, out_int, emb_size, 
-                     vocab_len, pad_index=PAD_TOKEN).to(DEVICE)
+        model = JointBERT(out_slot, out_int, dropout).to(DEVICE)
         model.apply(init_weights)
         optimizer = optim.Adam(model.parameters(), lr=lr)
         
