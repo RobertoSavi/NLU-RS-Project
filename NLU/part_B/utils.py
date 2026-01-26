@@ -245,10 +245,10 @@ def collate_fn(data):
         new_item[key] = [d[key] for d in data]
         
     # We just need one length for packed pad seq, since len(utt) == len(slots)
-    src_utt, _ = merge(new_item['utterance'], PAD_TOKEN)
+    src_utt, _ = merge(new_item['utterance'])
     # Attention mask for BERT
     attention_mask = torch.LongTensor([[1 if id != PAD_TOKEN else 0 for id in seq] for seq in src_utt])
-    y_slots, _ = merge(new_item["slots"], PAD_TOKEN)
+    y_slots, _ = merge(new_item["slots"])
     intent = torch.LongTensor(new_item["intent"])
     
     src_utt = src_utt.to(DEVICE) # We load the Tensor on our selected device
