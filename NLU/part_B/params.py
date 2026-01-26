@@ -95,7 +95,7 @@ def eval_loop(data, criterion_slots, criterion_intents, model, lang):
                 tmp_hyp = []
                 for i, gt_id in enumerate(gt_ids):
                     # Remove subword tokens for evaluation
-                    if gt_id != lang.pad_token:
+                    if gt_id != PAD_TOKEN:
                         word = utterance[i]
                         ref_slot = lang.id2slot[gt_id]
                         hyp_slot = lang.id2slot[seq[i].item()]
