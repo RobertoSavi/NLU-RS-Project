@@ -23,7 +23,6 @@ hyperparams_to_try = [
 
 out_slot = len(lang.slot2id)
 out_int = len(lang.intent2id)
-vocab_len = len(lang.word2id)
 
 models = []
 optimizers = []
