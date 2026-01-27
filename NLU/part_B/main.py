@@ -146,7 +146,7 @@ os.makedirs("models", exist_ok=True)
 path = os.path.join("models", f"best-{best_model_filename}.pt")
 torch.save(model_data_save, path)
 
-with open('results/overall_training_results_BERT.txt', 'w') as f:
+with open('results/overall_training_results_BERT_again.txt', 'w') as f:
     for i, (result, model, optimizer, hyperparams) in enumerate(zip(results, models, optimizers, hyperparams_to_try)):
         entry = f"Model {i}: [Result: {result}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
         f.write(entry)
