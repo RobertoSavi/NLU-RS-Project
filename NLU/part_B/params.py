@@ -11,7 +11,7 @@ from utils import *
 
 # -------------------- Define hyperparameters for the model --------------------
 n_epochs = 65
-lr = 1e-4
+lr = 0.0001
 batch_size = 128
 dropout = 0.1
 patience_value = 3
