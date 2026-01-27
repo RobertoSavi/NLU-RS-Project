@@ -30,7 +30,8 @@ optimizers = []
 # For each combination of hyperparameters, create model and optimizer
 for hyperparams in hyperparams_to_try:
     model = JointBERT(out_slot, out_int, dropout).to(DEVICE)
-    model.apply(init_weights)
+    model.slots_out.apply(init_weights)
+    model.int_out.apply(init_weights)
     models.append(model)
     optimizer = optim.Adam(model.parameters(), lr=hyperparams['lr'])
     optimizers.append(optimizer)
