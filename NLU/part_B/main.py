@@ -133,7 +133,6 @@ for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try)
     model_data_save = {
         "model": best_model_overall.state_dict(), 
         "optimizer": best_optimizer_overall.state_dict(), 
-        "w2id": w2id, 
         "slot2id": slot2id, 
         "intent2id": intent2id
     }
