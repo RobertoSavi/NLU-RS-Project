@@ -8,6 +8,7 @@ from tqdm import tqdm
 # -------------------- Import functions from other files --------------------
 from models import *
 from utils import *
+from functions import *
 from params import *
 
 best_f1_overall = -1.0

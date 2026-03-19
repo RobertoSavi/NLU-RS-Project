@@ -8,10 +8,11 @@ import itertools
 # -------------------- Import functions from other files --------------------
 from models import *
 from utils import *
+from functions import *
 
 # -------------------- Define hyperparameters for the model --------------------
 n_epochs = 100  # Number of epochs
-patience_value = 5    # Early stopping patience
+patience_value = 10    # Early stopping patience
 hid_size = 250  # Hidden layer size
 emb_size = 250  # Embedding layer size
 lr = 1  # Learning rate
@@ -89,45 +90,3 @@ test_loader = DataLoader(
     test_dataset, batch_size=128,
     collate_fn=partial(collate_fn, pad_token=lang.word2id["<pad>"])
 )
-
-# -------------------- Training loop function --------------------
-def train_loop(data, optimizer, criterion, model, clip=5):
-    model.train()
-    loss_array = []
-    number_of_tokens = []
-    
-    for sample in data:
-        optimizer.zero_grad()  # Zeroing the gradient
-        output = model(sample['source'])
-        loss = criterion(output, sample['target'])
-        loss_array.append(loss.item() * sample["number_tokens"])
-        number_of_tokens.append(sample["number_tokens"])
-        loss.backward()  # Compute the gradient, deleting the computational graph
-
-        # Clip the gradient to avoid exploding gradients
-        torch.nn.utils.clip_grad_norm_(model.parameters(), clip)  
-        optimizer.step()  # Update the weights
-        
-    return sum(loss_array) / sum(number_of_tokens)
-
-# -------------------- Evaluation loop function --------------------
-def eval_loop(data, eval_criterion, model):
-    model.eval()
-    loss_array = []
-    number_of_tokens = []
-
-    with torch.no_grad():  # Avoid the creation of computational graph
-        for sample in data:
-            output = model(sample['source'])
-            loss = eval_criterion(output, sample['target'])
-            loss_array.append(loss.item())
-            number_of_tokens.append(sample["number_tokens"])
-    
-    ppl = math.exp(sum(loss_array) / sum(number_of_tokens))
-    loss_to_return = sum(loss_array) / sum(number_of_tokens)
-    return ppl, loss_to_return
-
-
-
-
-
