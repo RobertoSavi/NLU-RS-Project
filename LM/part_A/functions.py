@@ -178,7 +178,7 @@ def save_losses(losses_train, losses_dev, save_path) -> None:
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
     with open(save_path, 'w') as f:
         json.dump({'losses_train': losses_train, 'losses_dev': losses_dev}, f)
-    print(f"Losses saved to {path}")
+    print(f"Losses saved to {save_path}")
 
 # Generates and saves training plots when testing, plot a saved training plot when evaluating
 def plot_losses(losses_train=None, losses_dev=None, save_path=None, testing=True) -> None:
@@ -263,7 +263,11 @@ def update_sweep_log(trial_number, params, ppl, log_path) -> None:
         "trial_number": trial_number,
         "parameters": params,
         "eval_ppl": ppl
-    })    
+    })
+    # Ensure the parent directory exists before writing the log
+    log_dir = os.path.dirname(log_path)
+    if log_dir:
+        os.makedirs(log_dir, exist_ok=True)
     # Write back to disk
     with open(log_path, 'w') as f:
         json.dump(log_data, f, indent=4)
@@ -293,6 +297,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         print(f"Testing params: {trial_params}")
         folder_name = "_".join([f"{k}={trial_params[k]}" for k in varying_keys]) if varying_keys else f"trial_{trial.number}"
         trial_folder_path = os.path.join(current_hydra_dir, folder_name)
+        os.makedirs(trial_folder_path, exist_ok=True)
         
         # Build and train
         model, optimizer = build_model_and_optim(trial_config, vocab_len, pad_index)
@@ -311,6 +316,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         if best_val_loss < best_sweep_loss:
             best_sweep_loss = best_val_loss
             best_dir = os.path.join(current_hydra_dir, "best_model")
+            os.makedirs(best_dir, exist_ok=True)
             print(f"\nNew best model found! Saving files to {best_dir}...")
             save_model(best_model, os.path.join(best_dir, "model.pt"))
             save_losses(losses_train, losses_dev, os.path.join(best_dir, "losses.json"))
