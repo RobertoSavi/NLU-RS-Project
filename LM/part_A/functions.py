@@ -158,12 +158,11 @@ def eval_model(model, test_loader, pad_index, model_path=None) -> float:
     return final_ppl
 
 # Save trained model weights to disk
-def save_model(model, save_dir) -> None:
-    os.makedirs(save_dir, exist_ok=True)
-    path = os.path.join(save_dir, "model.pt")
-    torch.save(model.state_dict(), path)
-    print(f"Model saved to {path}")
-    
+def save_model(model, save_path) -> None:
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    torch.save(model.state_dict(), save_path)
+    print(f"Model saved to {save_path}")
+
 # Load model weights from disk for evaluation
 def load_model(model, model_path) -> nn.Module:
     if not os.path.exists(model_path):
@@ -173,10 +172,9 @@ def load_model(model, model_path) -> nn.Module:
     return model
     
 # Save training and validation losses to a JSON file for later analysis
-def save_losses(losses_train, losses_dev, save_dir) -> None:
-    os.makedirs(save_dir, exist_ok=True)
-    path = os.path.join(save_dir, "losses.json")
-    with open(path, 'w') as f:
+def save_losses(losses_train, losses_dev, save_path) -> None:
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    with open(save_path, 'w') as f:
         json.dump({'losses_train': losses_train, 'losses_dev': losses_dev}, f)
     print(f"Losses saved to {path}")
 
