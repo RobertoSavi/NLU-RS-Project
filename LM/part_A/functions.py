@@ -11,6 +11,8 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from tqdm import tqdm
+from omegaconf import OmegaConf
+import optuna
 
 # Import model architectures and device configuration
 from models import LM_RNN, LM_LSTM, LM_LSTM_DROPOUT
@@ -222,7 +224,7 @@ def plot_losses(losses_train=None, losses_dev=None, save_path=None, testing=True
     plt.close()
 
 # Safely removes models and optimizers from memory and clears CUDA cache
-def free_memory(model, best_model, optimizer):
+def free_memory(model, best_model, optimizer) -> None:
     if torch.cuda.is_available():
         allocated_before = torch.cuda.memory_allocated() / 1024**2
         reserved_before = torch.cuda.memory_reserved() / 1024**2
@@ -247,7 +249,7 @@ def free_memory(model, best_model, optimizer):
         print("-" * 50)
         
 # Append trial results to a central JSON log file
-def update_sweep_log(log_path, trial_number, params, ppl):
+def update_sweep_log(trial_number, params, ppl, log_path) -> None:
     log_data = []
     # Load existing data if the file already exists
     if os.path.exists(log_path):
@@ -255,15 +257,97 @@ def update_sweep_log(log_path, trial_number, params, ppl):
             try:
                 log_data = json.load(f)
             except json.JSONDecodeError:
-                pass # If file is empty or corrupted, start fresh
-                
+                pass # If file is empty or corrupted, start fresh              
     # Append the new trial's results
     log_data.append({
         "trial_number": trial_number,
         "parameters": params,
         "eval_ppl": ppl
-    })
-    
+    })    
     # Write back to disk
     with open(log_path, 'w') as f:
         json.dump(log_data, f, indent=4)
+           
+def run_sweep(config, active_params, train_loader, dev_loader, test_loader, vocab_len, pad_index, current_hydra_dir) -> None:
+    print("\n================ RUNNING OPTUNA SWEEP ================")
+    # Use active_params to build the folder naming keys
+    base_params_dict = OmegaConf.to_container(active_params, resolve=True)
+    varying_keys = [k for k, v in base_params_dict.items() if isinstance(v, (list, tuple)) and len(v) > 1]
+    print(f"Varying parameters for folder naming: {varying_keys}")
+    
+    best_sweep_loss = float('inf') 
+    def objective(trial):
+        nonlocal best_sweep_loss
+        trial_params = {}
+        for key, value in active_params.items():
+            if isinstance(value, (list, tuple)) or type(value).__name__ == "ListConfig":
+                if len(value) > 1:
+                    trial_params[key] = trial.suggest_categorical(key, list(value))
+                else:
+                    trial_params[key] = value[0]
+            else:
+                trial_params[key] = value
+        trial_config = OmegaConf.merge(config, trial_params)
+        
+        print(f"\n--- Trial {trial.number} ---")
+        print(f"Testing params: {trial_params}")
+        folder_name = "_".join([f"{k}={trial_params[k]}" for k in varying_keys]) if varying_keys else f"trial_{trial.number}"
+        trial_folder_path = os.path.join(current_hydra_dir, folder_name)
+        
+        # Build and train
+        model, optimizer = build_model_and_optim(trial_config, vocab_len, pad_index)
+        best_model, losses_train, losses_dev = train_model(trial_config, model, optimizer, train_loader, dev_loader, pad_index)
+        
+        # Evaluate this trial's best model
+        trial_ppl = eval_model(best_model, test_loader, pad_index)
+        
+        # Log and save trial data
+        update_sweep_log(trial.number, trial_params, trial_ppl, os.path.join(trial_folder_path, "log.json"))
+        save_losses(losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"))
+        plot_losses(losses_train, losses_dev, os.path.join(trial_folder_path, "loss_plot.png"), testing=True)
+        
+        # Check overall best
+        best_val_loss = min(losses_dev)
+        if best_val_loss < best_sweep_loss:
+            best_sweep_loss = best_val_loss
+            best_dir = os.path.join(current_hydra_dir, "best_model")
+            print(f"\nNew best model found! Saving files to {best_dir}...")
+            save_model(best_model, os.path.join(best_dir, "model.pt"))
+            save_losses(losses_train, losses_dev, os.path.join(best_dir, "losses.json"))
+            plot_losses(losses_train, losses_dev, os.path.join(best_dir, "loss_plot.png"), testing=True)        
+        free_memory(model, best_model, optimizer)
+        return best_val_loss
+    
+    study = optuna.create_study(direction="minimize")
+    study.optimize(objective, n_trials=20) 
+    print("\n================ SWEEP COMPLETE ================")
+    print("Best hyperparameters found:")
+    for key, value in study.best_params.items():
+        print(f"  {key}: {value}")
+    print(f"Best validation loss: {study.best_value}")
+    print(f"Best model and plots have been saved to: {os.path.join(current_hydra_dir, 'best_model')}")
+
+def evaluate_best_model(config, test_loader, vocab_len, pad_index, original_cwd) -> None:
+    part_name = (
+        f"part={config.name}\n"
+        f"hid_size={config.hid_size}\n"
+        f"emb_size={config.emb_size}\n"
+        f"emb_dropout={config.get('emb_dropout', 'N/A')}\n"
+        f"out_dropout={config.get('out_dropout', 'N/A')}\n"
+        f"optimizer={config.optimizer}\n"
+        f"lr={config.lr}\n"
+        f"train_bs={config.train_batch_size}\n"
+        f"eval_bs={config.eval_batch_size}"
+    )
+    print(f"\n================ EVALUATING PART ================\n{part_name}\n=================================================")
+    best_dir = os.path.join(original_cwd, "results", f"part{config.name}", "best_model")
+    model, _ = build_model_and_optim(config, vocab_len, pad_index)
+    
+    print("\n--- Loading Saved Model ---")
+    model = load_model(model, os.path.join(best_dir, "model.pt"))
+    
+    print("\n--- Evaluating Best Model ---")
+    eval_model(model, test_loader, pad_index)
+    
+    print("\n--- Displaying Loss Plot ---")
+    plot_losses(save_path=os.path.join(best_dir, "loss_plot.png"), testing=False)

@@ -8,10 +8,10 @@ description: "Replacing the baseline RNN with an LSTM architecture."
 parameters:
   n_epochs: 100
   patience_value: 5
-  hid_size: [150, 200, 250]
-  emb_size: [250, 300, 350]
+  hid_size: [256, 512, 1024]
+  emb_size: [128, 300, 512]
   optimizer: "SGD"
-  lr: [0.1, 0.5, 1.0]
+  lr: [0.1, 0.5, 1.0, 5.0, 10.0]
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
