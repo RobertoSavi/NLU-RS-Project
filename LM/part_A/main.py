@@ -1,147 +1,167 @@
-# -\-\-\ Run the training of the model and save the results /-/-/-
-# -------------------- CLI Argument Parsing --------------------
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument("--part", type=int, choices=[0, 1, 2, 3], required=True, help="Which part of the assignment to run")
-parser.add_argument("--eval", action="store_true", help="Evaluate the best saved model for this part")
-args = parser.parse_args()
+# Configuration management imports
+from logging import config
 
-import builtins
-builtins.PART = args.part
-builtins.EVAL = args.eval
-# -------------------- Import libraries --------------------
-import copy
-import numpy as np
-from tqdm import tqdm
-import matplotlib.pyplot as plt
+import hydra
+from omegaconf import DictConfig, OmegaConf
+import optuna
 import os
-import logging
-# -------------------- Import functions from other files --------------------
-from models import *
-from utils import *
-from params import *
 
-# -------------------- Training process --------------------
+# Import data pipeline and training utilities
+from utils import init_data_pipeline
+from functions import (
+    build_model_and_optim,
+    train_model,
+    eval_model,
+    save_model,
+    load_model,
+    save_losses,
+    plot_losses,
+    free_memory,
+    update_sweep_log
+)
 
-# Multi training parameters
-best_ppls = []
-best_ppl_overall = math.inf
-best_model_overall = None
-best_model_filename = None
-
-# For each model and optimizer
-#for model, optimizer, hyperparams in zip(models, optimizers, hyperparams_to_try): --- Uncomment this line to train multiple models with different hyperparameters
-for model, optimizer in zip(models, optimizers):
-
-    learning_rate = hyperparams['lr'] if 'hyperparams' in locals() else lr
-    hidden_size = hyperparams['hid_size'] if 'hyperparams' in locals() else hid_size
-    embedding_size = hyperparams['emb_size'] if 'hyperparams' in locals() else emb_size
-    optimizer_name = type(optimizer).__name__
-    model_name = type(model).__name__
-    model_params = f"[Model: {model_name}, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
-    #model_params = f"[Model: {model_name}{', With dropout' if model_name == 'LM_LSTM_DROPOUT' else ''}, Optimizer: {optimizer_name}, Hidden-size: {hidden_size}, Embedding-size: {embedding_size}, Learning-rate: {learning_rate}]"
-    print(model_params)
+# Main part pipeline
+@hydra.main(version_base=None, config_path="configs", config_name="config")
+def main(cfg: DictConfig):
     
-    if EVAL:
-        print("Evaluating pre-trained model...")
-        model.to(DEVICE)
-        final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
-        print(f"[Final PPL: {final_ppl:.4f}]")
+    print(f"\n================ STARTING PIPELINE ================")
+    # Prepare datasets and dataloaders
+    original_cwd = hydra.utils.get_original_cwd()
+    lang, train_loader, dev_loader, test_loader = init_data_pipeline(
+        os.path.join(original_cwd, "dataset/PennTreeBank/ptb.train.txt"),
+        os.path.join(original_cwd, "dataset/PennTreeBank/ptb.valid.txt"),
+        os.path.join(original_cwd, "dataset/PennTreeBank/ptb.test.txt"),
+        train_batch_size=cfg.part.train_batch_size,
+        eval_batch_size=cfg.part.eval_batch_size
+    )
+    pad_index = lang.word2id["<pad>"]
+    vocab_len = len(lang.word2id)
+    
+    if cfg.testing:
+        print("\n================ RUNNING OPTUNA SWEEP ================")
+        
+        # 1. Figure out which parameters are actually varying
+        params_node = cfg.part.parameters
+        base_params_dict = OmegaConf.to_container(params_node, resolve=True)
+        varying_keys = []
+        for k, v in base_params_dict.items():
+            # If it's a list with more than 1 item, it's a varying parameter
+            if isinstance(v, (list, tuple)) and len(v) > 1:
+                varying_keys.append(k)
+        
+        print(f"Varying parameters for folder naming: {varying_keys}")
 
-    else:
-        print("Training model...")
-        # Single training parameters
-        losses_train = []
-        losses_dev = []
-        sampled_epochs = []
-        best_ppl = math.inf
-        best_model = None
-        pbar = tqdm(range(1, n_epochs))
-        patience = patience_value  # Reset patience for each model
-
-        """ # Create a file on which to store the results
-        filename = f"mod-{model_name}{'_drop-yes' if model_name == 'LM_LSTM_DROPOUT' else ''}_opt-{optimizer_name}_hid-{hidden_size}_emb-{embedding_size}_lr-{learning_rate:.0e}"
-        # Create 'results' folder if it doesn't exist
-        os.makedirs("results", exist_ok=True)
-        # Full path to the file
-        path = os.path.join("results", filename + ".txt")
-        # Create the file (empty or write something if you want)
-        with open(path, 'w') as f:
-            f.write(model_params + '\n') """
-
-        # For each epoch in each model and optimizer
-        for epoch in pbar:
-
-            loss = train_loop(train_loader, optimizer, criterion_train, model, clip)    
-            if epoch % 1 == 0:
-                sampled_epochs.append(epoch)
-                losses_train.append(np.asarray(loss).mean())
-
-                ppl_dev, loss_dev = eval_loop(dev_loader, criterion_eval, model)
-                losses_dev.append(np.asarray(loss_dev).mean())
-                pbar.set_description("PPL: %f" % ppl_dev) 
-
-                if ppl_dev < best_ppl:  # The lower, the better
-                    best_ppl = ppl_dev
-                    best_model = copy.deepcopy(model).to('cpu')
-                    patience = patience_value  # Reset patience if we get a new best model
+        best_sweep_loss = float('inf')
+        
+        def objective(trial):
+            nonlocal best_sweep_loss
+            
+            # Dynamically suggest parameters
+            trial_params = {}
+            for key, value in cfg.part.parameters.items():
+                if isinstance(value, (list, tuple)) or type(value).__name__ == "ListConfig":
+                    # Only suggest from the list if it has multiple items, otherwise just use it
+                    if len(value) > 1:
+                        trial_params[key] = trial.suggest_categorical(key, list(value))
+                    else:
+                        trial_params[key] = value[0]
                 else:
-                    patience -= 1
+                    trial_params[key] = value
 
-                """ # Create and write the log line
-                log = f"[Epoch: {epoch}, PPL: {ppl_dev:.4f}, Best PPL: {best_ppl:.4f}]\n"
-                with open(path, 'a') as f:
-                    f.write(log) """
-                    
-                if patience <= 0:  # Early stopping with patience
-                    break  # Clean exit when training stops
+            config = OmegaConf.merge(cfg.part, trial_params)
+            
+            print(f"\n--- Trial {trial.number} ---")
+            print(f"Testing params: {trial_params}")
+            
+            # Build and train
+            model, optimizer = build_model_and_optim(config, vocab_len, pad_index)
+            best_model, losses_train, losses_dev = train_model(
+                config, model, optimizer, train_loader, dev_loader, pad_index
+            )
+            
+            # Evaluate this trial's best model
+            print(f"\n--- Evaluating Trial {trial.number} Model ---")
+            trial_ppl = eval_model(best_model, test_loader, pad_index)
+            
+            # Log the results of this trial
+            update_sweep_log("log.json", trial.number, trial_params, trial_ppl)
+            
+            # Create the dynamic folder name based on the varying parameters
+            if varying_keys:
+                folder_name = "_".join([f"{k}={trial_params[k]}" for k in varying_keys])
+            else:
+                folder_name = f"trial_{trial.number}"
+                
+            # Hydra already put us in the sweep folder, so we just use the dynamic name
+            save_losses(losses_train, losses_dev, folder_name)
+            plot_losses(losses_train, losses_dev, save_path=os.path.join(folder_name, "loss_plot.png"), testing=True)
+            
+            # Check if this is the best overall model
+            best_val_loss = min(losses_dev)
+            if best_val_loss < best_sweep_loss:
+                best_sweep_loss = best_val_loss
+                
+                # Save the absolute best artifacts to a dedicated folder in this sweep directory
+                best_dir = "best_model"
+                print(f"\nNew best model found! Saving files to {best_dir}...")
+                
+                save_model(best_model, best_dir)
+                save_losses(losses_train, losses_dev, best_dir)
+                plot_losses(losses_train, losses_dev, save_path=os.path.join(best_dir, "loss_plot.png"), testing=True)
+            
+            # Free memory before the next trial
+            free_memory(model, best_model, optimizer)
+            
+            return best_val_loss
 
-        # -------------------- Final evaluation --------------------
-        best_model.to(DEVICE)
-        final_ppl, _ = eval_loop(test_loader, criterion_eval, best_model)
-        print(f"[Final PPL: {final_ppl:.4f}]")
-        """ final_log = f"[Final PPL: {final_ppl:.4f}]\n"
-        with open(path, 'a') as f:
-            f.write(final_log) """
+        # Create and run the study
+        study = optuna.create_study(direction="minimize")
+        study.optimize(objective, n_trials=20) 
         
-        print(f"Finished training model with {model_params.strip()} | Final PPL: {final_ppl:.4f}")
-
-        # Store the best ppl of this configuration
-        best_ppls.append(final_ppl)
+        print("\n================ SWEEP COMPLETE ================")
+        print("Best hyperparameters found:")
+        for key, value in study.best_params.items():
+            print(f"  {key}: {value}")
+        print(f"Best validation loss: {study.best_value}")
+        print(f"Best model and plots have been saved to: {os.path.join(os.getcwd(), 'best_model')}")
         
-        # Track the best overall model
-        if final_ppl < best_ppl_overall:
-            best_ppl_overall = final_ppl
-            best_model_overall = copy.deepcopy(best_model)
-            #best_model_filename = filename
+    else:
+        active_params = cfg.part.best_parameters
+        config = OmegaConf.merge(cfg.part, active_params)
+        
+        part_name = (
+            f"part={config.get('part', 'N/A')}\n"
+            f"testing={config.get('testing', 'N/A')}\n"
+            f"hid_size={config.get('hid_size', 'N/A')}\n"
+            f"emb_size={config.get('emb_size', 'N/A')}\n"
+            f"optimizer={config.get('optimizer', 'N/A')}\n"
+            f"lr={config.get('lr', 'N/A')}\n"
+            f"train_bs={config.get('train_batch_size', 'N/A')}\n"
+            f"eval_bs={config.get('eval_batch_size', 'N/A')}"
+        )
 
-        # Log GPU memory before cleanup
-        allocated_before = torch.cuda.memory_allocated() / 1024**2
-        reserved_before = torch.cuda.memory_reserved() / 1024**2
-        print(f"[Memory before cleanup] Allocated: {allocated_before:.2f} MB, Reserved: {reserved_before:.2f} MB")
+        print(f"\n================ EVALUATING PART ================\n{part_name}\n=================================================")
 
-        # Release GPU memory right after evaluation
-        del best_model  
-        model.to("cpu")
-        del model
-        del optimizer
-        torch.cuda.empty_cache()
+        # Build dummy model architecture to load the saved weights into
+        model, _ = build_model_and_optim(config, vocab_len, pad_index)
 
-        # Log GPU memory after cleanup
-        allocated_after = torch.cuda.memory_allocated() / 1024**2
-        reserved_after = torch.cuda.memory_reserved() / 1024**2
-        print(f"[Memory after cleanup] Allocated: {allocated_after:.2f} MB, Reserved: {reserved_after:.2f} MB")
-        print("\n ----------------------------------- \n")
+        # Load the pre-trained model weights
+        best_dir = os.path.join(os.getcwd(), "best_model")
+        model_path = os.path.join(best_dir, "model.pt")
+        plot_path = os.path.join(best_dir, "loss_plot.png")
 
-# -------------------- Model saving --------------------
-""" # Create 'models' folder if it doesn't exist
-os.makedirs("models", exist_ok=True)
-# Full path to the file
-path = os.path.join("models", f"best_LSTM_dropout_adamw_{best_model_filename}.pt")
-torch.save(best_model_overall.state_dict(), path) """
+        # Load weights
+        print("\n--- Loading Saved Model ---")
+        model = load_model(model, model_path)
 
-# -------------------- Save best PPL results --------------------
-""" with open('results/overall_training_results_LSTM_dropout_adamw2.txt', 'w') as f:
-    for i, (ppl, model, optimizer, hyperparams) in enumerate(zip(best_ppls, models, optimizers, hyperparams_to_try)):
-        entry = f"Model {i}: [Best PPL: {ppl:.4f}, Optimizer: {type(optimizer).__name__}, Hidden-size: {hyperparams['hid_size']}, Embedding-size: {hyperparams['emb_size']}, Learning-rate: {hyperparams['lr']}, Model: {model}]\n"
-        f.write(entry) """
+        # Evaluate the model
+        print("\n--- Evaluating Best Model ---")
+        eval_model(model, test_loader, pad_index)
+
+        # Display the previously saved plot
+        print("\n--- Displaying Loss Plot ---")
+        plot_losses(save_path=plot_path, testing=False)
+        
+# Run pipeline entry point
+if __name__ == "__main__":
+    main()

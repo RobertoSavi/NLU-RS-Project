@@ -1,0 +1,28 @@
+# configs/parts/1a1.yaml
+
+part: 1A1-LSTM
+description: "Replacing the baseline RNN with an LSTM architecture."
+
+# The grid of parameters to try when testing == true
+parameters:
+  n_epochs: [100]
+  patience_value: [5]
+  hid_size: [150, 200, 250]
+  emb_size: [250, 300, 350]
+  optimizer: ["SGD"]
+  lr: [0.1, 0.5, 1.0]
+  clip: [5.0]
+  train_batch_size: [64]
+  eval_batch_size: [128]
+
+# The fixed parameters to use when testing == false
+best_parameters:
+  n_epochs: 100
+  patience_value: 5
+  hid_size: 250
+  emb_size: 350
+  optimizer: "SGD"
+  lr: 0.5
+  clip: 5.0
+  train_batch_size: 64
+  eval_batch_size: 128

@@ -1,0 +1,15 @@
+# configs/config.yaml
+
+defaults:
+  - part: 1a1 # Default to part 1, can be overridden via CLI
+  - _self_
+
+# Testing determines if we are testing hyperparameters or using best ones
+testing: false
+
+# Hydra will automatically change the working directory to this path
+hydra:
+  job:
+    chdir: true
+  run:
+    dir: results/part${part.part}/sweep_${now:%Y-%m-%d_%H-%M-%S}
