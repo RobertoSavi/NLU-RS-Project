@@ -291,6 +291,14 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
                     trial_params[key] = value[0]
             else:
                 trial_params[key] = value
+        # Aggressive duplicate check to force new hyperparameter combinations to be explored
+        for past_trial in trial.study.trials:
+            if past_trial.state == optuna.trial.TrialState.COMPLETE and past_trial.params == trial_params:
+                print(f"\n--- Trial {trial.number} ---")
+                print(f"Duplicate hyperparameters found: {trial_params}")
+                print("Rejecting this trial to force Optuna to explore new parameters")
+                raise optuna.exceptions.TrialPruned()              
+                
         trial_config = OmegaConf.merge(config, trial_params)
         
         print(f"\n--- Trial {trial.number} ---")
@@ -319,13 +327,19 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
             os.makedirs(best_dir, exist_ok=True)
             print(f"\nNew best model found! Saving files to {best_dir}...")
             save_model(best_model, os.path.join(best_dir, "model.pt"))
+            update_sweep_log(trial.number, trial_params, trial_ppl, os.path.join(best_dir, "log.json"))
             save_losses(losses_train, losses_dev, os.path.join(best_dir, "losses.json"))
             plot_losses(losses_train, losses_dev, os.path.join(best_dir, "loss_plot.png"), testing=True)        
         free_memory(model, best_model, optimizer)
         return best_val_loss
     
     study = optuna.create_study(direction="minimize")
-    study.optimize(objective, n_trials=20) 
+    # Force Optuna to keep trying until it gets 20 unique, successful completions
+    target_trials = 20
+    print(f"\nSearching for {target_trials} unique hyperparameter combinations...")
+    while len([t for t in study.trials if t.state == optuna.trial.TrialState.COMPLETE]) < target_trials:
+        study.optimize(objective, n_trials=1)
+        
     print("\n================ SWEEP COMPLETE ================")
     print("Best hyperparameters found:")
     for key, value in study.best_params.items():
