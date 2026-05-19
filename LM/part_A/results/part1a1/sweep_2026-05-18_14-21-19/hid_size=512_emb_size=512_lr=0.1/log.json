@@ -1,0 +1,17 @@
+[
+    {
+        "trial_number": 2,
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 512,
+            "emb_size": 512,
+            "optimizer": "SGD",
+            "lr": 0.1,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 161.2984559737768
+    }
+]

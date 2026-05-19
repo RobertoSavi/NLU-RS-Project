@@ -1,0 +1,62 @@
+[
+    {
+        "trial_number": 12,
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 1024,
+            "emb_size": 512,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 136.0788626230713
+    },
+    {
+        "trial_number": 13,
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 1024,
+            "emb_size": 512,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 135.5865611874328
+    },
+    {
+        "trial_number": 15,
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 1024,
+            "emb_size": 512,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 134.65047855910882
+    },
+    {
+        "trial_number": 17,
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 1024,
+            "emb_size": 512,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 140.18669584064406
+    }
+]
