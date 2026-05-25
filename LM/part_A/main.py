@@ -5,11 +5,24 @@ import os
 # Import data pipeline and training utilities
 from utils import init_data_pipeline
 from functions import run_sweep, evaluate_best_model
+import logging
+import sys
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('main.log'),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+logger = logging.getLogger(__name__)
 
 # Main pipeline
 @hydra.main(version_base=None, config_path="configs", config_name="config")
 def main(cfg: DictConfig):
-    print(f"\n================ STARTING PIPELINE ================")
+    logger.info(f"\n================ STARTING PIPELINE ================")
     original_cwd = hydra.utils.get_original_cwd()
     current_hydra_dir = os.getcwd()
     

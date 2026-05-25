@@ -3,6 +3,9 @@ import torch
 import torch.utils.data as data
 from torch.utils.data import DataLoader
 from functools import partial
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Device configuration
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -84,8 +87,8 @@ class PennTreeBank (data.Dataset):
                 if x in lang.word2id:
                     tmp_seq.append(lang.word2id[x])
                 else:
-                    print('OOV found!')
-                    print('You have to deal with that') 
+                    logger.info('OOV found!')
+                    logger.info('You have to deal with that')
                     break
             res.append(tmp_seq)
         return res
@@ -152,33 +155,3 @@ def init_data_pipeline(train_path, dev_path, test_path, special_tokens=SPECIAL_T
     train_loader, dev_loader, test_loader = init_dataloaders(train_dataset, dev_dataset, test_dataset, lang, train_batch_size, eval_batch_size)
 
     return lang, train_loader, dev_loader, test_loader
-
-
-""" import hydra
-from omegaconf import DictConfig, OmegaConf
-
-@hydra.main(version_base=None, config_path="configs", config_name="config")
-def main(cfg: DictConfig):
-    # Print the config to verify interpolation worked
-    print("--- Current Configuration ---")
-    print(OmegaConf.to_yaml(cfg))
-    
-    # Select the parameters based on the testing flag
-    if cfg.testing:
-        print("Testing Mode: ON -> Using parameter grid.")
-        active_params = cfg.experiment.parameters
-    else:
-        print("Testing Mode: OFF -> Using best parameters.")
-        active_params = cfg.experiment.best_parameters
-
-    # Access your parameters normally now
-    # e.g., active_params.lr, active_params.hid_size
-    
-    print(f"\nRunning Part: {cfg.experiment.part}")
-    print(f"Plotting enabled: {cfg.plotting}")
-    print(f"Saving enabled: {cfg.saving}")
-    print(f"Learning Rate to use: {active_params.lr}")
-
-if __name__ == "__main__":
-    main() """
-    
