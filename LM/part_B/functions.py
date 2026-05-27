@@ -44,17 +44,22 @@ def init_weights(mat):
 
 # Build model architecture and optimizer from configuration
 def build_model_and_optim(config, vocab_len, pad_index) -> Tuple[nn.Module, optim.Optimizer]:
+    # Extract the dimensions dynamically. 
+    # If tied_size exists, it is used for both. Otherwise, it falls back to the individual sizes.
+    resolved_emb_size = getattr(config, 'tied_size', getattr(config, 'emb_size', None))
+    resolved_hid_size = getattr(config, 'tied_size', getattr(config, 'hid_size', None))
+
     if config.part == "1b1":
         model = LM_LSTM_WEIGHT_TYING(
-            config.emb_size,
-            config.hid_size,
+            resolved_emb_size,
+            resolved_hid_size,
             vocab_len,
             pad_index=pad_index
         )
     elif config.part in ["1b2", "1b3"]:
         model = LM_LSTM_VAR_DROPOUT(
-            config.emb_size,
-            config.hid_size,
+            resolved_emb_size,
+            resolved_hid_size,
             vocab_len,
             pad_index=pad_index,
             emb_dropout=config.emb_dropout,
@@ -355,10 +360,6 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
             else:
                 trial_params[key] = value
                 
-        # If 'tied_size' is provided in your active_params, forcefully map it to both!
-        if 'tied_size' in trial_params:
-            trial_params['emb_size'] = trial_params['tied_size']
-            trial_params['hid_size'] = trial_params['tied_size']
         # Aggressive duplicate check to force new hyperparameter combinations to be explored
         current_suggested_params = trial.params
         for past_trial in trial.study.trials:
@@ -418,10 +419,6 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
     logger.info(f"Best model and plots have been saved to: {os.path.join(current_hydra_dir, 'best_model')}")
 
 def evaluate_best_model(config, test_loader, vocab_len, pad_index, original_cwd) -> None:
-    if hasattr(config, 'tied_size'):
-        config.emb_size = config.tied_size
-        config.hid_size = config.tied_size
-        
     part_name = (
         f"part={config.name}\n"
         f"hid_size={config.hid_size}\n"
