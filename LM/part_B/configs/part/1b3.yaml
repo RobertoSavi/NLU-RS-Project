@@ -1,0 +1,31 @@
+# configs/parts/1b3.yaml
+
+part: 1b3
+name: "Non-monotonically Triggered AvSGD"
+description: "Applying Non-monotonically Triggered AvSGD in the LSTM model."
+
+# The grid of parameters to try when testing == true
+parameters:
+  n_epochs: 100
+  patience_value: 5
+  tied_size: [300, 350, 400]
+  emb_dropout: [0.1, 0.3, 0.5]
+  out_dropout: [0.1, 0.3, 0.5]
+  optimizer: "SGD"
+  lr: [0.001, 0.005, 0.01]
+  clip: 5.0
+  train_batch_size: 64
+  eval_batch_size: 128
+
+# The fixed parameters to use when testing == false
+best_parameters:
+  n_epochs: 100
+  patience_value: 5
+  tied_size: 400
+  emb_dropout: [0.1, 0.3, 0.5]
+  out_dropout: [0.1, 0.3, 0.5]
+  optimizer: "SGD"
+  lr: 0.005
+  clip: 5.0
+  train_batch_size: 64
+  eval_batch_size: 128

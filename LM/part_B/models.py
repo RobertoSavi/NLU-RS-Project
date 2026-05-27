@@ -1,22 +1,28 @@
-# -\-\-\ Define the architecture of the model /-/-/-
-# -------------------- Import libraries --------------------
+# Model architecture definitions
 import torch
 import torch.nn as nn
 
     
-# -------------------- LSTM langauge model --------------------
+# LSTM-based language model
 class LM_LSTM(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
-                 out_dropout=0.1, emb_dropout=0.1, n_layers=1):
+                n_layers=1):
         super(LM_LSTM, self).__init__()
+
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
 
-        self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
-                           bidirectional=False, batch_first=True)
+        self.rnn = nn.LSTM(
+            emb_size,
+            hidden_size,
+            n_layers,
+            bidirectional=False,
+            batch_first=True
+        )
 
         self.pad_token = pad_index
         self.output = nn.Linear(hidden_size, output_size)
 
+    # Perform forward pass through embedding, LSTM, and output layers
     def forward(self, input_sequence):
         emb = self.embedding(input_sequence)
 
@@ -25,10 +31,10 @@ class LM_LSTM(nn.Module):
         output = self.output(rnn_out).permute(0, 2, 1)
         return output
 
-# --- 1. Apply Weight Tying
+# LSTM model with weight tying between embedding and output layers
 class LM_LSTM_WEIGHT_TYING(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
-                 out_dropout=0.1, emb_dropout=0.1, n_layers=1):
+                n_layers=1):
         super(LM_LSTM_WEIGHT_TYING, self).__init__()
         assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
         
@@ -49,7 +55,6 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
         output = torch.matmul(rnn_out, self.embedding.weight.T).permute(0, 2, 1)
         return output
 
-# --- 2. Apply Variational Dropout (no DropConnect)
 # This class applies the same dropout mask every time dropout is performed.
 class LockedDropout(nn.Module):
     #Applies the same dropout mask.
@@ -64,27 +69,40 @@ class LockedDropout(nn.Module):
         mask = mask.expand_as(x)
         return x * mask
     
+# LSTM model with variational dropout (same dropout mask for all time steps) and weight tying
 class LM_LSTM_VAR_DROPOUT(nn.Module):
-    def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
-                 out_dropout=0.1, emb_dropout=0.1, n_layers=1):
+    def __init__(self, emb_size, hidden_size, output_size, pad_index=0,
+                 emb_dropout=0.1, out_dropout=0.1, n_layers=1):
         super(LM_LSTM_VAR_DROPOUT, self).__init__()
+        
+        # Enforce weight tying constraint
         assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
 
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
-        self.emb_dropout = LockedDropout()
-        self.out_dropout = LockedDropout()
 
-        self.rnn = nn.LSTM(emb_size, hidden_size, n_layers, 
-                           bidirectional=False, batch_first=True)
+        self.emb_drop_val = emb_dropout
+        self.out_drop_val = out_dropout
+
+        self.emb_dropout = LockedDropout()
+        self.pre_output_dropout = LockedDropout()
+
+        self.rnn = nn.LSTM(
+            emb_size,
+            hidden_size,
+            n_layers,
+            bidirectional=False,
+            batch_first=True
+        )
 
         self.pad_token = pad_index
 
     def forward(self, input_sequence):
         emb = self.embedding(input_sequence)
-        emb = self.emb_dropout(emb, dropout=0.1)
+        emb = self.emb_dropout(emb, dropout=self.emb_drop_val)
 
         rnn_out, _ = self.rnn(emb)
-        rnn_out = self.out_dropout(rnn_out, dropout=0.1)
 
-        output = torch.matmul(rnn_out, self.embedding.weight.T).permute(0, 2, 1)
+        dropped = self.pre_output_dropout(rnn_out, dropout=self.out_drop_val)
+        
+        output = torch.matmul(dropped, self.embedding.weight.T).permute(0, 2, 1)
         return output
