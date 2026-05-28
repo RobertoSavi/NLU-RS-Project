@@ -36,7 +36,6 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 
                 n_layers=1):
         super(LM_LSTM_WEIGHT_TYING, self).__init__()
-        assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
         
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
 
@@ -44,19 +43,25 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
                            bidirectional=False, batch_first=True)
 
         self.pad_token = pad_index
-        # Commented as output will be computed via tied embedding weights
-        #self.output = nn.Linear(hidden_size, output_size)
-
+        if emb_size == hidden_size:
+            self.proj = None
+            self.output = nn.Linear(hidden_size, output_size)
+            self.output.weight = self.embedding.weight
+        else:
+            # If hidden size and embedding size differ, add a projection layer to match dimensions before output layer
+            self.output = nn.Linear(emb_size, output_size)
+            self.output.weight = self.embedding.weight
     def forward(self, input_sequence):
         emb = self.embedding(input_sequence)
 
-        rnn_out, _ = self.rnn(emb)
+        if self.proj is not None:
+            rnn_out = self.proj(rnn_out)
 
-        output = torch.matmul(rnn_out, self.embedding.weight.T).permute(0, 2, 1)
+        output = self.output(rnn_out).permute(0, 2, 1)
         return output
 
 # This class applies the same dropout mask every time dropout is performed.
-class LockedDropout(nn.Module):
+class VariationalDropout(nn.Module):
     #Applies the same dropout mask.
     def __init__(self):
         super().__init__()
@@ -74,17 +79,11 @@ class LM_LSTM_VAR_DROPOUT(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0,
                  emb_dropout=0.1, out_dropout=0.1, n_layers=1):
         super(LM_LSTM_VAR_DROPOUT, self).__init__()
-        
-        # Enforce weight tying constraint
-        assert emb_size == hidden_size, "Weight tying requires emb_size == hidden_size"
 
         self.embedding = nn.Embedding(output_size, emb_size, padding_idx=pad_index)
 
-        self.emb_drop_val = emb_dropout
-        self.out_drop_val = out_dropout
-
-        self.emb_dropout = LockedDropout()
-        self.pre_output_dropout = LockedDropout()
+        self.emb_dropout = VariationalDropout(emb_dropout)
+        self.pre_output_dropout = VariationalDropout(out_dropout)
 
         self.rnn = nn.LSTM(
             emb_size,
@@ -95,14 +94,27 @@ class LM_LSTM_VAR_DROPOUT(nn.Module):
         )
 
         self.pad_token = pad_index
+        
+        if emb_size == hidden_size:
+            self.proj = None
+            self.output = nn.Linear(hidden_size, output_size)
+            self.output.weight = self.embedding.weight
+        else:
+            # If hidden size and embedding size differ, add a projection layer to match dimensions before output layer
+            self.proj = nn.Linear(hidden_size, emb_size)
+            self.output = nn.Linear(emb_size, output_size)
+            self.output.weight = self.embedding.weight
 
     def forward(self, input_sequence):
         emb = self.embedding(input_sequence)
-        emb = self.emb_dropout(emb, dropout=self.emb_drop_val)
+        emb = self.emb_dropout(emb)
 
         rnn_out, _ = self.rnn(emb)
 
-        dropped = self.pre_output_dropout(rnn_out, dropout=self.out_drop_val)
+        dropped = self.pre_output_dropout(rnn_out)
         
-        output = torch.matmul(dropped, self.embedding.weight.T).permute(0, 2, 1)
+        if self.proj is not None:
+            dropped = self.proj(dropped)
+        
+        output = self.output(dropped).permute(0, 2, 1)
         return output

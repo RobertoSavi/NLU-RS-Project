@@ -8,7 +8,8 @@ description: "Applying Non-monotonically Triggered AvSGD in the LSTM model."
 parameters:
   n_epochs: 100
   patience_value: 5
-  tied_size: [300, 350, 400]
+  hid_size: [150, 200, 250]
+  emb_size: [250, 300, 350]
   emb_dropout: [0.1, 0.3, 0.5]
   out_dropout: [0.1, 0.3, 0.5]
   optimizer: "SGD"
@@ -21,7 +22,8 @@ parameters:
 best_parameters:
   n_epochs: 100
   patience_value: 5
-  tied_size: 400
+  hid_size: 250
+  emb_size: 350
   emb_dropout: [0.1, 0.3, 0.5]
   out_dropout: [0.1, 0.3, 0.5]
   optimizer: "SGD"

@@ -145,6 +145,7 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
         else:
             patience -= 1
         if patience <= 0:
+            pbar.close()
             logger.info("Early stopping triggered.")
             break
             
@@ -178,10 +179,12 @@ def load_model(model, model_path) -> nn.Module:
     return model
     
 # Save parameters, training and validation losses to a JSON file for later analysis
-def save_losses(trial_number, params, ppl, val_loss, losses_train, losses_dev, save_path) -> None:
+def save_losses(trial_number, part_name, model_name, params, ppl, val_loss, losses_train, losses_dev, save_path) -> None:
     Path(save_path).parent.mkdir(parents=True, exist_ok=True)
     data = {
         "trial_number": trial_number,
+        "part_name": part_name,
+        "model_name": model_name,
         "parameters": params,
         "eval_ppl": ppl,
         "best_val_loss": val_loss,
@@ -257,7 +260,7 @@ def free_memory(model, best_model, optimizer) -> None:
         logger.info("-" * 50)
         
 # Append trial results to a central JSON log file
-def update_sweep_log(trial_number, params, ppl, val_loss, log_path) -> None:
+def update_sweep_log(trial_number, part_name, model_name, params, ppl, val_loss, log_path) -> None:
     log_data = []
     # Load existing data if the file already exists
     if os.path.exists(log_path):
@@ -269,6 +272,8 @@ def update_sweep_log(trial_number, params, ppl, val_loss, log_path) -> None:
     # Append the new trial's results
     log_data.append({
         "trial_number": trial_number,
+        "part_name": part_name,
+        "model_name": model_name,
         "parameters": params,
         "eval_ppl": ppl,
         "best_val_loss": val_loss
@@ -327,7 +332,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         trial_config = OmegaConf.merge(config, trial_params)
         
         logger.info(f"\n--- Trial {trial.number} ---")
-        logger.info(f"Testing params: {trial_params}")
+        logger.info(f"Testing params for {trial_config.name}: {trial_params}")
         folder_name = "_".join([f"{k}={trial_params[k]}" for k in varying_keys]) if varying_keys else f"trial_{trial.number}"
         trial_folder_path = os.path.join(current_hydra_dir, folder_name)
         os.makedirs(trial_folder_path, exist_ok=True)
@@ -336,6 +341,10 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         model, optimizer = build_model_and_optim(trial_config, vocab_len, pad_index)
         best_model, losses_train, losses_dev = train_model(trial_config, model, optimizer, train_loader, dev_loader, pad_index)
         
+        # Save part and model name for logging
+        part_name = trial_config.name
+        model_name = type(model).__name__
+        
         # Save best validation loss for logging and comparison
         best_val_loss = min(losses_dev)
         
@@ -343,9 +352,9 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         trial_ppl = eval_model(best_model, test_loader, pad_index)
         
         # Log and save trial data
-        save_losses(trial.number, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"))
+        save_losses(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"))
         save_loss_plot(losses_train, losses_dev, os.path.join(trial_folder_path, "loss_plot.png"))
-        update_sweep_log(trial.number, trial_params, trial_ppl, best_val_loss, os.path.join(current_hydra_dir, "sweep_summary.json"))
+        update_sweep_log(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, os.path.join(current_hydra_dir, "sweep_summary.json"), T)
         
         # Check overall best
         if best_val_loss < best_sweep_loss:
@@ -353,7 +362,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
             best_dir = os.path.join(current_hydra_dir, "best_model")
             logger.info(f"\nNew best model found! Saving files to {best_dir}...")
             save_model(best_model, os.path.join(best_dir, "model.pt"))
-            save_losses(trial.number, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(best_dir, "losses.json"))
+            save_losses(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(best_dir, "losses.json"))
             save_loss_plot(losses_train, losses_dev, os.path.join(best_dir, "loss_plot.png"))
         free_memory(model, best_model, optimizer)
         return best_val_loss
