@@ -65,15 +65,15 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
 
 # This class applies the same dropout mask every time dropout is performed.
 class VariationalDropout(nn.Module):
-    #Applies the same dropout mask.
-    def __init__(self):
+    def __init__(self, dropout): 
         super().__init__()
+        self.dropout = dropout
 
-    def forward(self, x, dropout=0.1):
-        if not self.training or dropout == 0:
+    def forward(self, x):
+        if not self.training or self.dropout == 0:
             return x
-        mask = x.new_empty(x.size(0), 1, x.size(2)).bernoulli_(1 - dropout)
-        mask = mask.div_(1 - dropout)
+        mask = x.new_empty(x.size(0), 1, x.size(2)).bernoulli_(1 - self.dropout)
+        mask = mask.div_(1 - self.dropout)
         mask = mask.expand_as(x)
         return x * mask
     
