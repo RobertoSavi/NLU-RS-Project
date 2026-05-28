@@ -1,0 +1,362 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 124.96798157841434,
+        "best_val_loss": 4.842477305569861
+    },
+    {
+        "trial_number": 1,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 126.5922029878254,
+        "best_val_loss": 4.861646489369495
+    },
+    {
+        "trial_number": 2,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 1.9046576034199383e+25,
+        "best_val_loss": 58.117024235509305
+    },
+    {
+        "trial_number": 3,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 1.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 123.45617330545853,
+        "best_val_loss": 4.820234162733964
+    },
+    {
+        "trial_number": 4,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 10.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 7.459932177673355e+172,
+        "best_val_loss": 396.82993056542125
+    },
+    {
+        "trial_number": 5,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 9.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 3.244274199257564e+131,
+        "best_val_loss": 305.20896123384006
+    },
+    {
+        "trial_number": 6,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 8.109080519534254e+27,
+        "best_val_loss": 64.76425095894304
+    },
+    {
+        "trial_number": 7,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 350,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 122.25233576295666,
+        "best_val_loss": 4.8307952026766054
+    },
+    {
+        "trial_number": 8,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "optimizer": "SGD",
+            "lr": 9.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 1.10115458174417e+123,
+        "best_val_loss": 280.9540111343941
+    },
+    {
+        "trial_number": 9,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 117.07058208200415,
+        "best_val_loss": 4.804804287940404
+    },
+    {
+        "trial_number": 10,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 119.96045851254888,
+        "best_val_loss": 4.813493092890947
+    },
+    {
+        "trial_number": 13,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 120.44009853765833,
+        "best_val_loss": 4.819486035947045
+    },
+    {
+        "trial_number": 14,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 7.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 2.6055778160499514e+71,
+        "best_val_loss": 161.97606970983094
+    },
+    {
+        "trial_number": 15,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 8.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 3.348001279916235e+82,
+        "best_val_loss": 187.80267704929676
+    },
+    {
+        "trial_number": 16,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 6.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 7.433218580126413e+44,
+        "best_val_loss": 104.50178869512715
+    },
+    {
+        "trial_number": 17,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 120.10149185134577,
+        "best_val_loss": 4.810988436911759
+    },
+    {
+        "trial_number": 18,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 117.21570759850496,
+        "best_val_loss": 4.803342073237054
+    },
+    {
+        "trial_number": 23,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 126.01855887613772,
+        "best_val_loss": 4.874809133987871
+    },
+    {
+        "trial_number": 24,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 7.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 5.266429061411326e+81,
+        "best_val_loss": 191.15607685750817
+    },
+    {
+        "trial_number": 25,
+        "part_name": "Weight Tying",
+        "model_name": "LM_LSTM_WEIGHT_TYING",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 8.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 2.844527789926148e+90,
+        "best_val_loss": 201.0271201076147
+    }
+]

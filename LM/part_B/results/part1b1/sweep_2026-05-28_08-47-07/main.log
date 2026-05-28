@@ -1,0 +1,11 @@
+2026-05-28 08:47:07,252 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-05-28 08:47:08,184 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-05-28 08:47:08,185 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'lr']
+2026-05-28 08:47:08,185 - functions - INFO - Large search space detected (275 max combinations). Using Smart TPE Search for 20 trials.
+2026-05-28 08:47:08,185 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-05-28 08:47:08,199 - functions - INFO - 
+--- Trial 0 ---
+2026-05-28 08:47:08,200 - functions - INFO - Testing params for Weight Tying: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 350, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}

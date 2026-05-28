@@ -1,0 +1,34 @@
+{
+    "trial_number": 24,
+    "part_name": "Weight Tying",
+    "model_name": "LM_LSTM_WEIGHT_TYING",
+    "parameters": {
+        "n_epochs": 100,
+        "patience_value": 5,
+        "hid_size": 400,
+        "emb_size": 300,
+        "optimizer": "SGD",
+        "lr": 7.0,
+        "clip": 5.0,
+        "train_batch_size": 64,
+        "eval_batch_size": 128
+    },
+    "eval_ppl": 5.266429061411326e+81,
+    "best_val_loss": 191.15607685750817,
+    "losses_train": [
+        189.47212560765527,
+        220.21928883917872,
+        243.65698309613418,
+        252.3503592672679,
+        262.07929866385854,
+        275.09043375036117
+    ],
+    "losses_dev": [
+        191.15607685750817,
+        338.59363013212106,
+        273.3885719296065,
+        223.50824713205,
+        304.7585723291661,
+        220.5405513034522
+    ]
+}
