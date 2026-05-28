@@ -1,0 +1,29 @@
+2026-05-28 16:15:08,049 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-05-28 16:15:08,998 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-05-28 16:15:08,999 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'emb_dropout', 'out_dropout', 'lr']
+2026-05-28 16:15:08,999 - functions - INFO - Large search space detected (5625 max combinations). Using Smart TPE Search for 20 trials.
+2026-05-28 16:15:08,999 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-05-28 16:15:09,012 - functions - INFO - 
+--- Trial 0 ---
+2026-05-28 16:15:09,012 - functions - INFO - Testing params for Non-monotonically Triggered AvSGD: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.3, 'out_dropout': 0.1, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-28 16:19:06,136 - functions - INFO - Applying ASGD averaged weights (ax) to the model.
+2026-05-28 16:19:20,425 - functions - INFO - Applying ASGD averaged weights (ax) to the model.
+2026-05-28 16:19:34,481 - functions - INFO - Applying ASGD averaged weights (ax) to the model.
+2026-05-28 16:19:48,518 - functions - INFO - Early stopping triggered.
+2026-05-28 16:19:49,058 - functions - INFO - [Final Test PPL: 93.9947]
+2026-05-28 16:19:49,060 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/hid_size=300_emb_size=400_emb_dropout=0.3_out_dropout=0.1_lr=3.0/losses.json
+2026-05-28 16:19:49,255 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/hid_size=300_emb_size=400_emb_dropout=0.3_out_dropout=0.1_lr=3.0/loss_plot.png
+2026-05-28 16:19:49,256 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/best_model...
+2026-05-28 16:19:49,280 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/best_model/model.pt
+2026-05-28 16:19:49,280 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/best_model/losses.json
+2026-05-28 16:19:49,453 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_B/results/part1b3/sweep_2026-05-28_16-15-08/best_model/loss_plot.png
+2026-05-28 16:19:49,453 - functions - INFO - [Memory before cleanup] Allocated: 73.91 MB, Reserved: 8518.00 MB
+2026-05-28 16:19:49,709 - functions - INFO - [Memory after cleanup] Allocated: 35.22 MB, Reserved: 84.00 MB
+2026-05-28 16:19:49,709 - functions - INFO - --------------------------------------------------
+2026-05-28 16:19:49,716 - functions - INFO - 
+--- Trial 1 ---
+2026-05-28 16:19:49,717 - functions - INFO - Testing params for Non-monotonically Triggered AvSGD: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 500, 'emb_dropout': 0.2, 'out_dropout': 0.2, 'optimizer': 'SGD', 'lr': 0.5, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}

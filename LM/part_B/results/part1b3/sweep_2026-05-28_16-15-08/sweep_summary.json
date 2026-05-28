@@ -1,0 +1,23 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Non-monotonically Triggered AvSGD",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.1,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 93.99474314276638,
+        "best_val_loss": 4.694693300550949,
+        "ASGD_trigger_epoch": 19
+    }
+]
