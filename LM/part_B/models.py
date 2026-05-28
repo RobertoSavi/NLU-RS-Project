@@ -54,6 +54,8 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
             self.output.weight = self.embedding.weight
     def forward(self, input_sequence):
         emb = self.embedding(input_sequence)
+        
+        rnn_out, _ = self.rnn(emb)
 
         if self.proj is not None:
             rnn_out = self.proj(rnn_out)
