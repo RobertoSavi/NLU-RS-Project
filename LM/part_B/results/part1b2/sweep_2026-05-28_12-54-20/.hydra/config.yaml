@@ -1,0 +1,58 @@
+part:
+  part: 1b2
+  name: Variational Dropout
+  description: Applying the same dropout mask at every time step in the LSTM model.
+  parameters:
+    n_epochs: 100
+    patience_value: 5
+    hid_size:
+    - 200
+    - 250
+    - 300
+    - 350
+    - 400
+    emb_size:
+    - 300
+    - 350
+    - 400
+    - 450
+    - 500
+    emb_dropout:
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
+    - 0.5
+    out_dropout:
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
+    - 0.5
+    optimizer: SGD
+    lr:
+    - 0.01
+    - 0.05
+    - 0.1
+    - 0.5
+    - 1.0
+    - 2.0
+    - 3.0
+    - 4.0
+    - 5.0
+    clip: 5.0
+    train_batch_size: 64
+    eval_batch_size: 128
+  best_parameters:
+    n_epochs: 100
+    patience_value: 5
+    hid_size: 250
+    emb_size: 350
+    emb_dropout: 0.3
+    out_dropout: 0.3
+    optimizer: SGD
+    lr: 0.5
+    clip: 5.0
+    train_batch_size: 64
+    eval_batch_size: 128
+testing: true

@@ -1,0 +1,402 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.2,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 2.8279475946173215e+37,
+        "best_val_loss": 86.47642065634324
+    },
+    {
+        "trial_number": 1,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 500,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.2,
+            "optimizer": "SGD",
+            "lr": 1.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 105.09665744245768,
+        "best_val_loss": 4.672637069752007
+    },
+    {
+        "trial_number": 2,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.1,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 105.42522220830065,
+        "best_val_loss": 4.678649304044875
+    },
+    {
+        "trial_number": 3,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.5,
+            "optimizer": "SGD",
+            "lr": 0.1,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 154.47982396648112,
+        "best_val_loss": 5.08169390654967
+    },
+    {
+        "trial_number": 4,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.3,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 102.7142322823631,
+        "best_val_loss": 4.662630883515059
+    },
+    {
+        "trial_number": 5,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 350,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.3,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 109.67317529277582,
+        "best_val_loss": 4.7223051716885385
+    },
+    {
+        "trial_number": 6,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.5,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 100.99290777142315,
+        "best_val_loss": 4.648101932370099
+    },
+    {
+        "trial_number": 7,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.1,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 107.04690206220249,
+        "best_val_loss": 4.705555938620987
+    },
+    {
+        "trial_number": 8,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.1,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 111.71021484994357,
+        "best_val_loss": 4.743866898929181
+    },
+    {
+        "trial_number": 9,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.3,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 120.93066156098905,
+        "best_val_loss": 4.826279228894374
+    },
+    {
+        "trial_number": 10,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 99.70770621522516,
+        "best_val_loss": 4.640016309800753
+    },
+    {
+        "trial_number": 13,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 98.71310374042885,
+        "best_val_loss": 4.615796706574531
+    },
+    {
+        "trial_number": 14,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 557.6679077377287,
+        "best_val_loss": 6.3634597823843055
+    },
+    {
+        "trial_number": 15,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 3.1770275890396693e+22,
+        "best_val_loss": 52.467758370773545
+    },
+    {
+        "trial_number": 16,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 0.05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 208.45065899697605,
+        "best_val_loss": 5.383891449646612
+    },
+    {
+        "trial_number": 17,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 101.48012789148683,
+        "best_val_loss": 4.647465023274346
+    },
+    {
+        "trial_number": 20,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.2,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 3.99444893508992e+41,
+        "best_val_loss": 96.60540659628498
+    },
+    {
+        "trial_number": 24,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 7.397172100923482e+22,
+        "best_val_loss": 53.680426074815315
+    },
+    {
+        "trial_number": 25,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "SGD",
+            "lr": 0.1,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 162.5655796824925,
+        "best_val_loss": 5.131225686521079
+    },
+    {
+        "trial_number": 26,
+        "part_name": "Variational Dropout",
+        "model_name": "LM_LSTM_VAR_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.4,
+            "optimizer": "SGD",
+            "lr": 1.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 100.89144315201565,
+        "best_val_loss": 4.6432324662705105
+    }
+]
