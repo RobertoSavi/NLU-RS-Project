@@ -126,7 +126,7 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
     patience = config.patience_value
     
     T = 0          # Trigger iteration/epoch index
-    if config.part == "1b3":
+    if getattr(config, "part", None) == "1b3":
         # NT-AvSGD parameter initialization
         logs = []      # List to store validation perplexity 'v'
         L = 1          # Logging interval
@@ -149,7 +149,7 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
                 # If the current PPL is worse than the minimum PPL recorded n steps ago
                 if t > n and ppl_dev > min(logs[:t - n]):
                     T = k
-                    print(f"Trigger activated at epoch {epoch}. Starting weight averaging.")
+                    logger.info(f"Trigger activated at epoch {epoch}. Starting weight averaging.")
                     # Preserve current learning rate
                     current_lr = optimizer.param_groups[0]['lr']
                     # ASGD in PyTorch implements the averaging logic described in the paper 
@@ -175,14 +175,23 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
         
         # After training, if the trigger was activated, set the model parameters to the averaged weights  
         if getattr(config, "part", None) == "1b3" and T > 0:
-            logger.info("Applying ASGD averaged weights (ax) to the model.")
+            live_weights = {}
+            for name, param in model.named_parameters():
+                live_weights[name] = param.data.clone()
+                
             for param in model.parameters():
                 if 'ax' in optimizer.state[param]:
                     # Copy the 'ax' (averaged) weights into the model parameters
                     param.data.copy_(optimizer.state[param]['ax'])  
             ppl_dev_avg, _ = eval_loop(dev_loader, criterion_eval, model)
             if ppl_dev_avg < best_ppl:
+                best_ppl = ppl_dev_avg
                 best_model = copy.deepcopy(model).cpu()
+                patience = config.patience_value # Reset patience if averages improved!
+                logger.info(f"Averaged weights achieved new best PPL: {best_ppl:.4f}")
+                
+            for name, param in model.named_parameters():
+                param.data.copy_(live_weights[name])
             
     return best_model.to(DEVICE), losses_train, losses_dev, T
 
