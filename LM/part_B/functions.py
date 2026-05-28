@@ -106,7 +106,11 @@ def eval_loop(data, eval_criterion, model) -> Tuple[float, float]:
     
     loss_to_return = sum(loss_array) / sum(number_of_tokens)
 
-    ppl = math.exp(loss_to_return)
+    try:
+        ppl = math.exp(loss_to_return)
+    except OverflowError:
+        # If the loss is so huge that math.exp() crashes, return infinity
+        ppl = float('inf')
 
     return ppl, loss_to_return
 
