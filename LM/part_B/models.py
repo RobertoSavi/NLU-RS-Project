@@ -49,6 +49,7 @@ class LM_LSTM_WEIGHT_TYING(nn.Module):
             self.output.weight = self.embedding.weight
         else:
             # If hidden size and embedding size differ, add a projection layer to match dimensions before output layer
+            self.proj = nn.Linear(hidden_size, emb_size)
             self.output = nn.Linear(emb_size, output_size)
             self.output.weight = self.embedding.weight
     def forward(self, input_sequence):
