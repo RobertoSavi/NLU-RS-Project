@@ -1,0 +1,279 @@
+2026-05-29 10:38:11,244 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-05-29 10:38:12,167 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-05-29 10:38:12,167 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'lr']
+2026-05-29 10:38:12,168 - functions - INFO - Large search space detected (225 max combinations). Using Smart TPE Search for 20 trials.
+2026-05-29 10:38:12,168 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-05-29 10:38:12,179 - functions - INFO - 
+--- Trial 0 ---
+2026-05-29 10:38:12,180 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 350, 'optimizer': 'SGD', 'lr': 0.1, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 10:54:41,429 - functions - INFO - [Final Test PPL: 162.0425]
+2026-05-29 10:54:41,429 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=350_lr=0.1/losses.json
+2026-05-29 10:54:41,599 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=350_lr=0.1/loss_plot.png
+2026-05-29 10:54:41,599 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 10:54:41,640 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 10:54:41,640 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 10:54:41,799 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 10:54:41,800 - functions - INFO - [Memory before cleanup] Allocated: 92.85 MB, Reserved: 9004.00 MB
+2026-05-29 10:54:42,047 - functions - INFO - [Memory after cleanup] Allocated: 41.48 MB, Reserved: 136.00 MB
+2026-05-29 10:54:42,047 - functions - INFO - --------------------------------------------------
+2026-05-29 10:54:42,053 - functions - INFO - 
+--- Trial 1 ---
+2026-05-29 10:54:42,053 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 350, 'optimizer': 'SGD', 'lr': 0.5, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:01:58,220 - functions - INFO - Early stopping triggered.
+2026-05-29 11:01:58,710 - functions - INFO - [Final Test PPL: 147.0376]
+2026-05-29 11:01:58,710 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=350_lr=0.5/losses.json
+2026-05-29 11:01:58,875 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=350_lr=0.5/loss_plot.png
+2026-05-29 11:01:58,876 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 11:01:58,978 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 11:01:58,979 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 11:01:59,151 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 11:01:59,151 - functions - INFO - [Memory before cleanup] Allocated: 99.72 MB, Reserved: 7912.00 MB
+2026-05-29 11:01:59,413 - functions - INFO - [Memory after cleanup] Allocated: 44.07 MB, Reserved: 136.00 MB
+2026-05-29 11:01:59,413 - functions - INFO - --------------------------------------------------
+2026-05-29 11:01:59,419 - functions - INFO - 
+--- Trial 2 ---
+2026-05-29 11:01:59,419 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 300, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:04:17,682 - functions - INFO - Early stopping triggered.
+2026-05-29 11:04:18,202 - functions - INFO - [Final Test PPL: 138.3157]
+2026-05-29 11:04:18,202 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=300_lr=3.0/losses.json
+2026-05-29 11:04:18,376 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=300_lr=3.0/loss_plot.png
+2026-05-29 11:04:18,377 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 11:04:18,478 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 11:04:18,479 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 11:04:18,656 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 11:04:18,657 - functions - INFO - [Memory before cleanup] Allocated: 102.64 MB, Reserved: 9868.00 MB
+2026-05-29 11:04:18,907 - functions - INFO - [Memory after cleanup] Allocated: 45.27 MB, Reserved: 136.00 MB
+2026-05-29 11:04:18,907 - functions - INFO - --------------------------------------------------
+2026-05-29 11:04:18,912 - functions - INFO - 
+--- Trial 3 ---
+2026-05-29 11:04:18,912 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'optimizer': 'SGD', 'lr': 0.05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:24:06,229 - functions - INFO - [Final Test PPL: 174.8949]
+2026-05-29 11:24:06,230 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=500_lr=0.05/losses.json
+2026-05-29 11:24:06,397 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=500_lr=0.05/loss_plot.png
+2026-05-29 11:24:06,398 - functions - INFO - [Memory before cleanup] Allocated: 127.30 MB, Reserved: 9592.00 MB
+2026-05-29 11:24:06,637 - functions - INFO - [Memory after cleanup] Allocated: 53.27 MB, Reserved: 162.00 MB
+2026-05-29 11:24:06,637 - functions - INFO - --------------------------------------------------
+2026-05-29 11:24:06,643 - functions - INFO - 
+--- Trial 4 ---
+2026-05-29 11:24:06,643 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 200, 'emb_size': 400, 'optimizer': 'SGD', 'lr': 2.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:26:45,257 - functions - INFO - Early stopping triggered.
+2026-05-29 11:26:45,707 - functions - INFO - [Final Test PPL: 141.2103]
+2026-05-29 11:26:45,708 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=200_emb_size=400_lr=2.0/losses.json
+2026-05-29 11:26:45,895 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=200_emb_size=400_lr=2.0/loss_plot.png
+2026-05-29 11:26:45,896 - functions - INFO - [Memory before cleanup] Allocated: 90.85 MB, Reserved: 8302.00 MB
+2026-05-29 11:26:46,154 - functions - INFO - [Memory after cleanup] Allocated: 41.32 MB, Reserved: 136.00 MB
+2026-05-29 11:26:46,154 - functions - INFO - --------------------------------------------------
+2026-05-29 11:26:46,159 - functions - INFO - 
+--- Trial 5 ---
+2026-05-29 11:26:46,159 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 300, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:29:04,514 - functions - INFO - Early stopping triggered.
+2026-05-29 11:29:05,031 - functions - INFO - [Final Test PPL: 138.4878]
+2026-05-29 11:29:05,032 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=300_lr=4.0/losses.json
+2026-05-29 11:29:05,184 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=300_lr=4.0/loss_plot.png
+2026-05-29 11:29:05,185 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 11:29:05,287 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 11:29:05,288 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 11:29:05,447 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 11:29:05,448 - functions - INFO - [Memory before cleanup] Allocated: 101.21 MB, Reserved: 10574.00 MB
+2026-05-29 11:29:05,681 - functions - INFO - [Memory after cleanup] Allocated: 44.57 MB, Reserved: 136.00 MB
+2026-05-29 11:29:05,681 - functions - INFO - --------------------------------------------------
+2026-05-29 11:29:05,686 - functions - INFO - 
+--- Trial 6 ---
+2026-05-29 11:29:05,686 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 300, 'optimizer': 'SGD', 'lr': 5.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:31:02,920 - functions - INFO - Early stopping triggered.
+2026-05-29 11:31:03,382 - functions - INFO - [Final Test PPL: 139.6789]
+2026-05-29 11:31:03,382 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=300_lr=5.0/losses.json
+2026-05-29 11:31:03,559 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=300_lr=5.0/loss_plot.png
+2026-05-29 11:31:03,560 - functions - INFO - [Memory before cleanup] Allocated: 86.60 MB, Reserved: 8478.00 MB
+2026-05-29 11:31:03,792 - functions - INFO - [Memory after cleanup] Allocated: 39.38 MB, Reserved: 284.00 MB
+2026-05-29 11:31:03,793 - functions - INFO - --------------------------------------------------
+2026-05-29 11:31:03,798 - functions - INFO - 
+--- Trial 7 ---
+2026-05-29 11:31:03,798 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 200, 'emb_size': 400, 'optimizer': 'SGD', 'lr': 1.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:36:02,547 - functions - INFO - Early stopping triggered.
+2026-05-29 11:36:02,989 - functions - INFO - [Final Test PPL: 144.5216]
+2026-05-29 11:36:02,990 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=200_emb_size=400_lr=1.0/losses.json
+2026-05-29 11:36:03,148 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=200_emb_size=400_lr=1.0/loss_plot.png
+2026-05-29 11:36:03,150 - functions - INFO - [Memory before cleanup] Allocated: 90.62 MB, Reserved: 8928.00 MB
+2026-05-29 11:36:03,373 - functions - INFO - [Memory after cleanup] Allocated: 41.09 MB, Reserved: 136.00 MB
+2026-05-29 11:36:03,374 - functions - INFO - --------------------------------------------------
+2026-05-29 11:36:03,379 - functions - INFO - 
+--- Trial 8 ---
+2026-05-29 11:36:03,379 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 400, 'optimizer': 'SGD', 'lr': 0.5, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 11:43:28,930 - functions - INFO - Early stopping triggered.
+2026-05-29 11:43:29,402 - functions - INFO - [Final Test PPL: 147.8128]
+2026-05-29 11:43:29,403 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=400_lr=0.5/losses.json
+2026-05-29 11:43:29,560 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=250_emb_size=400_lr=0.5/loss_plot.png
+2026-05-29 11:43:29,562 - functions - INFO - [Memory before cleanup] Allocated: 98.42 MB, Reserved: 8310.00 MB
+2026-05-29 11:43:29,795 - functions - INFO - [Memory after cleanup] Allocated: 43.57 MB, Reserved: 136.00 MB
+2026-05-29 11:43:29,795 - functions - INFO - --------------------------------------------------
+2026-05-29 11:43:29,801 - functions - INFO - 
+--- Trial 9 ---
+2026-05-29 11:43:29,801 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 300, 'optimizer': 'SGD', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:04:02,249 - functions - INFO - [Final Test PPL: 316.9616]
+2026-05-29 12:04:02,250 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=300_lr=0.01/losses.json
+2026-05-29 12:04:02,414 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=300_lr=0.01/loss_plot.png
+2026-05-29 12:04:02,415 - functions - INFO - [Memory before cleanup] Allocated: 109.34 MB, Reserved: 11166.00 MB
+2026-05-29 12:04:02,652 - functions - INFO - [Memory after cleanup] Allocated: 47.28 MB, Reserved: 136.00 MB
+2026-05-29 12:04:02,652 - functions - INFO - --------------------------------------------------
+2026-05-29 12:04:02,661 - functions - INFO - 
+--- Trial 10 ---
+2026-05-29 12:04:02,661 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:06:24,639 - functions - INFO - Early stopping triggered.
+2026-05-29 12:06:25,161 - functions - INFO - [Final Test PPL: 138.6115]
+2026-05-29 12:06:25,161 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=450_lr=4.0/losses.json
+2026-05-29 12:06:25,312 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=350_emb_size=450_lr=4.0/loss_plot.png
+2026-05-29 12:06:25,313 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 12:06:25,522 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 12:06:25,523 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 12:06:25,677 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 12:06:25,678 - functions - INFO - [Memory before cleanup] Allocated: 121.33 MB, Reserved: 9626.00 MB
+2026-05-29 12:06:25,913 - functions - INFO - [Memory after cleanup] Allocated: 51.64 MB, Reserved: 158.00 MB
+2026-05-29 12:06:25,913 - functions - INFO - --------------------------------------------------
+2026-05-29 12:06:25,917 - functions - INFO - 
+--- Trial 11 ---
+2026-05-29 12:06:25,917 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:06:25,917 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:06:25,921 - functions - INFO - 
+--- Trial 12 ---
+2026-05-29 12:06:25,921 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:06:25,921 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:06:25,926 - functions - INFO - 
+--- Trial 13 ---
+2026-05-29 12:06:25,926 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:06:25,926 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:06:25,935 - functions - INFO - 
+--- Trial 14 ---
+2026-05-29 12:06:25,935 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:08:36,223 - functions - INFO - Early stopping triggered.
+2026-05-29 12:08:36,718 - functions - INFO - [Final Test PPL: 137.9731]
+2026-05-29 12:08:36,719 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=4.0/losses.json
+2026-05-29 12:08:36,893 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=4.0/loss_plot.png
+2026-05-29 12:08:36,894 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 12:08:37,102 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 12:08:37,102 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 12:08:37,279 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 12:08:37,280 - functions - INFO - [Memory before cleanup] Allocated: 112.53 MB, Reserved: 7444.00 MB
+2026-05-29 12:08:37,517 - functions - INFO - [Memory after cleanup] Allocated: 48.34 MB, Reserved: 136.00 MB
+2026-05-29 12:08:37,517 - functions - INFO - --------------------------------------------------
+2026-05-29 12:08:37,522 - functions - INFO - 
+--- Trial 15 ---
+2026-05-29 12:08:37,522 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 4.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:08:37,522 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:08:37,530 - functions - INFO - 
+--- Trial 16 ---
+2026-05-29 12:08:37,530 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 5.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:10:36,972 - functions - INFO - Early stopping triggered.
+2026-05-29 12:10:37,469 - functions - INFO - [Final Test PPL: 137.9512]
+2026-05-29 12:10:37,470 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=5.0/losses.json
+2026-05-29 12:10:37,633 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=5.0/loss_plot.png
+2026-05-29 12:10:37,634 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 12:10:37,738 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 12:10:37,842 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 12:10:38,036 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 12:10:38,036 - functions - INFO - [Memory before cleanup] Allocated: 113.30 MB, Reserved: 11332.00 MB
+2026-05-29 12:10:38,281 - functions - INFO - [Memory after cleanup] Allocated: 49.11 MB, Reserved: 136.00 MB
+2026-05-29 12:10:38,281 - functions - INFO - --------------------------------------------------
+2026-05-29 12:10:38,289 - functions - INFO - 
+--- Trial 17 ---
+2026-05-29 12:10:38,289 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 500, 'optimizer': 'SGD', 'lr': 5.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:12:59,859 - functions - INFO - Early stopping triggered.
+2026-05-29 12:13:00,362 - functions - INFO - [Final Test PPL: 139.7883]
+2026-05-29 12:13:00,363 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=500_lr=5.0/losses.json
+2026-05-29 12:13:00,508 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=500_lr=5.0/loss_plot.png
+2026-05-29 12:13:00,509 - functions - INFO - [Memory before cleanup] Allocated: 118.94 MB, Reserved: 11940.00 MB
+2026-05-29 12:13:00,746 - functions - INFO - [Memory after cleanup] Allocated: 50.48 MB, Reserved: 136.00 MB
+2026-05-29 12:13:00,746 - functions - INFO - --------------------------------------------------
+2026-05-29 12:13:00,751 - functions - INFO - 
+--- Trial 18 ---
+2026-05-29 12:13:00,751 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 5.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:13:00,751 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:13:00,759 - functions - INFO - 
+--- Trial 19 ---
+2026-05-29 12:13:00,759 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:31:04,588 - functions - INFO - [Final Test PPL: 320.9675]
+2026-05-29 12:31:04,588 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=0.01/losses.json
+2026-05-29 12:31:04,754 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=0.01/loss_plot.png
+2026-05-29 12:31:04,755 - functions - INFO - [Memory before cleanup] Allocated: 112.53 MB, Reserved: 9534.00 MB
+2026-05-29 12:31:05,044 - functions - INFO - [Memory after cleanup] Allocated: 48.34 MB, Reserved: 136.00 MB
+2026-05-29 12:31:05,044 - functions - INFO - --------------------------------------------------
+2026-05-29 12:31:05,053 - functions - INFO - 
+--- Trial 20 ---
+2026-05-29 12:31:05,053 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:33:24,461 - functions - INFO - Early stopping triggered.
+2026-05-29 12:33:25,001 - functions - INFO - [Final Test PPL: 137.5999]
+2026-05-29 12:33:25,001 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=450_lr=3.0/losses.json
+2026-05-29 12:33:25,162 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=450_lr=3.0/loss_plot.png
+2026-05-29 12:33:25,163 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model...
+2026-05-29 12:33:25,367 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/model.pt
+2026-05-29 12:33:25,367 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/losses.json
+2026-05-29 12:33:25,522 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model/loss_plot.png
+2026-05-29 12:33:25,523 - functions - INFO - [Memory before cleanup] Allocated: 129.25 MB, Reserved: 8946.00 MB
+2026-05-29 12:33:25,761 - functions - INFO - [Memory after cleanup] Allocated: 53.92 MB, Reserved: 136.00 MB
+2026-05-29 12:33:25,761 - functions - INFO - --------------------------------------------------
+2026-05-29 12:33:25,766 - functions - INFO - 
+--- Trial 21 ---
+2026-05-29 12:33:25,766 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:33:25,766 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:33:25,771 - functions - INFO - 
+--- Trial 22 ---
+2026-05-29 12:33:25,771 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 3.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:33:25,771 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 12:33:25,780 - functions - INFO - 
+--- Trial 23 ---
+2026-05-29 12:33:25,780 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 0.1, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 12:53:42,820 - functions - INFO - Early stopping triggered.
+2026-05-29 12:53:43,355 - functions - INFO - [Final Test PPL: 157.5879]
+2026-05-29 12:53:43,356 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=450_lr=0.1/losses.json
+2026-05-29 12:53:43,520 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=450_lr=0.1/loss_plot.png
+2026-05-29 12:53:43,523 - functions - INFO - [Memory before cleanup] Allocated: 129.25 MB, Reserved: 11654.00 MB
+2026-05-29 12:53:43,766 - functions - INFO - [Memory after cleanup] Allocated: 53.92 MB, Reserved: 136.00 MB
+2026-05-29 12:53:43,766 - functions - INFO - --------------------------------------------------
+2026-05-29 12:53:43,775 - functions - INFO - 
+--- Trial 24 ---
+2026-05-29 12:53:43,775 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 350, 'optimizer': 'SGD', 'lr': 0.05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 13:11:27,993 - functions - INFO - [Final Test PPL: 185.4791]
+2026-05-29 13:11:27,994 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=350_lr=0.05/losses.json
+2026-05-29 13:11:28,162 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=350_lr=0.05/loss_plot.png
+2026-05-29 13:11:28,163 - functions - INFO - [Memory before cleanup] Allocated: 100.50 MB, Reserved: 9392.00 MB
+2026-05-29 13:11:28,395 - functions - INFO - [Memory after cleanup] Allocated: 44.86 MB, Reserved: 250.00 MB
+2026-05-29 13:11:28,395 - functions - INFO - --------------------------------------------------
+2026-05-29 13:11:28,405 - functions - INFO - 
+--- Trial 25 ---
+2026-05-29 13:11:28,405 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'optimizer': 'SGD', 'lr': 1.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 13:15:48,462 - functions - INFO - Early stopping triggered.
+2026-05-29 13:15:48,954 - functions - INFO - [Final Test PPL: 145.3567]
+2026-05-29 13:15:48,954 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=1.0/losses.json
+2026-05-29 13:15:49,103 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=300_emb_size=450_lr=1.0/loss_plot.png
+2026-05-29 13:15:49,104 - functions - INFO - [Memory before cleanup] Allocated: 112.53 MB, Reserved: 11314.00 MB
+2026-05-29 13:15:49,344 - functions - INFO - [Memory after cleanup] Allocated: 48.34 MB, Reserved: 136.00 MB
+2026-05-29 13:15:49,344 - functions - INFO - --------------------------------------------------
+2026-05-29 13:15:49,353 - functions - INFO - 
+--- Trial 26 ---
+2026-05-29 13:15:49,353 - functions - INFO - Testing params for LSTM: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 500, 'optimizer': 'SGD', 'lr': 2.0, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 13:19:00,974 - functions - INFO - Early stopping triggered.
+2026-05-29 13:19:01,513 - functions - INFO - [Final Test PPL: 138.7173]
+2026-05-29 13:19:01,513 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=500_lr=2.0/losses.json
+2026-05-29 13:19:01,669 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/hid_size=400_emb_size=500_lr=2.0/loss_plot.png
+2026-05-29 13:19:01,670 - functions - INFO - [Memory before cleanup] Allocated: 135.89 MB, Reserved: 9138.00 MB
+2026-05-29 13:19:01,910 - functions - INFO - [Memory after cleanup] Allocated: 56.13 MB, Reserved: 136.00 MB
+2026-05-29 13:19:01,910 - functions - INFO - --------------------------------------------------
+2026-05-29 13:19:01,912 - functions - INFO - 
+================ SWEEP COMPLETE ================
+2026-05-29 13:19:01,912 - functions - INFO - Best hyperparameters found:
+2026-05-29 13:19:01,912 - functions - INFO -   hid_size: 400
+2026-05-29 13:19:01,912 - functions - INFO -   emb_size: 450
+2026-05-29 13:19:01,912 - functions - INFO -   lr: 3.0
+2026-05-29 13:19:01,912 - functions - INFO - Best validation loss: 4.952687170085861
+2026-05-29 13:19:01,912 - functions - INFO - Best model and plots have been saved to: /home/disi/NLU-RS-Project/LM/part_A/results/part1a1/sweep_2026-05-29_10-38-11/best_model

@@ -1,0 +1,362 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 350,
+            "optimizer": "SGD",
+            "lr": 0.1,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 162.04247604964277,
+        "best_val_loss": 5.126692169575312
+    },
+    {
+        "trial_number": 1,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 147.037606766772,
+        "best_val_loss": 5.0314215123441715
+    },
+    {
+        "trial_number": 2,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 138.31568982760487,
+        "best_val_loss": 4.96723240189702
+    },
+    {
+        "trial_number": 3,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 0.05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 174.894906232171,
+        "best_val_loss": 5.19565041920461
+    },
+    {
+        "trial_number": 4,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 141.21029894902134,
+        "best_val_loss": 4.996225021975778
+    },
+    {
+        "trial_number": 5,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 138.48782984893907,
+        "best_val_loss": 4.966367396991316
+    },
+    {
+        "trial_number": 6,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 139.67889081099335,
+        "best_val_loss": 4.971132263105555
+    },
+    {
+        "trial_number": 7,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 1.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 144.52157463169337,
+        "best_val_loss": 5.013434254965638
+    },
+    {
+        "trial_number": 8,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 400,
+            "optimizer": "SGD",
+            "lr": 0.5,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 147.8127941349359,
+        "best_val_loss": 5.038950567818582
+    },
+    {
+        "trial_number": 9,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "optimizer": "SGD",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 316.9616323639669,
+        "best_val_loss": 5.787374776912559
+    },
+    {
+        "trial_number": 10,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 138.61149973901527,
+        "best_val_loss": 4.9655068732574765
+    },
+    {
+        "trial_number": 14,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 4.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 137.9730653644911,
+        "best_val_loss": 4.963820017269854
+    },
+    {
+        "trial_number": 16,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 137.95121085629336,
+        "best_val_loss": 4.958029413690688
+    },
+    {
+        "trial_number": 17,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 5.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 139.7882958346157,
+        "best_val_loss": 4.967990857576982
+    },
+    {
+        "trial_number": 19,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 320.96747906005317,
+        "best_val_loss": 5.79358249712539
+    },
+    {
+        "trial_number": 20,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 3.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 137.59990303239695,
+        "best_val_loss": 4.952687170085861
+    },
+    {
+        "trial_number": 23,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 0.1,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 157.58789327491363,
+        "best_val_loss": 5.089541895211056
+    },
+    {
+        "trial_number": 24,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "SGD",
+            "lr": 0.05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 185.4790818725345,
+        "best_val_loss": 5.259171515951307
+    },
+    {
+        "trial_number": 25,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "SGD",
+            "lr": 1.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 145.35673465791498,
+        "best_val_loss": 5.0071764926880595
+    },
+    {
+        "trial_number": 26,
+        "part_name": "LSTM",
+        "model_name": "LM_LSTM",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 500,
+            "optimizer": "SGD",
+            "lr": 2.0,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 138.71727306155012,
+        "best_val_loss": 4.969544679641994
+    }
+]
