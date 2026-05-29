@@ -354,7 +354,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         # Log and save trial data
         save_losses(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"))
         save_loss_plot(losses_train, losses_dev, os.path.join(trial_folder_path, "loss_plot.png"))
-        update_sweep_log(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, os.path.join(current_hydra_dir, "sweep_summary.json"), T)
+        update_sweep_log(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, os.path.join(current_hydra_dir, "sweep_summary.json"))
         
         # Check overall best
         if best_val_loss < best_sweep_loss:

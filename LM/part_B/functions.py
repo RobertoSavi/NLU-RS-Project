@@ -44,7 +44,14 @@ def init_weights(mat):
 
 # Build model architecture and optimizer from configuration
 def build_model_and_optim(config, vocab_len, pad_index) -> Tuple[nn.Module, optim.Optimizer]:
-    if config.part == "1b1":
+    if config.part == "1b0":
+        model = LM_LSTM(
+            config.emb_size,
+            config.hid_size,
+            vocab_len,
+            pad_index=pad_index
+        )
+    elif config.part == "1b1":
         model = LM_LSTM_WEIGHT_TYING(
             config.emb_size,
             config.hid_size,
