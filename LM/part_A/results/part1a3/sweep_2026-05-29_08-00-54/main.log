@@ -1,0 +1,266 @@
+2026-05-29 08:00:54,943 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-05-29 08:00:55,868 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-05-29 08:00:55,869 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'emb_dropout', 'out_dropout', 'lr']
+2026-05-29 08:00:55,869 - functions - INFO - Large search space detected (3125 max combinations). Using Smart TPE Search for 20 trials.
+2026-05-29 08:00:55,869 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-05-29 08:00:55,881 - functions - INFO - 
+--- Trial 0 ---
+2026-05-29 08:00:55,882 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 200, 'emb_size': 350, 'emb_dropout': 0.2, 'out_dropout': 0.3, 'optimizer': 'AdamW', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:02:44,677 - functions - INFO - Early stopping triggered.
+2026-05-29 08:02:45,126 - functions - INFO - [Final Test PPL: 148.5608]
+2026-05-29 08:02:45,126 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=350_emb_dropout=0.2_out_dropout=0.3_lr=0.01/losses.json
+2026-05-29 08:02:45,322 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=350_emb_dropout=0.2_out_dropout=0.3_lr=0.01/loss_plot.png
+2026-05-29 08:02:45,322 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 08:02:45,356 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 08:02:45,356 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 08:02:45,535 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 08:02:45,535 - functions - INFO - [Memory before cleanup] Allocated: 131.35 MB, Reserved: 8778.00 MB
+2026-05-29 08:02:45,798 - functions - INFO - [Memory after cleanup] Allocated: 85.22 MB, Reserved: 300.00 MB
+2026-05-29 08:02:45,798 - functions - INFO - --------------------------------------------------
+2026-05-29 08:02:45,805 - functions - INFO - 
+--- Trial 1 ---
+2026-05-29 08:02:45,805 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 500, 'emb_dropout': 0.1, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:09:49,940 - functions - INFO - Early stopping triggered.
+2026-05-29 08:09:50,413 - functions - INFO - [Final Test PPL: 116.6955]
+2026-05-29 08:09:50,414 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=500_emb_dropout=0.1_out_dropout=0.5_lr=0.0005/losses.json
+2026-05-29 08:09:50,584 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=500_emb_dropout=0.1_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-05-29 08:09:50,585 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 08:09:50,779 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 08:09:50,780 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 08:09:50,954 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 08:09:50,954 - functions - INFO - [Memory before cleanup] Allocated: 176.25 MB, Reserved: 8938.00 MB
+2026-05-29 08:09:51,220 - functions - INFO - [Memory after cleanup] Allocated: 112.29 MB, Reserved: 168.00 MB
+2026-05-29 08:09:51,220 - functions - INFO - --------------------------------------------------
+2026-05-29 08:09:51,226 - functions - INFO - 
+--- Trial 2 ---
+2026-05-29 08:09:51,226 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 350, 'emb_dropout': 0.1, 'out_dropout': 0.1, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:12:29,110 - functions - INFO - Early stopping triggered.
+2026-05-29 08:12:29,626 - functions - INFO - [Final Test PPL: 118.5079]
+2026-05-29 08:12:29,627 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=350_emb_dropout=0.1_out_dropout=0.1_lr=0.001/losses.json
+2026-05-29 08:12:29,784 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=350_emb_dropout=0.1_out_dropout=0.1_lr=0.001/loss_plot.png
+2026-05-29 08:12:29,785 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 08:12:29,884 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 08:12:29,884 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 08:12:30,045 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 08:12:30,045 - functions - INFO - [Memory before cleanup] Allocated: 169.77 MB, Reserved: 12486.00 MB
+2026-05-29 08:12:30,320 - functions - INFO - [Memory after cleanup] Allocated: 108.78 MB, Reserved: 282.00 MB
+2026-05-29 08:12:30,320 - functions - INFO - --------------------------------------------------
+2026-05-29 08:12:30,326 - functions - INFO - 
+--- Trial 3 ---
+2026-05-29 08:12:30,327 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:15:05,735 - functions - INFO - Early stopping triggered.
+2026-05-29 08:15:06,198 - functions - INFO - [Final Test PPL: 160.5569]
+2026-05-29 08:15:06,199 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=0.01/losses.json
+2026-05-29 08:15:06,374 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=0.01/loss_plot.png
+2026-05-29 08:15:06,375 - functions - INFO - [Memory before cleanup] Allocated: 154.12 MB, Reserved: 8930.00 MB
+2026-05-29 08:15:06,612 - functions - INFO - [Memory after cleanup] Allocated: 98.75 MB, Reserved: 168.00 MB
+2026-05-29 08:15:06,612 - functions - INFO - --------------------------------------------------
+2026-05-29 08:15:06,619 - functions - INFO - 
+--- Trial 4 ---
+2026-05-29 08:15:06,619 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.2, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:22:25,238 - functions - INFO - Early stopping triggered.
+2026-05-29 08:22:25,767 - functions - INFO - [Final Test PPL: 111.2114]
+2026-05-29 08:22:25,767 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/losses.json
+2026-05-29 08:22:25,926 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-05-29 08:22:25,926 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 08:22:26,015 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 08:22:26,015 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 08:22:26,188 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 08:22:26,189 - functions - INFO - [Memory before cleanup] Allocated: 202.67 MB, Reserved: 9416.00 MB
+2026-05-29 08:22:26,431 - functions - INFO - [Memory after cleanup] Allocated: 127.71 MB, Reserved: 244.00 MB
+2026-05-29 08:22:26,432 - functions - INFO - --------------------------------------------------
+2026-05-29 08:22:26,438 - functions - INFO - 
+--- Trial 5 ---
+2026-05-29 08:22:26,438 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.1, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:26:24,580 - functions - INFO - Early stopping triggered.
+2026-05-29 08:26:25,111 - functions - INFO - [Final Test PPL: 112.5708]
+2026-05-29 08:26:25,111 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.1_out_dropout=0.5_lr=0.001/losses.json
+2026-05-29 08:26:25,286 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.1_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-05-29 08:26:25,287 - functions - INFO - [Memory before cleanup] Allocated: 201.88 MB, Reserved: 8476.00 MB
+2026-05-29 08:26:25,533 - functions - INFO - [Memory after cleanup] Allocated: 127.71 MB, Reserved: 244.00 MB
+2026-05-29 08:26:25,533 - functions - INFO - --------------------------------------------------
+2026-05-29 08:26:25,540 - functions - INFO - 
+--- Trial 6 ---
+2026-05-29 08:26:25,540 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 200, 'emb_size': 300, 'emb_dropout': 0.1, 'out_dropout': 0.3, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:33:07,382 - functions - INFO - Early stopping triggered.
+2026-05-29 08:33:07,817 - functions - INFO - [Final Test PPL: 118.9788]
+2026-05-29 08:33:07,817 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=300_emb_dropout=0.1_out_dropout=0.3_lr=0.0005/losses.json
+2026-05-29 08:33:07,968 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=300_emb_dropout=0.1_out_dropout=0.3_lr=0.0005/loss_plot.png
+2026-05-29 08:33:07,969 - functions - INFO - [Memory before cleanup] Allocated: 120.23 MB, Reserved: 11840.00 MB
+2026-05-29 08:33:08,210 - functions - INFO - [Memory after cleanup] Allocated: 78.94 MB, Reserved: 132.00 MB
+2026-05-29 08:33:08,210 - functions - INFO - --------------------------------------------------
+2026-05-29 08:33:08,217 - functions - INFO - 
+--- Trial 7 ---
+2026-05-29 08:33:08,217 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 350, 'emb_dropout': 0.3, 'out_dropout': 0.2, 'optimizer': 'AdamW', 'lr': 0.0001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:51:42,315 - functions - INFO - [Final Test PPL: 118.3888]
+2026-05-29 08:51:42,315 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=350_emb_dropout=0.3_out_dropout=0.2_lr=0.0001/losses.json
+2026-05-29 08:51:42,474 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=350_emb_dropout=0.3_out_dropout=0.2_lr=0.0001/loss_plot.png
+2026-05-29 08:51:42,475 - functions - INFO - [Memory before cleanup] Allocated: 155.52 MB, Reserved: 7430.00 MB
+2026-05-29 08:51:42,707 - functions - INFO - [Memory after cleanup] Allocated: 99.72 MB, Reserved: 294.00 MB
+2026-05-29 08:51:42,707 - functions - INFO - --------------------------------------------------
+2026-05-29 08:51:42,714 - functions - INFO - 
+--- Trial 8 ---
+2026-05-29 08:51:42,714 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 300, 'emb_dropout': 0.1, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 08:59:14,324 - functions - INFO - Early stopping triggered.
+2026-05-29 08:59:14,807 - functions - INFO - [Final Test PPL: 116.3441]
+2026-05-29 08:59:14,808 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=300_emb_dropout=0.1_out_dropout=0.5_lr=0.0005/losses.json
+2026-05-29 08:59:14,974 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=300_emb_dropout=0.1_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-05-29 08:59:14,976 - functions - INFO - [Memory before cleanup] Allocated: 145.29 MB, Reserved: 9342.00 MB
+2026-05-29 08:59:15,208 - functions - INFO - [Memory after cleanup] Allocated: 93.31 MB, Reserved: 270.00 MB
+2026-05-29 08:59:15,208 - functions - INFO - --------------------------------------------------
+2026-05-29 08:59:15,215 - functions - INFO - 
+--- Trial 9 ---
+2026-05-29 08:59:15,215 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 200, 'emb_size': 350, 'emb_dropout': 0.1, 'out_dropout': 0.3, 'optimizer': 'AdamW', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:00:52,256 - functions - INFO - Early stopping triggered.
+2026-05-29 09:00:52,693 - functions - INFO - [Final Test PPL: 148.3267]
+2026-05-29 09:00:52,693 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=350_emb_dropout=0.1_out_dropout=0.3_lr=0.01/losses.json
+2026-05-29 09:00:52,853 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=200_emb_size=350_emb_dropout=0.1_out_dropout=0.3_lr=0.01/loss_plot.png
+2026-05-29 09:00:52,854 - functions - INFO - [Memory before cleanup] Allocated: 130.41 MB, Reserved: 10208.00 MB
+2026-05-29 09:00:53,088 - functions - INFO - [Memory after cleanup] Allocated: 84.99 MB, Reserved: 258.00 MB
+2026-05-29 09:00:53,089 - functions - INFO - --------------------------------------------------
+2026-05-29 09:00:53,099 - functions - INFO - 
+--- Trial 10 ---
+2026-05-29 09:00:53,099 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'emb_dropout': 0.2, 'out_dropout': 0.4, 'optimizer': 'AdamW', 'lr': 0.005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:03:33,421 - functions - INFO - Early stopping triggered.
+2026-05-29 09:03:33,956 - functions - INFO - [Final Test PPL: 129.3179]
+2026-05-29 09:03:33,956 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=400_emb_size=450_emb_dropout=0.2_out_dropout=0.4_lr=0.005/losses.json
+2026-05-29 09:03:34,140 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=400_emb_size=450_emb_dropout=0.2_out_dropout=0.4_lr=0.005/loss_plot.png
+2026-05-29 09:03:34,141 - functions - INFO - [Memory before cleanup] Allocated: 205.76 MB, Reserved: 13118.00 MB
+2026-05-29 09:03:34,397 - functions - INFO - [Memory after cleanup] Allocated: 130.23 MB, Reserved: 258.00 MB
+2026-05-29 09:03:34,398 - functions - INFO - --------------------------------------------------
+2026-05-29 09:03:34,408 - functions - INFO - 
+--- Trial 11 ---
+2026-05-29 09:03:34,408 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.4, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:11:05,258 - functions - INFO - Early stopping triggered.
+2026-05-29 09:11:05,782 - functions - INFO - [Final Test PPL: 108.8391]
+2026-05-29 09:11:05,783 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.4_out_dropout=0.5_lr=0.001/losses.json
+2026-05-29 09:11:05,967 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.4_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-05-29 09:11:05,968 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 09:11:06,052 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 09:11:06,053 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 09:11:06,243 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 09:11:06,243 - functions - INFO - [Memory before cleanup] Allocated: 201.75 MB, Reserved: 10424.00 MB
+2026-05-29 09:11:06,489 - functions - INFO - [Memory after cleanup] Allocated: 127.71 MB, Reserved: 352.00 MB
+2026-05-29 09:11:06,489 - functions - INFO - --------------------------------------------------
+2026-05-29 09:11:06,495 - functions - INFO - 
+--- Trial 12 ---
+2026-05-29 09:11:06,495 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.4, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:11:06,495 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 09:11:06,505 - functions - INFO - 
+--- Trial 13 ---
+2026-05-29 09:11:06,506 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.4, 'out_dropout': 0.4, 'optimizer': 'AdamW', 'lr': 0.0001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:32:00,353 - functions - INFO - [Final Test PPL: 116.3922]
+2026-05-29 09:32:00,354 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.4_out_dropout=0.4_lr=0.0001/losses.json
+2026-05-29 09:32:00,514 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.4_out_dropout=0.4_lr=0.0001/loss_plot.png
+2026-05-29 09:32:00,515 - functions - INFO - [Memory before cleanup] Allocated: 203.17 MB, Reserved: 10054.00 MB
+2026-05-29 09:32:00,773 - functions - INFO - [Memory after cleanup] Allocated: 129.14 MB, Reserved: 224.00 MB
+2026-05-29 09:32:00,773 - functions - INFO - --------------------------------------------------
+2026-05-29 09:32:00,784 - functions - INFO - 
+--- Trial 14 ---
+2026-05-29 09:32:00,784 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.2, 'out_dropout': 0.1, 'optimizer': 'AdamW', 'lr': 0.005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:33:41,087 - functions - INFO - Early stopping triggered.
+2026-05-29 09:33:41,611 - functions - INFO - [Final Test PPL: 136.0538]
+2026-05-29 09:33:41,612 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.1_lr=0.005/losses.json
+2026-05-29 09:33:41,805 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.1_lr=0.005/loss_plot.png
+2026-05-29 09:33:41,806 - functions - INFO - [Memory before cleanup] Allocated: 202.32 MB, Reserved: 8972.00 MB
+2026-05-29 09:33:42,038 - functions - INFO - [Memory after cleanup] Allocated: 128.13 MB, Reserved: 224.00 MB
+2026-05-29 09:33:42,038 - functions - INFO - --------------------------------------------------
+2026-05-29 09:33:42,049 - functions - INFO - 
+--- Trial 15 ---
+2026-05-29 09:33:42,049 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 400, 'emb_size': 400, 'emb_dropout': 0.4, 'out_dropout': 0.2, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:37:51,586 - functions - INFO - Early stopping triggered.
+2026-05-29 09:37:52,118 - functions - INFO - [Final Test PPL: 114.9243]
+2026-05-29 09:37:52,118 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=400_emb_size=400_emb_dropout=0.4_out_dropout=0.2_lr=0.001/losses.json
+2026-05-29 09:37:52,299 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=400_emb_size=400_emb_dropout=0.4_out_dropout=0.2_lr=0.001/loss_plot.png
+2026-05-29 09:37:52,302 - functions - INFO - [Memory before cleanup] Allocated: 193.82 MB, Reserved: 10730.00 MB
+2026-05-29 09:37:52,548 - functions - INFO - [Memory after cleanup] Allocated: 122.91 MB, Reserved: 316.00 MB
+2026-05-29 09:37:52,548 - functions - INFO - --------------------------------------------------
+2026-05-29 09:37:52,559 - functions - INFO - 
+--- Trial 16 ---
+2026-05-29 09:37:52,560 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:47:49,333 - functions - INFO - Early stopping triggered.
+2026-05-29 09:47:49,857 - functions - INFO - [Final Test PPL: 108.5646]
+2026-05-29 09:47:49,858 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.3_out_dropout=0.5_lr=0.0005/losses.json
+2026-05-29 09:47:50,013 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.3_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-05-29 09:47:50,014 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 09:47:50,096 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 09:47:50,097 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 09:47:50,254 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 09:47:50,255 - functions - INFO - [Memory before cleanup] Allocated: 192.79 MB, Reserved: 9648.00 MB
+2026-05-29 09:47:50,495 - functions - INFO - [Memory after cleanup] Allocated: 123.10 MB, Reserved: 218.00 MB
+2026-05-29 09:47:50,495 - functions - INFO - --------------------------------------------------
+2026-05-29 09:47:50,506 - functions - INFO - 
+--- Trial 17 ---
+2026-05-29 09:47:50,506 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:53:13,267 - functions - INFO - Early stopping triggered.
+2026-05-29 09:53:13,790 - functions - INFO - [Final Test PPL: 110.4173]
+2026-05-29 09:53:13,791 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.3_out_dropout=0.5_lr=0.001/losses.json
+2026-05-29 09:53:13,968 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.3_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-05-29 09:53:13,969 - functions - INFO - [Memory before cleanup] Allocated: 192.37 MB, Reserved: 10866.00 MB
+2026-05-29 09:53:14,200 - functions - INFO - [Memory after cleanup] Allocated: 122.69 MB, Reserved: 218.00 MB
+2026-05-29 09:53:14,200 - functions - INFO - --------------------------------------------------
+2026-05-29 09:53:14,209 - functions - INFO - 
+--- Trial 18 ---
+2026-05-29 09:53:14,209 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:53:14,209 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 09:53:14,219 - functions - INFO - 
+--- Trial 19 ---
+2026-05-29 09:53:14,220 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'emb_dropout': 0.5, 'out_dropout': 0.2, 'optimizer': 'AdamW', 'lr': 0.005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 09:55:53,672 - functions - INFO - Early stopping triggered.
+2026-05-29 09:55:54,163 - functions - INFO - [Final Test PPL: 134.0635]
+2026-05-29 09:55:54,164 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.2_lr=0.005/losses.json
+2026-05-29 09:55:54,341 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.2_lr=0.005/loss_plot.png
+2026-05-29 09:55:54,342 - functions - INFO - [Memory before cleanup] Allocated: 176.76 MB, Reserved: 10278.00 MB
+2026-05-29 09:55:54,575 - functions - INFO - [Memory after cleanup] Allocated: 112.57 MB, Reserved: 218.00 MB
+2026-05-29 09:55:54,575 - functions - INFO - --------------------------------------------------
+2026-05-29 09:55:54,588 - functions - INFO - 
+--- Trial 20 ---
+2026-05-29 09:55:54,588 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 250, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.1, 'optimizer': 'AdamW', 'lr': 0.0001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 10:13:24,403 - functions - INFO - [Final Test PPL: 119.0157]
+2026-05-29 10:13:24,404 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=450_emb_dropout=0.3_out_dropout=0.1_lr=0.0001/losses.json
+2026-05-29 10:13:24,566 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=250_emb_size=450_emb_dropout=0.3_out_dropout=0.1_lr=0.0001/loss_plot.png
+2026-05-29 10:13:24,568 - functions - INFO - [Memory before cleanup] Allocated: 163.46 MB, Reserved: 10354.00 MB
+2026-05-29 10:13:24,803 - functions - INFO - [Memory after cleanup] Allocated: 104.62 MB, Reserved: 220.00 MB
+2026-05-29 10:13:24,804 - functions - INFO - --------------------------------------------------
+2026-05-29 10:13:24,811 - functions - INFO - 
+--- Trial 21 ---
+2026-05-29 10:13:24,811 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 10:13:24,811 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 10:13:24,818 - functions - INFO - 
+--- Trial 22 ---
+2026-05-29 10:13:24,818 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 10:13:24,818 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-05-29 10:13:24,829 - functions - INFO - 
+--- Trial 23 ---
+2026-05-29 10:13:24,830 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.4, 'out_dropout': 0.5, 'optimizer': 'AdamW', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 10:21:17,070 - functions - INFO - Early stopping triggered.
+2026-05-29 10:21:17,590 - functions - INFO - [Final Test PPL: 107.5971]
+2026-05-29 10:21:17,590 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.4_out_dropout=0.5_lr=0.001/losses.json
+2026-05-29 10:21:17,774 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/hid_size=350_emb_size=450_emb_dropout=0.4_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-05-29 10:21:17,776 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model...
+2026-05-29 10:21:17,982 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/model.pt
+2026-05-29 10:21:17,983 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/losses.json
+2026-05-29 10:21:18,173 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model/loss_plot.png
+2026-05-29 10:21:18,173 - functions - INFO - [Memory before cleanup] Allocated: 193.18 MB, Reserved: 10190.00 MB
+2026-05-29 10:21:18,413 - functions - INFO - [Memory after cleanup] Allocated: 122.70 MB, Reserved: 218.00 MB
+2026-05-29 10:21:18,414 - functions - INFO - --------------------------------------------------
+2026-05-29 10:21:18,417 - functions - INFO - 
+================ SWEEP COMPLETE ================
+2026-05-29 10:21:18,417 - functions - INFO - Best hyperparameters found:
+2026-05-29 10:21:18,417 - functions - INFO -   hid_size: 350
+2026-05-29 10:21:18,417 - functions - INFO -   emb_size: 450
+2026-05-29 10:21:18,417 - functions - INFO -   emb_dropout: 0.4
+2026-05-29 10:21:18,417 - functions - INFO -   out_dropout: 0.5
+2026-05-29 10:21:18,417 - functions - INFO -   lr: 0.001
+2026-05-29 10:21:18,417 - functions - INFO - Best validation loss: 4.775664316386827
+2026-05-29 10:21:18,417 - functions - INFO - Best model and plots have been saved to: /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_08-00-54/best_model

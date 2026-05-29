@@ -1,0 +1,15 @@
+2026-05-29 07:56:25,571 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-05-29 07:56:26,619 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-05-29 07:56:26,620 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'emb_dropout', 'out_dropout', 'lr']
+2026-05-29 07:56:26,620 - functions - INFO - Large search space detected (3125 max combinations). Using Smart TPE Search for 20 trials.
+2026-05-29 07:56:26,621 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-05-29 07:56:26,755 - functions - INFO - 
+--- Trial 0 ---
+2026-05-29 07:56:26,755 - functions - INFO - Testing params for LSTM with Dropout and AdamW: {'n_epochs': 100, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.1, 'out_dropout': 0.2, 'optimizer': 'AdamW', 'lr': 0.01, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-05-29 07:58:28,234 - functions - INFO - Early stopping triggered.
+2026-05-29 07:58:28,763 - functions - INFO - [Final Test PPL: 155.5278]
+2026-05-29 07:58:28,764 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_07-56-25/hid_size=350_emb_size=500_emb_dropout=0.1_out_dropout=0.2_lr=0.01/losses.json
+2026-05-29 07:58:29,116 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/LM/part_A/results/part1a3/sweep_2026-05-29_07-56-25/hid_size=350_emb_size=500_emb_dropout=0.1_out_dropout=0.2_lr=0.01/loss_plot.png

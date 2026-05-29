@@ -1,0 +1,402 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.3,
+            "optimizer": "AdamW",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 148.56084694019805,
+        "best_val_loss": 5.090954747655917
+    },
+    {
+        "trial_number": 1,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 116.6954925387369,
+        "best_val_loss": 4.860695551403342
+    },
+    {
+        "trial_number": 2,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 350,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.1,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 118.50788741973707,
+        "best_val_loss": 4.8439417955431345
+    },
+    {
+        "trial_number": 3,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 400,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 160.556903365151,
+        "best_val_loss": 5.1778661256148775
+    },
+    {
+        "trial_number": 4,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 111.21141100792417,
+        "best_val_loss": 4.806498621796864
+    },
+    {
+        "trial_number": 5,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 112.57080774731111,
+        "best_val_loss": 4.810418169639686
+    },
+    {
+        "trial_number": 6,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 300,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.3,
+            "optimizer": "AdamW",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 118.97876935929472,
+        "best_val_loss": 4.88479755508373
+    },
+    {
+        "trial_number": 7,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.2,
+            "optimizer": "AdamW",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 118.38881278611903,
+        "best_val_loss": 4.849553943042779
+    },
+    {
+        "trial_number": 8,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 300,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 116.34405698686027,
+        "best_val_loss": 4.847563518876971
+    },
+    {
+        "trial_number": 9,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.3,
+            "optimizer": "AdamW",
+            "lr": 0.01,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 148.32671148871404,
+        "best_val_loss": 5.083859498752486
+    },
+    {
+        "trial_number": 10,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.4,
+            "optimizer": "AdamW",
+            "lr": 0.005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 129.31788738073595,
+        "best_val_loss": 4.949062616538216
+    },
+    {
+        "trial_number": 11,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 108.83910314678442,
+        "best_val_loss": 4.788998355423799
+    },
+    {
+        "trial_number": 13,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.4,
+            "optimizer": "AdamW",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 116.39221660750609,
+        "best_val_loss": 4.83928012124414
+    },
+    {
+        "trial_number": 14,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.1,
+            "optimizer": "AdamW",
+            "lr": 0.005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 136.0537563230314,
+        "best_val_loss": 4.987453114178594
+    },
+    {
+        "trial_number": 15,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 400,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.2,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 114.92428692876796,
+        "best_val_loss": 4.8145110888886915
+    },
+    {
+        "trial_number": 16,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 108.5645954542896,
+        "best_val_loss": 4.787664526988031
+    },
+    {
+        "trial_number": 17,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 110.41734383771272,
+        "best_val_loss": 4.794376385972351
+    },
+    {
+        "trial_number": 19,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.2,
+            "optimizer": "AdamW",
+            "lr": 0.005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 134.0635067778733,
+        "best_val_loss": 4.982397492153093
+    },
+    {
+        "trial_number": 20,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 450,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.1,
+            "optimizer": "AdamW",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 119.01573947599042,
+        "best_val_loss": 4.859665429881731
+    },
+    {
+        "trial_number": 23,
+        "part_name": "LSTM with Dropout and AdamW",
+        "model_name": "LM_LSTM_DROPOUT",
+        "parameters": {
+            "n_epochs": 100,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.5,
+            "optimizer": "AdamW",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "eval_ppl": 107.59713147640971,
+        "best_val_loss": 4.775664316386827
+    }
+]
