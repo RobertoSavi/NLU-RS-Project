@@ -151,7 +151,9 @@ def init_dataloaders(train_dataset, dev_dataset, test_dataset, lang, train_batch
 def init_data_pipeline(train_path, dev_path, test_path, special_tokens=SPECIAL_TOKENS, train_batch_size=64, eval_batch_size=128):
     train_raw, dev_raw, test_raw = load_raw_data(train_path, dev_path, test_path, EOS_TOKEN)
     lang = init_lang(train_raw, special_tokens)
+    vocab_len = len(lang.word2id)
+    pad_index = lang.word2id[PAD_TOKEN]
     train_dataset, dev_dataset, test_dataset = init_datasets(train_raw, dev_raw, test_raw, lang)
     train_loader, dev_loader, test_loader = init_dataloaders(train_dataset, dev_dataset, test_dataset, lang, train_batch_size, eval_batch_size)
 
-    return lang, train_loader, dev_loader, test_loader
+    return train_loader, dev_loader, test_loader, vocab_len, pad_index

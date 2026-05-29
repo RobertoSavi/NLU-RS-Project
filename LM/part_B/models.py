@@ -1,8 +1,6 @@
 # Model architecture definitions
-import torch
 import torch.nn as nn
-
-    
+  
 # LSTM-based language model
 class LM_LSTM(nn.Module):
     def __init__(self, emb_size, hidden_size, output_size, pad_index=0, 

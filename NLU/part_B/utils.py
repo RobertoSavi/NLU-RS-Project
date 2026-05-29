@@ -1,133 +1,90 @@
-# -\-\-\ Define functions and classes used for data loading and preprocessing /-/-/-
-# -------------------- Import libraries --------------------
+# Data loading and preprocessing utilities
 import os
 import json
-import random
-import numpy as np
-from pprint import pprint
+import logging
 from collections import Counter
+from functools import partial
 
 import torch
 import torch.utils.data as data
 from torch.utils.data import DataLoader
-
 from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer
 
-# -------------------- Device configuration --------------------
+logger = logging.getLogger(__name__)
+
+# Device and environment configuration
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-os.environ['CUDA_LAUNCH_BLOCKING'] = "1" # Used to report errors on CUDA side
+os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 PAD_TOKEN = 0
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# -------------------- Data loading --------------------
+# Read and load JSON data
 def load_data(path):
-    '''
-        input: path/to/data
-        output: json 
-    '''
-    dataset = []
     with open(path) as f:
-        dataset = json.loads(f.read())
-    return dataset
+        return json.loads(f.read())
 
-tmp_train_raw = load_data(os.path.join(BASE_DIR, 'dataset', 'ATIS', 'train.json'))
-test_raw = load_data(os.path.join(BASE_DIR, 'dataset', 'ATIS', 'test.json'))
+# Load raw train, validation, and test datasets with stratification
+def load_raw_data(train_path, test_path, portion=0.10):
+    tmp_train_raw = load_data(train_path)
+    test_raw = load_data(test_path)
 
-# =========================
-# Train / Dev split
-# =========================
-portion = 0.10
+    intents = [x['intent'] for x in tmp_train_raw]
+    count_y = Counter(intents)
 
-intents = [x['intent'] for x in tmp_train_raw] # We stratify on intents
-count_y = Counter(intents)
+    labels = []
+    inputs = []
+    mini_train = []
 
-labels = []
-inputs = []
-mini_train = []
+    # Stratify on intents, ensuring single-occurrence intents stay in training
+    for id_y, y in enumerate(intents):
+        if count_y[y] > 1:
+            inputs.append(tmp_train_raw[id_y])
+            labels.append(y)
+        else:
+            mini_train.append(tmp_train_raw[id_y])
 
-for id_y, y in enumerate(intents):
-    if count_y[y] > 1: # If some intents occurs only once, we put them in training
-        inputs.append(tmp_train_raw[id_y])
-        labels.append(y)
-    else:
-        mini_train.append(tmp_train_raw[id_y])
+    X_train, X_dev, y_train, y_dev = train_test_split(
+        inputs, labels, test_size=portion, 
+        random_state=42, shuffle=True, stratify=labels
+    )
+    X_train.extend(mini_train)
 
-# Random Stratify
-X_train, X_dev, y_train, y_dev = train_test_split(inputs, labels, test_size=portion, 
-                                                    random_state=42, 
-                                                    shuffle=True,
-                                                    stratify=labels)
-X_train.extend(mini_train)
-train_raw = X_train
-dev_raw = X_dev
+    return X_train, X_dev, test_raw
 
-y_test = [x['intent'] for x in test_raw]
-
-# -------------------- Word 2 ID --------------------
-w2id = {'pad':PAD_TOKEN, 'unk': 1}
-slot2id = {'pad':PAD_TOKEN}
-intent2id = {}
-
-# Map the words only from the train set
-# Map slot and intent labels of train, dev and test set. 'unk' is not needed.
-for example in train_raw:   
-    for slot in example['slots'].split():
-        if slot not in slot2id:
-            slot2id[slot] = len(slot2id)
-    if example['intent'] not in intent2id:
-        intent2id[example['intent']] = len(intent2id)
-        
-for example in dev_raw:
-    for slot in example['slots'].split():
-        if slot not in slot2id:
-            slot2id[slot] = len(slot2id)
-    if example['intent'] not in intent2id:
-        intent2id[example['intent']] = len(intent2id)
-        
-for example in test_raw:
-    for slot in example['slots'].split():
-        if slot not in slot2id:
-            slot2id[slot] = len(slot2id)
-    if example['intent'] not in intent2id:
-        intent2id[example['intent']] = len(intent2id)
-
-sent = 'I wanna a flight from Toronto to Kuala Lumpur'
-mapping = [w2id[w] if w in w2id else w2id['unk'] for w in sent.split()]
-
-# -------------------- Language class --------------------
+# Vocabulary wrapper for token-id mappings (Intents and Slots only for BERT)
 class Lang():
     def __init__(self, intents, slots, cutoff=0):
         self.slot2id = self.lab2id(slots)
         self.intent2id = self.lab2id(intents, pad=False)
-        self.id2slot = {v:k for k, v in self.slot2id.items()}
-        self.id2intent = {v:k for k, v in self.intent2id.items()}
+        self.id2slot = {v: k for k, v in self.slot2id.items()}
+        self.id2intent = {v: k for k, v in self.intent2id.items()}
     
     def lab2id(self, elements, pad=True):
         vocab = {}
         if pad:
             vocab['pad'] = PAD_TOKEN
         for elem in elements:
-                vocab[elem] = len(vocab)
+            vocab[elem] = len(vocab)
         return vocab
+
+# Initialize language object with dataset vocabulary
+def init_lang(train_raw, dev_raw, test_raw):
+    # Labels are gathered from the whole corpus to build the dictionaries
+    corpus = train_raw + dev_raw + test_raw 
+    slots = set(sum([line['slots'].split() for line in corpus], []))
+    intents = set([line['intent'] for line in corpus])
     
-corpus = train_raw + dev_raw + test_raw # We do not want unk labels, 
-                                        # however this depends on the research purpose
-slots = set(sum([line['slots'].split() for line in corpus],[]))
-intents = set([line['intent'] for line in corpus])
+    return Lang(intents, slots, cutoff=0)
 
-lang = Lang(intents, slots, cutoff=0)
-
-# -------------------- Dataset class --------------------
-class IntentsAndSlots (data.Dataset):
-    # Mandatory methods are __init__, __len__ and __getitem__
-    def __init__(self, dataset, lang, unk='unk'):
+# Dataset class for Intents and Slots using BERT Tokenizer
+class IntentsAndSlots(data.Dataset):
+    def __init__(self, dataset, lang, unk='unk', bert_model="bert-base-uncased"):
         self.utterances = []
         self.intents = []
         self.slots = []
         self.unk = unk
         
-        self.tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+        self.tokenizer = AutoTokenizer.from_pretrained(bert_model)
         
         for x in dataset:
             self.utterances.append(x['utterance'])
@@ -144,10 +101,7 @@ class IntentsAndSlots (data.Dataset):
         utt = torch.Tensor(self.utt_ids[idx])
         slots = torch.Tensor(self.slot_ids[idx])
         intent = self.intent_ids[idx]
-        sample = {'utterance': utt, 'slots': slots, 'intent': intent}
-        return sample
-    
-    # Auxiliary methods
+        return {'utterance': utt, 'slots': slots, 'intent': intent}
     
     def mapping_lab(self, data, mapper):
         return [mapper[x] if x in mapper else mapper[self.unk] for x in data]
@@ -162,7 +116,7 @@ class IntentsAndSlots (data.Dataset):
             words = utt.split()
             slot_labels = slots.split()
 
-            # BERT WordPiece tokenization, keeping track of word ↔ subtoken alignment
+            # BERT WordPiece tokenization, keeping track of word <-> subtoken alignment
             encoding = self.tokenizer(
                 words,
                 is_split_into_words=True,
@@ -197,44 +151,40 @@ class IntentsAndSlots (data.Dataset):
 
         return utt_ids, slot_ids
 
+# Initialize train, validation, and test datasets
+def init_datasets(train_raw, dev_raw, test_raw, lang, bert_model="bert-base-uncased"):
+    train_dataset = IntentsAndSlots(train_raw, lang, bert_model)
+    dev_dataset = IntentsAndSlots(dev_raw, lang, bert_model)
+    test_dataset = IntentsAndSlots(test_raw, lang, bert_model)
+    return train_dataset, dev_dataset, test_dataset
 
-# Initialize Dataset Objects
-train_dataset = IntentsAndSlots(train_raw, lang)
-dev_dataset = IntentsAndSlots(dev_raw, lang)
-test_dataset = IntentsAndSlots(test_raw, lang)
-
-# -------------------- Collate function and Dataloader --------------------
-def collate_fn(data):
+# Pad sequences and generate BERT attention masks
+def collate_fn(data, pad_token=PAD_TOKEN):
     def merge(sequences):
-        '''
-        merge from batch * sent_len to batch * max_len 
-        '''
         lengths = [len(seq) for seq in sequences]
-        max_len = 1 if max(lengths)==0 else max(lengths)
-        # Pad token is zero in our case
-        # So we create a matrix full of PAD_TOKEN (i.e. 0) with the shape 
-        # batch_size X maximum length of a sequence
-        padded_seqs = torch.LongTensor(len(sequences),max_len).fill_(PAD_TOKEN)
+        max_len = 1 if max(lengths) == 0 else max(lengths)
+        
+        padded_seqs = torch.LongTensor(len(sequences), max_len).fill_(pad_token)
         for i, seq in enumerate(sequences):
             end = lengths[i]
-            padded_seqs[i, :end] = seq # We copy each sequence into the matrix
-        # print(padded_seqs)
-        padded_seqs = padded_seqs.detach()  # We remove these tensors from the computational graph
-        return padded_seqs, lengths
-    # Sort data by seq lengths
+            padded_seqs[i, :end] = seq 
+            
+        return padded_seqs.detach(), lengths
+    
     data.sort(key=lambda x: len(x['utterance']), reverse=True) 
     new_item = {}
     for key in data[0].keys():
         new_item[key] = [d[key] for d in data]
         
-    # We just need one length for packed pad seq, since len(utt) == len(slots)
     src_utt, _ = merge(new_item['utterance'])
-    # Attention mask for BERT
-    attention_mask = torch.LongTensor([[1 if id != PAD_TOKEN else 0 for id in seq] for seq in src_utt])
+    
+    # Generate the attention mask specifically required for BERT
+    attention_mask = torch.LongTensor([[1 if id != pad_token else 0 for id in seq] for seq in src_utt])
+    
     y_slots, _ = merge(new_item["slots"])
     intent = torch.LongTensor(new_item["intent"])
     
-    src_utt = src_utt.to(DEVICE) # We load the Tensor on our selected device
+    src_utt = src_utt.to(DEVICE)
     y_slots = y_slots.to(DEVICE)
     intent = intent.to(DEVICE)
     attention_mask = attention_mask.to(DEVICE)
@@ -243,9 +193,29 @@ def collate_fn(data):
     new_item["intents"] = intent
     new_item["y_slots"] = y_slots
     new_item["attention_mask"] = attention_mask
+    
     return new_item
 
-# Dataloader instantiations
-train_loader = DataLoader(train_dataset, batch_size=128, collate_fn=collate_fn,  shuffle=True)
-dev_loader = DataLoader(dev_dataset, batch_size=64, collate_fn=collate_fn)
-test_loader = DataLoader(test_dataset, batch_size=64, collate_fn=collate_fn)
+# Create dataloaders for training and evaluation
+def init_dataloaders(train_dataset, dev_dataset, test_dataset, train_batch_size=128, eval_batch_size=64):
+    train_loader = DataLoader(
+        train_dataset, batch_size=train_batch_size, shuffle=True, 
+        collate_fn=partial(collate_fn, pad_token=PAD_TOKEN)
+    )
+    dev_loader = DataLoader(
+        dev_dataset, batch_size=eval_batch_size, 
+        collate_fn=partial(collate_fn, pad_token=PAD_TOKEN)
+    )
+    test_loader = DataLoader(
+        test_dataset, batch_size=eval_batch_size, 
+        collate_fn=partial(collate_fn, pad_token=PAD_TOKEN)
+    )
+    return train_loader, dev_loader, test_loader
+
+# Initialize the complete data processing pipeline
+def prepare_data(train_path, test_path, train_batch_size=128, eval_batch_size=64, portion=0.10, bert_model="bert-base-uncased"):
+    train_raw, dev_raw, test_raw = load_raw_data(train_path, test_path, portion)
+    lang = init_lang(train_raw, dev_raw, test_raw)
+    train_dataset, dev_dataset, test_dataset = init_datasets(train_raw, dev_raw, test_raw, lang, bert_model)
+    train_loader, dev_loader, test_loader = init_dataloaders(train_dataset, dev_dataset, test_dataset, train_batch_size, eval_batch_size)  
+    return lang, train_loader, dev_loader, test_loader

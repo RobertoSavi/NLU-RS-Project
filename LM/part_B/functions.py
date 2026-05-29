@@ -49,21 +49,21 @@ def build_model_and_optim(config, vocab_len, pad_index) -> Tuple[nn.Module, opti
             config.emb_size,
             config.hid_size,
             vocab_len,
-            pad_index=pad_index
+            pad_index
         )
     elif config.part == "1b1":
         model = LM_LSTM_WEIGHT_TYING(
             config.emb_size,
             config.hid_size,
             vocab_len,
-            pad_index=pad_index
+            pad_index
         )
     elif config.part in ["1b2", "1b3"]:
         model = LM_LSTM_VAR_DROPOUT(
             config.emb_size,
             config.hid_size,
             vocab_len,
-            pad_index=pad_index,
+            pad_index,
             emb_dropout=config.emb_dropout,
             out_dropout=config.out_dropout
         )
@@ -81,15 +81,16 @@ def build_model_and_optim(config, vocab_len, pad_index) -> Tuple[nn.Module, opti
     return model, optimizer
 
 # Execute one full training epoch
-def train_loop(data, optimizer, criterion, model, clip) -> float:
+def train_loop(data, optimizer, pad_index, model, clip) -> float:
     model.train()
+    criterion_train = nn.CrossEntropyLoss(ignore_index=pad_index)
     loss_array = []
     number_of_tokens = []
     
     for sample in data:
         optimizer.zero_grad()
         output = model(sample['source'])
-        loss = criterion(output, sample['target'])
+        loss = criterion_train(output, sample['target'])
         loss_array.append(loss.item() * sample["number_tokens"])
         number_of_tokens.append(sample["number_tokens"])
         loss.backward()
@@ -99,15 +100,16 @@ def train_loop(data, optimizer, criterion, model, clip) -> float:
     return sum(loss_array) / sum(number_of_tokens)
 
 # Evaluate model performance on validation or test data
-def eval_loop(data, eval_criterion, model) -> Tuple[float, float]:
+def eval_loop(data, pad_index, model) -> Tuple[float, float]:
     model.eval()
+    criterion_eval = nn.CrossEntropyLoss(ignore_index=pad_index, reduction='sum')
     loss_array = []
     number_of_tokens = []
 
     with torch.no_grad():
         for sample in data:
             output = model(sample['source'])
-            loss = eval_criterion(output, sample['target'])
+            loss = criterion_eval(output, sample['target'])
             loss_array.append(loss.item())
             number_of_tokens.append(sample["number_tokens"])
     
@@ -123,9 +125,6 @@ def eval_loop(data, eval_criterion, model) -> Tuple[float, float]:
 
 # Train model with validation monitoring and early stopping
 def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -> Tuple[nn.Module, list, list]:
-    criterion_train = nn.CrossEntropyLoss(ignore_index=pad_index)
-    criterion_eval = nn.CrossEntropyLoss(ignore_index=pad_index, reduction='sum')
-    
     losses_train = []
     losses_dev = []
     best_ppl = float('inf')
@@ -143,9 +142,9 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
     
     pbar = tqdm(range(1, config.n_epochs + 1))
     for epoch in pbar:
-        loss_t = train_loop(train_loader, optimizer, criterion_train, model, config.clip)
+        loss_t = train_loop(train_loader, optimizer, pad_index, model, config.clip)
         losses_train.append(loss_t)
-        ppl_dev, loss_d = eval_loop(dev_loader, criterion_eval, model)
+        ppl_dev, loss_d = eval_loop(dev_loader, pad_index, model)
         losses_dev.append(loss_d)
         pbar.set_description(f"Dev PPL: {ppl_dev:.4f}")
         
@@ -201,19 +200,6 @@ def train_model(config, model, optimizer, train_loader, dev_loader, pad_index) -
                 param.data.copy_(live_weights[name])
             
     return best_model.to(DEVICE), losses_train, losses_dev, T
-
-# Evaluate final model perplexity on the test set
-def eval_model(model, test_loader, pad_index, model_path=None) -> float:
-    if model_path:
-        if not os.path.exists(model_path):
-            raise FileNotFoundError(f"Model weights not found at: {model_path}")
-        model.load_state_dict(torch.load(model_path, map_location=DEVICE))
-        logger.info(f"Loaded saved model weights from {model_path}")
-
-    criterion_eval = nn.CrossEntropyLoss(ignore_index=pad_index, reduction='sum')
-    final_ppl, _ = eval_loop(test_loader, criterion_eval, model)
-    logger.info(f"[Final Test PPL: {final_ppl:.4f}]")
-    return final_ppl
 
 # Save trained model weights to disk
 def save_model(model, save_path) -> None:
@@ -343,7 +329,7 @@ def update_sweep_log(trial_number, part_name, model_name, params, ppl, val_loss,
     with open(log_path, 'w') as f:
         json.dump(log_data, f, indent=4)
            
-def run_sweep(config, active_params, train_loader, dev_loader, test_loader, vocab_len, pad_index, current_hydra_dir) -> None:
+def run_sweep(config, active_params, train_loader, dev_loader, vocab_len, pad_index, current_hydra_dir) -> None:
     logger.info("\n================ RUNNING OPTUNA SWEEP ================")
     # Use active_params to build the folder naming keys
     base_params_dict = OmegaConf.to_container(active_params, resolve=True)
@@ -410,8 +396,8 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, voca
         # Save best validation loss for logging and comparison
         best_val_loss = min(losses_dev)
         
-        # Evaluate this trial's best model
-        trial_ppl = eval_model(best_model, test_loader, pad_index)
+        # Evaluate this trial's best model on the dev set to get the perplexity for logging
+        trial_ppl, _ = eval_loop(dev_loader, pad_index, best_model)
         
         # Log and save trial data
         save_losses(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"), T)
@@ -462,7 +448,8 @@ def evaluate_best_model(config, test_loader, vocab_len, pad_index, original_cwd)
     model = load_model(model, os.path.join(best_dir, "model.pt"))
     
     logger.info("\n--- Evaluating Best Model ---")
-    eval_model(model, test_loader, pad_index)
+    final_ppl, _ = eval_loop(test_loader, pad_index, model)
+    logger.info(f"[Final Test PPL: {final_ppl:.4f}]")
     
     logger.info("\n--- Displaying Loss Plot ---")
     display_loss_plot(os.path.join(best_dir, "loss_plot.png"))

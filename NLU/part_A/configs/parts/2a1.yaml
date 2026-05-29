@@ -1,0 +1,31 @@
+# configs/parts/2a1.yaml
+
+part: 2a1
+name: "Model IAS with bidirectionality"
+description: "Model IAS with bidirectional LSTM layers."
+
+# The grid of parameters to try when testing == true
+parameters:
+  n_epochs: 100
+  runs: 5
+  patience_value: 5
+  hid_size: [200, 250, 300, 350, 400]
+  emb_size: [300, 350, 400, 450, 500]
+  optimizer: "Adam"
+  lr: [1e-4, 2e-4, 3e-4, 5e-4, 7e-4, 1e-3]
+  clip: 5.0
+  train_batch_size: 64
+  eval_batch_size: 128
+
+# The fixed parameters to use when testing == false
+best_parameters:
+  n_epochs: 100
+  runs: 5
+  patience_value: 5
+  hid_size: 250
+  emb_size: 350
+  optimizer: "Adam"
+  lr: 0.01
+  clip: 5.0
+  train_batch_size: 64
+  eval_batch_size: 128

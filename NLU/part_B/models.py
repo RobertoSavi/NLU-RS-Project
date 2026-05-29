@@ -1,15 +1,8 @@
-# -\-\-\ Define the architecture of the model /-/-/-
-# -------------------- Import libraries --------------------
-import torch
+# Model architecture definitions
 import torch.nn as nn
-from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
-from conll import evaluate
-from sklearn.metrics import classification_report
-from transformers import BertModel, BertPreTrainedModel
-
+from transformers import BertModel
 
 class JointBERT(nn.Module):
-    
     def __init__(self, out_slot, out_int, dropout):
         super(JointBERT, self).__init__()
 

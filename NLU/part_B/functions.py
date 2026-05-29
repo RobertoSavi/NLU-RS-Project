@@ -1,5 +1,4 @@
-# -\-\-\ Training and evaluation functions /-/-/-
-# -------------------- Import libraries --------------------
+# Training, evaluation, and pipeline utilities
 import torch
 import torch.nn as nn
 from transformers import AutoTokenizer
@@ -7,10 +6,10 @@ from conll import evaluate
 from sklearn.metrics import classification_report
 from utils import PAD_TOKEN
 
-# -------------------- Init weights --------------------
+# Initialize linear layer weights
 def init_weights(mat):
     for m in mat.modules():
-        if type(m) in [nn.Linear]:
+        if isinstance(m, (nn.Linear)):
             torch.nn.init.uniform_(m.weight, -0.01, 0.01)
             if m.bias != None:
                 m.bias.data.fill_(0.01)
