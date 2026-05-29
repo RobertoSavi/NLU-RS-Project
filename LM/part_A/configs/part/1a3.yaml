@@ -8,12 +8,12 @@ description: "Replacing the SGD optimizer with AdamW in the LSTM + Dropout model
 parameters:
   n_epochs: 100
   patience_value: 5
-  hid_size: [300, 400, 500]
-  emb_size: [300, 400, 500]
-  emb_dropout: [0.1, 0.3, 0.5]
-  out_dropout: [0.1, 0.3, 0.5]
+  hid_size: [200, 250, 300, 350, 400]
+  emb_size: [300, 350, 400, 450, 500]
+  emb_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
+  out_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
   optimizer: "AdamW"
-  lr: [0.001, 0.005, 0.01]
+  lr: [0.0001, 0.0005, 0.001, 0.005, 0.01]
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
