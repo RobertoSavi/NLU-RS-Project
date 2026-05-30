@@ -1,5 +1,5 @@
 # NLU Course Project - Part 1: LM
-This folder contains the code necessary for running the part 1-A of the NLU course project at the University of Trento, focused on next-word prediction.
+This folder contains the code necessary for running the part 1-B of the NLU course project at the University of Trento, focused on next-word prediction.
 
 More details about the project, implementation and results, are provided in the report: [LM Report](../LM_report.pdf)
 
@@ -12,10 +12,10 @@ To modify the search space for a specific part, it is necessary to modify the co
 ├── configs/
 │   ├── config.yaml         # Global config parameters, results folder paths and logging formats
 │   └── part/
-│       ├── 1a0.yaml        # Config file for Baseline RNN
-│       ├── 1a1.yaml        # Config file for LSTM
-│       ├── 1a2.yaml        # Config file for LSTM with Dropout
-│       └── 1a3.yaml        # Config file for LSTM with Dropout and AdamW
+│       ├── 1b0.yaml        # Config file for Baseline LSTM
+│       ├── 1b1.yaml        # Config file for Weight Tying
+│       ├── 1b2.yaml        # Config file for Variational Dropout
+│       └── 1b3.yaml        # Config file for Non-monotonically Triggered AvSGD
 ```
 
 Inside each part's config file there are two sets of hyperparameters, `parameters` and `best_parameters`. The first one defines the search space when testing new hyperparameters, and the second holds the hyperparameters of the current best-performing model. This is used to keep track of the optimal configuration and to create the dummy model in which to load the saved weights during evaluation.
@@ -41,10 +41,10 @@ After configuring your parameter space or selecting which model to evaluate, the
 
 To execute the pipeline, you must pass a `part` value to specify the model architecture:
 
-- 1a0 for Baseline RNN
-- 1a1 for LSTM
-- 1a2 for LSTM with Dropout
-- 1a3 for LSTM with Dropout and AdamW
+- 1b0 for Baseline LSTM
+- 1b1 for Weight Tying
+- 1b2 for Variational Dropout
+- 1b3 for Non-monotonically Triggered AvSGD
 
 You must also pass a `testing` boolean to set the execution mode:
 
@@ -53,5 +53,5 @@ You must also pass a `testing` boolean to set the execution mode:
 
 **Example command:**
 ```bash
-uv run python main.py part=1a1 testing=false
+uv run python main.py part=1b1 testing=false
 ```
