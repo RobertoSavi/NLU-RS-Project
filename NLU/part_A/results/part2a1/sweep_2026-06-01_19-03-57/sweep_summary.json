@@ -1,0 +1,482 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.979,
+            "test_slot_f1_mean": 0.945300916970347,
+            "test_slot_f1_std": 0.0018665376197561433,
+            "test_intent_acc_mean": 0.9502799552071668,
+            "test_intent_acc_std": 0.001675994350178722
+        }
+    },
+    {
+        "trial_number": 1,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0003,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9789,
+            "test_slot_f1_mean": 0.9439975550846962,
+            "test_slot_f1_std": 0.0018781536170881478,
+            "test_intent_acc_mean": 0.9509518477043672,
+            "test_intent_acc_std": 0.0019266126018012788
+        }
+    },
+    {
+        "trial_number": 2,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 5e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9733,
+            "test_slot_f1_mean": 0.9348042403307799,
+            "test_slot_f1_std": 0.003457823096340882,
+            "test_intent_acc_mean": 0.9402015677491601,
+            "test_intent_acc_std": 0.004729834732797948
+        }
+    },
+    {
+        "trial_number": 3,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9789,
+            "test_slot_f1_mean": 0.9454080877852549,
+            "test_slot_f1_std": 0.0021524770273359355,
+            "test_intent_acc_mean": 0.9480403135498321,
+            "test_intent_acc_std": 0.001819493483681068
+        }
+    },
+    {
+        "trial_number": 4,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 5e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9734,
+            "test_slot_f1_mean": 0.9321819782815146,
+            "test_slot_f1_std": 0.002690540561772737,
+            "test_intent_acc_mean": 0.943784994400896,
+            "test_intent_acc_std": 0.0019266126018012634
+        }
+    },
+    {
+        "trial_number": 5,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0003,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9782,
+            "test_slot_f1_mean": 0.9420668941230991,
+            "test_slot_f1_std": 0.0014313710604801366,
+            "test_intent_acc_mean": 0.9462486002239642,
+            "test_intent_acc_std": 0.004589899559220439
+        }
+    },
+    {
+        "trial_number": 6,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9795,
+            "test_slot_f1_mean": 0.9444401548885226,
+            "test_slot_f1_std": 0.002461689679676487,
+            "test_intent_acc_mean": 0.9482642777155655,
+            "test_intent_acc_std": 0.004977852356302999
+        }
+    },
+    {
+        "trial_number": 7,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.978,
+            "test_slot_f1_mean": 0.942254196354351,
+            "test_slot_f1_std": 0.003811706374979181,
+            "test_intent_acc_mean": 0.9453527435610303,
+            "test_intent_acc_std": 0.0037072665973676864
+        }
+    },
+    {
+        "trial_number": 8,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 1e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.8505,
+            "test_slot_f1_mean": 0.8204851160036213,
+            "test_slot_f1_std": 0.004546401693225612,
+            "test_intent_acc_mean": 0.9019036954087346,
+            "test_intent_acc_std": 0.0071035841107071375
+        }
+    },
+    {
+        "trial_number": 9,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9798,
+            "test_slot_f1_mean": 0.94502398109959,
+            "test_slot_f1_std": 0.0010611691384133444,
+            "test_intent_acc_mean": 0.9498320268756999,
+            "test_intent_acc_std": 0.002592572654600279
+        }
+    },
+    {
+        "trial_number": 10,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9789,
+            "test_slot_f1_mean": 0.9445505208570049,
+            "test_slot_f1_std": 0.002829000037680364,
+            "test_intent_acc_mean": 0.948936170212766,
+            "test_intent_acc_std": 0.0020769582296742933
+        }
+    },
+    {
+        "trial_number": 12,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9757,
+            "test_slot_f1_mean": 0.9378110437543551,
+            "test_slot_f1_std": 0.0029296050239566843,
+            "test_intent_acc_mean": 0.9442329227323627,
+            "test_intent_acc_std": 0.00444556175616556
+        }
+    },
+    {
+        "trial_number": 13,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 3e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9475,
+            "test_slot_f1_mean": 0.9090805303948286,
+            "test_slot_f1_std": 0.002686601741316713,
+            "test_intent_acc_mean": 0.9408734602463606,
+            "test_intent_acc_std": 0.003840185487006113
+        }
+    },
+    {
+        "trial_number": 14,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9763,
+            "test_slot_f1_mean": 0.9400596853262059,
+            "test_slot_f1_std": 0.0015790690883075776,
+            "test_intent_acc_mean": 0.948488241881299,
+            "test_intent_acc_std": 0.0015836658033293394
+        }
+    },
+    {
+        "trial_number": 15,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 2e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9264,
+            "test_slot_f1_mean": 0.8879945705767911,
+            "test_slot_f1_std": 0.0027362502404930317,
+            "test_intent_acc_mean": 0.941097424412094,
+            "test_intent_acc_std": 0.002706169310995435
+        }
+    },
+    {
+        "trial_number": 16,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9782,
+            "test_slot_f1_mean": 0.9433105774226991,
+            "test_slot_f1_std": 0.00475673678120569,
+            "test_intent_acc_mean": 0.9480403135498321,
+            "test_intent_acc_std": 0.004165974297365787
+        }
+    },
+    {
+        "trial_number": 17,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9787,
+            "test_slot_f1_mean": 0.9432722644800275,
+            "test_slot_f1_std": 0.001726576067356098,
+            "test_intent_acc_mean": 0.9507278835386339,
+            "test_intent_acc_std": 0.002124710633931743
+        }
+    },
+    {
+        "trial_number": 18,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9765,
+            "test_slot_f1_mean": 0.9407512514390165,
+            "test_slot_f1_std": 0.005026338131424002,
+            "test_intent_acc_mean": 0.9446808510638297,
+            "test_intent_acc_std": 0.002885576422558778
+        }
+    },
+    {
+        "trial_number": 19,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 3e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9613,
+            "test_slot_f1_mean": 0.917751973071994,
+            "test_slot_f1_std": 0.002721969641577814,
+            "test_intent_acc_mean": 0.942441209406495,
+            "test_intent_acc_std": 0.003720772167040583
+        }
+    },
+    {
+        "trial_number": 20,
+        "part_name": "Model IAS with bidirectionality",
+        "model_name": "ModelIAS_Bi",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 1e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.2661,
+            "test_slot_f1_mean": 0.17702205949160577,
+            "test_slot_f1_std": 0.013001746630097876,
+            "test_intent_acc_mean": 0.710414333706607,
+            "test_intent_acc_std": 0.0020769582296742933
+        }
+    }
+]
