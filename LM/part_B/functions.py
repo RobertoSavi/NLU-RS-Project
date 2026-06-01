@@ -328,8 +328,8 @@ def update_sweep_log(trial_number, part_name, model_name, params, ppl, val_loss,
     Path(log_path).parent.mkdir(parents=True, exist_ok=True)
     with open(log_path, 'w') as f:
         json.dump(log_data, f, indent=4)
-           
-def run_sweep(config, active_params, train_loader, dev_loader, vocab_len, pad_index, current_hydra_dir) -> None:
+         
+def run_sweep(config, active_params, train_loader, dev_loader, test_loader, vocab_len, pad_index, current_hydra_dir) -> None:
     logger.info("\n================ RUNNING OPTUNA SWEEP ================")
     # Use active_params to build the folder naming keys
     base_params_dict = OmegaConf.to_container(active_params, resolve=True)
@@ -397,7 +397,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, vocab_len, pad_in
         best_val_loss = min(losses_dev)
         
         # Evaluate this trial's best model on the dev set to get the perplexity for logging
-        trial_ppl, _ = eval_loop(dev_loader, pad_index, best_model)
+        trial_ppl, _ = eval_loop(test_loader, pad_index, best_model)
         
         # Log and save trial data
         save_losses(trial.number, part_name, model_name, trial_params, trial_ppl, best_val_loss, losses_train, losses_dev, os.path.join(trial_folder_path, "losses.json"), T)

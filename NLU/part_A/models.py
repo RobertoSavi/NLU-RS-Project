@@ -4,7 +4,7 @@ import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 class ModelIAS(nn.Module):
-    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, n_layer=1, pad_index=0):
+    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, pad_index=0, n_layer=1):
         super(ModelIAS, self).__init__()
         
         self.embedding = nn.Embedding(vocab_len, emb_size, padding_idx=pad_index)
@@ -37,7 +37,7 @@ class ModelIAS(nn.Module):
     
     
 class ModelIAS_Bi(nn.Module):
-    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, n_layer=1, pad_index=0):
+    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, pad_index=0, n_layer=1):
         super(ModelIAS_Bi, self).__init__()
         
         self.embedding = nn.Embedding(vocab_len, emb_size, padding_idx=pad_index)
@@ -77,7 +77,7 @@ class ModelIAS_Bi(nn.Module):
     
     
 class ModelIAS_Bi_Drop(nn.Module):
-    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, n_layer=1, pad_index=0, emb_dropout=0.1, out_dropout=0.2):
+    def __init__(self, emb_size, hid_size, vocab_len, out_slot, out_int, pad_index=0, n_layer=1, emb_dropout=0.1, out_dropout=0.2):
         super(ModelIAS_Bi_Drop, self).__init__()
         
         self.embedding = nn.Embedding(vocab_len, emb_size, padding_idx=pad_index)

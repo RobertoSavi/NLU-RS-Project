@@ -19,7 +19,7 @@ class RNN_cell(nn.Module):
 
         hidden_state = self.sigmoid(input_emb + prev_hidden_rep)
 
-        output = self.output(hidden_state)
+        output = self.V(hidden_state)
         return hidden_state, output
 
 # Baseline RNN language model using PyTorch RNN layer

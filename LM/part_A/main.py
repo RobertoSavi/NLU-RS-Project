@@ -30,7 +30,7 @@ def main(cfg: DictConfig):
     )
     
     if cfg.testing:
-        run_sweep(config, active_params, train_loader, dev_loader, vocab_len, pad_index, current_hydra_dir)
+        run_sweep(config, active_params, train_loader, dev_loader, test_loader, vocab_len, pad_index, current_hydra_dir)
     else:
         evaluate_best_model(config, test_loader, vocab_len, pad_index, original_cwd)
         
