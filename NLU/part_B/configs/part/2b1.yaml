@@ -1,29 +1,29 @@
 # configs/parts/2b1.yaml
 
 part: 2b1
-name: "Model IAS with bidirectionality"
-description: "Model IAS with bidirectional LSTM layers."
+name: "Pre-trained BERT model"
+description: "Pre-trained BERT models for intent classification and slot filling"
 
 # The grid of parameters to try when testing == true
 parameters:
-  n_epochs: 100
+  n_epochs: 200
   runs: 5
   patience_value: 5
-  hid_size: [200, 250, 300, 350, 400]
-  emb_size: [300, 350, 400, 450, 500]
+  intent_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
+  slot_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
   optimizer: "Adam"
-  lr: [1e-4, 2e-4, 3e-4, 5e-4, 7e-4, 1e-3]
+  lr: [1e-5, 2e-5, 3e-5, 5e-5, 1e-4, 2e-4, 3e-4, 5e-4, 1e-3]
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
 
 # The fixed parameters to use when testing == false
 best_parameters:
-  n_epochs: 100
+  n_epochs: 200
   runs: 5
   patience_value: 5
-  hid_size: 250
-  emb_size: 350
+  intent_dropout: 0.2
+  slot_dropout: 0.2
   optimizer: "Adam"
   lr: 0.01
   clip: 5.0

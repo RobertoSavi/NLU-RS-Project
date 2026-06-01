@@ -17,9 +17,10 @@ from tqdm import tqdm
 from omegaconf import OmegaConf
 import optuna
 from conll import evaluate
+from transformers import AutoTokenizer
 
 # Import model architectures and device configuration
-from models import ModelIAS, ModelIAS_Bi, ModelIAS_Bi_Drop
+from models import JointBERT
 from utils import DEVICE
 
 logger = logging.getLogger(__name__)
@@ -45,41 +46,20 @@ def init_weights(mat):
                 m.bias.data.fill_(0.01)
                 
 # Build model architecture and optimizer from configuration
-def build_model_and_optim(config, vocab_len, out_slot, out_int, pad_index) -> Tuple[nn.Module, optim.Optimizer]:
-    if config.part == "2a0":
-        model = ModelIAS(
-            config.emb_size,
-            config.hid_size,
-            vocab_len,
+def build_model_and_optim(config, out_slot, out_int) -> Tuple[nn.Module, optim.Optimizer]:
+    if config.part == "2b1":
+        model = JointBERT(
             out_slot,
             out_int,
-            pad_index
-        )
-    elif config.part == "2a1":
-        model = ModelIAS_Bi(
-            config.emb_size,
-            config.hid_size,
-            vocab_len,
-            out_slot,
-            out_int,
-            pad_index
-        )
-    elif config.part == "2a2":
-        model = ModelIAS_Bi_Drop(
-            config.emb_size,
-            config.hid_size,
-            vocab_len,
-            out_slot,
-            out_int,
-            pad_index,
-            emb_dropout=config.emb_dropout,
-            out_dropout=config.out_dropout
+            intent_dropout=config.intent_dropout,
+            slot_dropout=config.slot_dropout
         )
     else:
         raise ValueError(f"Unknown part {config.part}")
 
     model = model.to(DEVICE)
-    model.apply(init_weights)
+    model.slots_out.apply(init_weights)
+    model.int_out.apply(init_weights)
 
     if config.optimizer == "Adam":
         optimizer = optim.Adam(model.parameters(), lr=config.lr)
@@ -96,7 +76,7 @@ def train_loop(data, optimizer, pad_index, model, clip=5) -> List[float]:
     loss_array = []
     for sample in data:
         optimizer.zero_grad()
-        slots, intent = model(sample['utterances'], sample['slots_len'])
+        slots, intent = model(sample['utterances'], sample['attention_mask'])
         loss_intent = criterion_intents(intent, sample['intents'])
         loss_slot = criterion_slots(slots, sample['y_slots'])
         loss = loss_intent + loss_slot
@@ -107,7 +87,7 @@ def train_loop(data, optimizer, pad_index, model, clip=5) -> List[float]:
     return loss_array
 
 # Evaluate model performance on validation or test data
-def eval_loop(data, pad_index, model, lang) -> Tuple[Dict, Dict, List[float]]:
+def eval_loop(data, pad_index, model, lang):
     model.eval()
     criterion_slots = nn.CrossEntropyLoss(ignore_index=pad_index)
     criterion_intents = nn.CrossEntropyLoss()
@@ -115,41 +95,55 @@ def eval_loop(data, pad_index, model, lang) -> Tuple[Dict, Dict, List[float]]:
     
     ref_intents = []
     hyp_intents = []
-
+    
     ref_slots = []
     hyp_slots = []
     
+    tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     with torch.no_grad():
         for sample in data:
-            slots, intents = model(sample['utterances'], sample['slots_len'])
+            slots, intents = model(sample['utterances'], sample['attention_mask'])
             loss_intent = criterion_intents(intents, sample['intents'])
             loss_slot = criterion_slots(slots, sample['y_slots'])
             loss = loss_intent + loss_slot 
             loss_array.append(loss.item())
-            out_intents = [lang.id2intent[x] for x in torch.argmax(intents, dim=1).tolist()] 
+            # Intent inference
+            # Get the highest probable class for each sample in the batch and convert to intent labels
+            out_intents = [lang.id2intent[x] 
+                           for x in torch.argmax(intents, dim=1).tolist()] 
             gt_intents = [lang.id2intent[x] for x in sample['intents'].tolist()]
             ref_intents.extend(gt_intents)
             hyp_intents.extend(out_intents)
             
+            # Slot inference 
             output_slots = torch.argmax(slots, dim=1)
             for id_seq, seq in enumerate(output_slots):
-                length = sample['slots_len'].tolist()[id_seq]
-                utt_ids = sample['utterance'][id_seq][:length].tolist()
+                utt_ids = sample['utterance'][id_seq].tolist()
                 gt_ids = sample['y_slots'][id_seq].tolist()
-                gt_slots = [lang.id2slot[elem] for elem in gt_ids[:length]]
-                utterance = [lang.id2word[elem] for elem in utt_ids]
-                to_decode = seq[:length].tolist()
-                ref_slots.append([(utterance[id_el], elem) for id_el, elem in enumerate(gt_slots)])
-                tmp_seq = []
-                for id_el, elem in enumerate(to_decode):
-                    tmp_seq.append((utterance[id_el], lang.id2slot[elem]))
-                hyp_slots.append(tmp_seq)
+                
+                utterance = tokenizer.convert_ids_to_tokens(utt_ids)
+                
+                tmp_ref = []
+                tmp_hyp = []
+                for i, gt_id in enumerate(gt_ids):
+                    # Remove subword tokens for evaluation
+                    if gt_id != pad_index:
+                        word = utterance[i]
+                        ref_slot = lang.id2slot[gt_id]
+                        hyp_slot = lang.id2slot[seq[i].item()]
+                        # Append tuple (word, label) to temp lists
+                        tmp_ref.append((word, ref_slot))
+                        tmp_hyp.append((word, hyp_slot))
+                # Append the filtered sequences to the main lists
+                ref_slots.append(tmp_ref)
+                hyp_slots.append(tmp_hyp)
     try:            
         results = evaluate(ref_slots, hyp_slots)
     except Exception as ex:
+        # Sometimes the model predicts a class that is not in REF
         print("Warning:", ex)
-        ref_s = set([x[1] for x in ref_slots])
-        hyp_s = set([x[1] for x in hyp_slots])
+        ref_s = set([label for sent in ref_slots for _, label in sent])
+        hyp_s = set([label for sent in hyp_slots for _, label in sent])
         print(hyp_s.difference(ref_s))
         results = {"total":{"f":0}}
         
@@ -241,11 +235,10 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, vocab_len, 
     return final_best_model, mean_dev_f1, slot_f1s.tolist(), intent_accs.tolist(), all_losses_train, all_losses_dev, all_sampled_epochs
 
 # Save trained model weights to disk
-def save_model(model, w2id, slot2id, intent2id, save_path) -> None:
+def save_model(model, slot2id, intent2id, save_path) -> None:
     Path(save_path).parent.mkdir(parents=True, exist_ok=True)
     model_data_save = {
         "model": model.state_dict(), 
-        "w2id": w2id, 
         "slot2id": slot2id, 
         "intent2id": intent2id
     }
@@ -261,15 +254,14 @@ def load_model(model, model_path) -> Tuple[nn.Module, Dict, Dict, Dict]:
     
     if isinstance(state, dict) and "model" in state:
         model.load_state_dict(state["model"])
-        w2id = state.get("w2id", {})
         slot2id = state.get("slot2id", {})
         intent2id = state.get("intent2id", {})
     else:
         model.load_state_dict(state)
-        w2id, slot2id, intent2id = {}, {}, {}
+        slot2id, intent2id = {}, {}, {}
         
     logger.info(f"Model and vocabularies loaded from {model_path}")
-    return model, w2id, slot2id, intent2id
+    return model, slot2id, intent2id
 
 
 # Save parameters, training and validation losses to a JSON file for later analysis
@@ -489,9 +481,8 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang
     
 # A simple container to reconstruct the 'lang' object from saved dictionaries
 class LangNamespace:
-    def __init__(self, w2id, slot2id, intent2id):
+    def __init__(self, slot2id, intent2id):
         # Create the reverse mappings (ID to string) required by eval_loop
-        self.id2word = {v: k for k, v in w2id.items()}
         self.id2slot = {v: k for k, v in slot2id.items()}
         self.id2intent = {v: k for k, v in intent2id.items()}
 
@@ -513,9 +504,9 @@ def evaluate_best_model(config, test_loader, vocab_len, out_slot, out_int, pad_i
     model, _ = build_model_and_optim(config, vocab_len, out_slot, out_int, pad_index)
     
     logger.info("\n--- Loading Saved Model ---")
-    model, w2id, slot2id, intent2id = load_model(model, os.path.join(best_dir, "model.pt"))
+    model, slot2id, intent2id = load_model(model, os.path.join(best_dir, "model.pt"))
     
-    lang = LangNamespace(w2id, slot2id, intent2id)
+    lang = LangNamespace(slot2id, intent2id)
     
     logger.info("\n--- Evaluating Best Model ---")
     results, report_intent, _ = eval_loop(test_loader, pad_index, model, lang)

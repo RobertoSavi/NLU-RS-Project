@@ -134,7 +134,7 @@ def eval_loop(data, pad_index, model, lang) -> Tuple[Dict, Dict, List[float]]:
             output_slots = torch.argmax(slots, dim=1)
             for id_seq, seq in enumerate(output_slots):
                 length = sample['slots_len'].tolist()[id_seq]
-                utt_ids = sample['utterance'][id_seq][:length].tolist()
+                utt_ids = sample['utterances'][id_seq][:length].tolist()
                 gt_ids = sample['y_slots'][id_seq].tolist()
                 gt_slots = [lang.id2slot[elem] for elem in gt_ids[:length]]
                 utterance = [lang.id2word[elem] for elem in utt_ids]

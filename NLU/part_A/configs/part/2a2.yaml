@@ -14,7 +14,7 @@ parameters:
   emb_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
   out_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
   optimizer: "Adam"
-  lr: [1e-4, 2e-4, 3e-4, 5e-4, 7e-4, 1e-3]
+  lr: [1e-5, 2e-5, 3e-5, 5e-5, 1e-4, 2e-4, 3e-4, 5e-4, 1e-3]
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
