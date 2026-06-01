@@ -1,0 +1,482 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 0.0003,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9698,
+            "test_slot_f1_mean": 0.9313288139647782,
+            "test_slot_f1_std": 0.0024453741542885964,
+            "test_intent_acc_mean": 0.943784994400896,
+            "test_intent_acc_std": 0.0031194598605115346
+        }
+    },
+    {
+        "trial_number": 1,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 0.0007,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9697,
+            "test_slot_f1_mean": 0.9273437061988579,
+            "test_slot_f1_std": 0.00220754521441727,
+            "test_intent_acc_mean": 0.9397536394176932,
+            "test_intent_acc_std": 0.0038401854870060907
+        }
+    },
+    {
+        "trial_number": 2,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.971,
+            "test_slot_f1_mean": 0.9272980644859826,
+            "test_slot_f1_std": 0.0021745529569273613,
+            "test_intent_acc_mean": 0.9348264277715564,
+            "test_intent_acc_std": 0.005175462489716166
+        }
+    },
+    {
+        "trial_number": 4,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 0.0007,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9681,
+            "test_slot_f1_mean": 0.9273902915633327,
+            "test_slot_f1_std": 0.0014251430641509751,
+            "test_intent_acc_mean": 0.9357222844344906,
+            "test_intent_acc_std": 0.0023058522152266327
+        }
+    },
+    {
+        "trial_number": 5,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9692,
+            "test_slot_f1_mean": 0.9302526742188215,
+            "test_slot_f1_std": 0.004607849872806622,
+            "test_intent_acc_mean": 0.9399776035834266,
+            "test_intent_acc_std": 0.005087487879776252
+        }
+    },
+    {
+        "trial_number": 6,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9682,
+            "test_slot_f1_mean": 0.9291991614144871,
+            "test_slot_f1_std": 0.0027350503569140566,
+            "test_intent_acc_mean": 0.9424412094064948,
+            "test_intent_acc_std": 0.004676509074540009
+        }
+    },
+    {
+        "trial_number": 7,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9684,
+            "test_slot_f1_mean": 0.9281097202817359,
+            "test_slot_f1_std": 0.002674499843406292,
+            "test_intent_acc_mean": 0.9395296752519597,
+            "test_intent_acc_std": 0.005709988257102782
+        }
+    },
+    {
+        "trial_number": 8,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9712,
+            "test_slot_f1_mean": 0.9296077927472475,
+            "test_slot_f1_std": 0.002370976479989999,
+            "test_intent_acc_mean": 0.931243001119821,
+            "test_intent_acc_std": 0.005950875814372433
+        }
+    },
+    {
+        "trial_number": 9,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 400,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9693,
+            "test_slot_f1_mean": 0.9294709180562538,
+            "test_slot_f1_std": 0.003977201168556706,
+            "test_intent_acc_mean": 0.9366181410974244,
+            "test_intent_acc_std": 0.004676509074540009
+        }
+    },
+    {
+        "trial_number": 10,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9699,
+            "test_slot_f1_mean": 0.9270057036502779,
+            "test_slot_f1_std": 0.003131997624227133,
+            "test_intent_acc_mean": 0.9352743561030236,
+            "test_intent_acc_std": 0.005223697106244382
+        }
+    },
+    {
+        "trial_number": 11,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.968,
+            "test_slot_f1_mean": 0.9260355269765974,
+            "test_slot_f1_std": 0.0019785209768379626,
+            "test_intent_acc_mean": 0.9301231802911534,
+            "test_intent_acc_std": 0.005185145309200552
+        }
+    },
+    {
+        "trial_number": 15,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9684,
+            "test_slot_f1_mean": 0.9279404011161052,
+            "test_slot_f1_std": 0.002676847621170367,
+            "test_intent_acc_mean": 0.9381858902575587,
+            "test_intent_acc_std": 0.0013059242765611197
+        }
+    },
+    {
+        "trial_number": 16,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9685,
+            "test_slot_f1_mean": 0.9242460466385765,
+            "test_slot_f1_std": 0.003484334262769194,
+            "test_intent_acc_mean": 0.9404255319148935,
+            "test_intent_acc_std": 0.005223697106244402
+        }
+    },
+    {
+        "trial_number": 19,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9687,
+            "test_slot_f1_mean": 0.9268953870666958,
+            "test_slot_f1_std": 0.0029513599623742733,
+            "test_intent_acc_mean": 0.9330347144456888,
+            "test_intent_acc_std": 0.004665770807614726
+        }
+    },
+    {
+        "trial_number": 20,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0007,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9708,
+            "test_slot_f1_mean": 0.9293349838053224,
+            "test_slot_f1_std": 0.0017841205869834178,
+            "test_intent_acc_mean": 0.9384098544232924,
+            "test_intent_acc_std": 0.004068511114128773
+        }
+    },
+    {
+        "trial_number": 24,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9703,
+            "test_slot_f1_mean": 0.9276797268904377,
+            "test_slot_f1_std": 0.002526661402814278,
+            "test_intent_acc_mean": 0.934602463605823,
+            "test_intent_acc_std": 0.005779837805403793
+        }
+    },
+    {
+        "trial_number": 25,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 350,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9685,
+            "test_slot_f1_mean": 0.9269605168467046,
+            "test_slot_f1_std": 0.0039595325895915735,
+            "test_intent_acc_mean": 0.9417693169092946,
+            "test_intent_acc_std": 0.0036801067693516035
+        }
+    },
+    {
+        "trial_number": 26,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "optimizer": "Adam",
+            "lr": 0.0003,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9669,
+            "test_slot_f1_mean": 0.926123823578369,
+            "test_slot_f1_std": 0.0035825787406179297,
+            "test_intent_acc_mean": 0.9386338185890256,
+            "test_intent_acc_std": 0.006350480124863529
+        }
+    },
+    {
+        "trial_number": 27,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9684,
+            "test_slot_f1_mean": 0.928895276080584,
+            "test_slot_f1_std": 0.003889478401382095,
+            "test_intent_acc_mean": 0.942441209406495,
+            "test_intent_acc_std": 0.0059508758143724085
+        }
+    },
+    {
+        "trial_number": 28,
+        "part_name": "Baseline Model IAS",
+        "model_name": "ModelIAS",
+        "parameters": {
+            "n_epochs": 200,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "optimizer": "Adam",
+            "lr": 0.0007,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9707,
+            "test_slot_f1_mean": 0.928063555606933,
+            "test_slot_f1_std": 0.002188087147239343,
+            "test_intent_acc_mean": 0.9375139977603585,
+            "test_intent_acc_std": 0.0054123386219908564
+        }
+    }
+]
