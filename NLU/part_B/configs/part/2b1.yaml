@@ -7,12 +7,12 @@ description: "Pre-trained BERT models for intent classification and slot filling
 # The grid of parameters to try when testing == true
 parameters:
   n_epochs: 200
-  runs: 5
+  runs: 3
   patience_value: 5
-  intent_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
-  slot_dropout: [0.1, 0.2, 0.3, 0.4, 0.5]
+  intent_dropout: [0.1]
+  slot_dropout: [0.1, 0.2]
   optimizer: "Adam"
-  lr: [1e-5, 2e-5, 3e-5, 5e-5, 1e-4, 2e-4, 3e-4, 5e-4, 1e-3]
+  lr: [3e-5, 5e-5]
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
