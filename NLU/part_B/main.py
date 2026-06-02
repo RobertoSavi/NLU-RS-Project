@@ -21,7 +21,7 @@ def main(cfg: DictConfig):
     active_params = cfg.part.parameters if cfg.testing else cfg.part.best_parameters
     config = OmegaConf.merge(cfg.part, active_params)
 
-    train_loader, dev_loader, test_loader, _, out_slot, out_int, lang, pad_index = init_data_pipeline(
+    train_loader, dev_loader, test_loader, out_slot, out_int, lang, pad_index = init_data_pipeline(
         os.path.join(original_cwd, "dataset/ATIS/train.json"),
         os.path.join(original_cwd, "dataset/ATIS/test.json"),
         train_batch_size=config.train_batch_size,
