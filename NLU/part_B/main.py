@@ -6,6 +6,7 @@ import os
 from utils import init_data_pipeline
 from functions import run_sweep, evaluate_best_model
 import logging
+from transformers import AutoTokenizer
 
 logger = logging.getLogger(__name__)
 
@@ -20,17 +21,18 @@ def main(cfg: DictConfig):
     active_params = cfg.part.parameters if cfg.testing else cfg.part.best_parameters
     config = OmegaConf.merge(cfg.part, active_params)
 
-    train_loader, dev_loader, test_loader, vocab_len, out_slot, out_int, lang, pad_index = init_data_pipeline(
+    train_loader, dev_loader, test_loader, _, out_slot, out_int, lang, pad_index = init_data_pipeline(
         os.path.join(original_cwd, "dataset/ATIS/train.json"),
         os.path.join(original_cwd, "dataset/ATIS/test.json"),
         train_batch_size=config.train_batch_size,
         eval_batch_size=config.eval_batch_size
     )
+    tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
     if cfg.testing:
-        run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang, vocab_len, out_slot, out_int, pad_index, current_hydra_dir)
+        run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang, tokenizer, out_slot, out_int, pad_index, current_hydra_dir)
     else:
-        evaluate_best_model(config, test_loader, vocab_len, out_slot, out_int, pad_index, original_cwd)
+        evaluate_best_model(config, test_loader, out_slot, out_int, tokenizer, pad_index, original_cwd)
 
 if __name__ == "__main__":
     main()

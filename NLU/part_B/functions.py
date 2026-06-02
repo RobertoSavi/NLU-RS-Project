@@ -17,7 +17,6 @@ from tqdm import tqdm
 from omegaconf import OmegaConf
 import optuna
 from conll import evaluate
-from transformers import AutoTokenizer
 
 # Import model architectures and device configuration
 from models import JointBERT
@@ -87,7 +86,7 @@ def train_loop(data, optimizer, pad_index, model, clip=5) -> List[float]:
     return loss_array
 
 # Evaluate model performance on validation or test data
-def eval_loop(data, pad_index, model, lang):
+def eval_loop(data, pad_index, model, lang, tokenizer):
     model.eval()
     criterion_slots = nn.CrossEntropyLoss(ignore_index=pad_index)
     criterion_intents = nn.CrossEntropyLoss()
@@ -99,7 +98,6 @@ def eval_loop(data, pad_index, model, lang):
     ref_slots = []
     hyp_slots = []
     
-    tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     with torch.no_grad():
         for sample in data:
             slots, intents = model(sample['utterances'], sample['attention_mask'])
@@ -118,7 +116,7 @@ def eval_loop(data, pad_index, model, lang):
             # Slot inference 
             output_slots = torch.argmax(slots, dim=1)
             for id_seq, seq in enumerate(output_slots):
-                utt_ids = sample['utterance'][id_seq].tolist()
+                utt_ids = sample['utterances'][id_seq].tolist()
                 gt_ids = sample['y_slots'][id_seq].tolist()
                 
                 utterance = tokenizer.convert_ids_to_tokens(utt_ids)
@@ -152,7 +150,7 @@ def eval_loop(data, pad_index, model, lang):
     return results, report_intent, loss_array
 
 # Main training loop that executes multiple runs and computes average performance
-def train_model(config, train_loader, dev_loader, test_loader, lang, vocab_len, out_slot, out_int, pad_index) -> Tuple[nn.Module, float, List[float], List[float], List[List[float]], List[List[float]], List[List[int]]]:
+def train_model(config, train_loader, dev_loader, test_loader, lang, tokenizer, out_slot, out_int, pad_index) -> Tuple[nn.Module, float, List[float], List[float], List[List[float]], List[List[float]], List[List[int]]]:
     slot_f1s, intent_accs, best_models = [], [], []
     dev_f1s = []
     
@@ -162,7 +160,7 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, vocab_len, 
 
     # Outer Loop: Execute N independent runs
     for run in tqdm(range(0, config.runs), desc="Runs"):
-        model, optimizer = build_model_and_optim(config, vocab_len, out_slot, out_int, pad_index)
+        model, optimizer = build_model_and_optim(config, out_slot, out_int)
         patience = config.patience_value
         losses_train = []
         losses_dev = []
@@ -179,7 +177,7 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, vocab_len, 
                 sampled_epochs.append(epoch)
                 losses_train.append(np.asarray(loss_t_array).mean())
                 
-                results_dev, _, loss_d_array = eval_loop(dev_loader, pad_index, model, lang)
+                results_dev, _, loss_d_array = eval_loop(dev_loader, pad_index, model, lang, tokenizer)
                 losses_dev.append(np.asarray(loss_d_array).mean())
                 
                 f1 = results_dev['total']['f']
@@ -198,7 +196,7 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, vocab_len, 
             
         # Evaluate the best model of this run on the Test set
         best_model.to(DEVICE)
-        results_test, intent_test, _ = eval_loop(test_loader, pad_index, best_model, lang)   
+        results_test, intent_test, _ = eval_loop(test_loader, pad_index, best_model, lang, tokenizer)   
         
         # Store the results for this run
         intent_accs.append(intent_test['accuracy'])
@@ -379,7 +377,7 @@ def update_sweep_log(trial_number, part_name, model_name, params, dev_f1, test_f
         json.dump(log_data, f, indent=4)
 
 
-def run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang, vocab_len, out_slot, out_int, pad_index, current_hydra_dir) -> None:
+def run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang, tokenizer, out_slot, out_int, pad_index, current_hydra_dir) -> None:
     logger.info("\n================ RUNNING OPTUNA SWEEP ================")
     # Use active_params to build the folder naming keys
     base_params_dict = OmegaConf.to_container(active_params, resolve=True)
@@ -437,7 +435,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang
 
         # Build and train, train_model does both
         best_model, mean_dev_f1, slot_f1s, intent_accs, all_losses_train, all_losses_dev, all_sampled_epochs = train_model(
-            trial_config, train_loader, dev_loader, test_loader, lang, vocab_len, out_slot, out_int, pad_index
+            trial_config, train_loader, dev_loader, test_loader, lang, tokenizer, out_slot, out_int, pad_index
         )
         
         # Save part and model name for logging
@@ -461,7 +459,7 @@ def run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang
             best_sweep_f1 = mean_dev_f1
             best_dir = os.path.join(current_hydra_dir, "best_model")
             logger.info(f"\nNew best model found! Saving files to {best_dir}...")
-            save_model(best_model, lang.word2id, lang.slot2id, lang.intent2id, os.path.join(best_dir, "model.pt"))
+            save_model(best_model, lang.slot2id, lang.intent2id, os.path.join(best_dir, "model.pt"))
             save_losses(trial.number, part_name, model_name, trial_params, mean_dev_f1, test_f1_mean, test_f1_std, test_acc_mean, test_acc_std, all_losses_train, all_losses_dev, all_sampled_epochs, os.path.join(best_dir, "losses.json"))
             save_loss_plot(all_sampled_epochs, all_losses_train, all_losses_dev, os.path.join(best_dir, "loss_plot.png"))
         return mean_dev_f1
@@ -487,13 +485,11 @@ class LangNamespace:
         self.id2intent = {v: k for k, v in intent2id.items()}
 
 
-def evaluate_best_model(config, test_loader, vocab_len, out_slot, out_int, pad_index, original_cwd) -> None:
+def evaluate_best_model(config, test_loader, out_slot, out_int, tokenizer, pad_index, original_cwd) -> None:
     part_name = (
         f"part={config.name}\n"
-        f"hid_size={config.hid_size}\n"
-        f"emb_size={config.emb_size}\n"
-        f"emb_dropout={config.get('emb_dropout', 'N/A')}\n"
-        f"out_dropout={config.get('out_dropout', 'N/A')}\n"
+        f"intent_dropout={config.intent_dropout}\n"
+        f"slot_dropout={config.slot_dropout}\n"
         f"optimizer={config.optimizer}\n"
         f"lr={config.lr}\n"
         f"train_bs={config.train_batch_size}\n"
@@ -501,7 +497,7 @@ def evaluate_best_model(config, test_loader, vocab_len, out_slot, out_int, pad_i
     )
     logger.info(f"\n================ EVALUATING PART ================\n{part_name}\n=================================================")
     best_dir = os.path.join(original_cwd, "results", f"part{config.part}", "best_model")
-    model, _ = build_model_and_optim(config, vocab_len, out_slot, out_int, pad_index)
+    model, _ = build_model_and_optim(config, out_slot, out_int)
     
     logger.info("\n--- Loading Saved Model ---")
     model, slot2id, intent2id = load_model(model, os.path.join(best_dir, "model.pt"))
@@ -509,7 +505,7 @@ def evaluate_best_model(config, test_loader, vocab_len, out_slot, out_int, pad_i
     lang = LangNamespace(slot2id, intent2id)
     
     logger.info("\n--- Evaluating Best Model ---")
-    results, report_intent, _ = eval_loop(test_loader, pad_index, model, lang)
+    results, report_intent, _ = eval_loop(test_loader, pad_index, model, lang, tokenizer)
     slot_f1 = results['total']['f']
     intent_acc = report_intent['accuracy'] 
     logger.info(f"[Final Test Results] Slot F1: {slot_f1:.4f} | Intent Accuracy: {intent_acc:.4f}")
