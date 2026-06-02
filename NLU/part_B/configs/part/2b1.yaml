@@ -22,10 +22,10 @@ best_parameters:
   n_epochs: 200
   runs: 5
   patience_value: 5
-  intent_dropout: 0.2
+  intent_dropout: 0.1
   slot_dropout: 0.2
   optimizer: "Adam"
-  lr: 0.01
+  lr: 5e-05
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128

@@ -22,10 +22,10 @@ best_parameters:
   n_epochs: 200
   runs: 5
   patience_value: 5
-  hid_size: 250
+  hid_size: 400
   emb_size: 350
   optimizer: "Adam"
-  lr: 0.01
+  lr: 0.0005
   clip: 5.0
   train_batch_size: 64
   eval_batch_size: 128
