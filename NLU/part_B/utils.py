@@ -213,9 +213,13 @@ def init_dataloaders(train_dataset, dev_dataset, test_dataset, train_batch_size=
     return train_loader, dev_loader, test_loader
 
 # Initialize the complete data processing pipeline
-def prepare_data(train_path, test_path, train_batch_size=128, eval_batch_size=64, portion=0.10, bert_model="bert-base-uncased"):
+def init_data_pipeline(train_path, test_path, train_batch_size=128, eval_batch_size=64, portion=0.10):
     train_raw, dev_raw, test_raw = load_raw_data(train_path, test_path, portion)
     lang = init_lang(train_raw, dev_raw, test_raw)
-    train_dataset, dev_dataset, test_dataset = init_datasets(train_raw, dev_raw, test_raw, lang, bert_model)
-    train_loader, dev_loader, test_loader = init_dataloaders(train_dataset, dev_dataset, test_dataset, train_batch_size, eval_batch_size)  
-    return lang, train_loader, dev_loader, test_loader
+    vocab_len = len(lang.word2id)
+    out_slot = len(lang.slot2id)
+    out_int = len(lang.intent2id)
+    pad_index = PAD_TOKEN
+    train_dataset, dev_dataset, test_dataset = init_datasets(train_raw, dev_raw, test_raw, lang)
+    train_loader, dev_loader, test_loader = init_dataloaders(train_dataset, dev_dataset, test_dataset, train_batch_size, eval_batch_size)
+    return train_loader, dev_loader, test_loader, vocab_len, out_slot, out_int, lang, pad_index
