@@ -1,0 +1,522 @@
+[
+    {
+        "trial_number": 0,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 450,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.2,
+            "optimizer": "Adam",
+            "lr": 1e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.8443,
+            "test_slot_f1_mean": 0.8057743746641923,
+            "test_slot_f1_std": 0.005739329389031625,
+            "test_intent_acc_mean": 0.8920492721164613,
+            "test_intent_acc_std": 0.0023058522152266327
+        }
+    },
+    {
+        "trial_number": 1,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 300,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.2,
+            "optimizer": "Adam",
+            "lr": 5e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9431,
+            "test_slot_f1_mean": 0.9035782568059034,
+            "test_slot_f1_std": 0.002701880049524945,
+            "test_intent_acc_mean": 0.9384098544232924,
+            "test_intent_acc_std": 0.0029201354558578397
+        }
+    },
+    {
+        "trial_number": 2,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 350,
+            "emb_dropout": 0.4,
+            "out_dropout": 0.4,
+            "optimizer": "Adam",
+            "lr": 0.0003,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9807,
+            "test_slot_f1_mean": 0.9478398499215924,
+            "test_slot_f1_std": 0.0009675646931495777,
+            "test_intent_acc_mean": 0.9518477043673013,
+            "test_intent_acc_std": 0.0021247106339316846
+        }
+    },
+    {
+        "trial_number": 3,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 350,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.3,
+            "optimizer": "Adam",
+            "lr": 2e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9232,
+            "test_slot_f1_mean": 0.8862739405793574,
+            "test_slot_f1_std": 0.0034795180968614395,
+            "test_intent_acc_mean": 0.9417693169092944,
+            "test_intent_acc_std": 0.0024534045129010747
+        }
+    },
+    {
+        "trial_number": 4,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 450,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9808,
+            "test_slot_f1_mean": 0.9488241319660151,
+            "test_slot_f1_std": 0.0013523868130814473,
+            "test_intent_acc_mean": 0.9507278835386337,
+            "test_intent_acc_std": 0.002742989633575779
+        }
+    },
+    {
+        "trial_number": 5,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 500,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.2,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9756,
+            "test_slot_f1_mean": 0.9437850667994325,
+            "test_slot_f1_std": 0.0017040558802038437,
+            "test_intent_acc_mean": 0.9493840985442329,
+            "test_intent_acc_std": 0.003968655128033455
+        }
+    },
+    {
+        "trial_number": 6,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 300,
+            "emb_dropout": 0.1,
+            "out_dropout": 0.4,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9801,
+            "test_slot_f1_mean": 0.9465597013332883,
+            "test_slot_f1_std": 0.0012712756678126189,
+            "test_intent_acc_mean": 0.9527435610302352,
+            "test_intent_acc_std": 0.004153916459348553
+        }
+    },
+    {
+        "trial_number": 7,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 400,
+            "emb_size": 300,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.2,
+            "optimizer": "Adam",
+            "lr": 2e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.8927,
+            "test_slot_f1_mean": 0.8660290970025317,
+            "test_slot_f1_std": 0.004990301335843403,
+            "test_intent_acc_mean": 0.9274356103023516,
+            "test_intent_acc_std": 0.007305490002374038
+        }
+    },
+    {
+        "trial_number": 8,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 200,
+            "emb_size": 350,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.4,
+            "optimizer": "Adam",
+            "lr": 0.0001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9715,
+            "test_slot_f1_mean": 0.9351959926476237,
+            "test_slot_f1_std": 0.0020121784071389175,
+            "test_intent_acc_mean": 0.948488241881299,
+            "test_intent_acc_std": 0.0030871329791915276
+        }
+    },
+    {
+        "trial_number": 9,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.981,
+            "test_slot_f1_mean": 0.9482295353951027,
+            "test_slot_f1_std": 0.003459746859783003,
+            "test_intent_acc_mean": 0.9563269876819709,
+            "test_intent_acc_std": 0.0030047945946245994
+        }
+    },
+    {
+        "trial_number": 10,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 500,
+            "emb_dropout": 0.3,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 3e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.903,
+            "test_slot_f1_mean": 0.8762557341806376,
+            "test_slot_f1_std": 0.0037663601458031147,
+            "test_intent_acc_mean": 0.9330347144456888,
+            "test_intent_acc_std": 0.002592572654600279
+        }
+    },
+    {
+        "trial_number": 11,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9805,
+            "test_slot_f1_mean": 0.9482947063625715,
+            "test_slot_f1_std": 0.00427818930124433,
+            "test_intent_acc_mean": 0.9516237402015676,
+            "test_intent_acc_std": 0.0033519887003574116
+        }
+    },
+    {
+        "trial_number": 12,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 250,
+            "emb_size": 450,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.0005,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9805,
+            "test_slot_f1_mean": 0.9486596701621297,
+            "test_slot_f1_std": 0.0019089454016821715,
+            "test_intent_acc_mean": 0.9543113101903696,
+            "test_intent_acc_std": 0.005027983050536103
+        }
+    },
+    {
+        "trial_number": 13,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 350,
+            "emb_size": 500,
+            "emb_dropout": 0.2,
+            "out_dropout": 0.1,
+            "optimizer": "Adam",
+            "lr": 0.0002,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9802,
+            "test_slot_f1_mean": 0.9469434556551061,
+            "test_slot_f1_std": 0.00321434076600024,
+            "test_intent_acc_mean": 0.9498320268756999,
+            "test_intent_acc_std": 0.0037072665973677116
+        }
+    },
+    {
+        "trial_number": 14,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9815,
+            "test_slot_f1_mean": 0.9499541821780039,
+            "test_slot_f1_std": 0.0026924189039051485,
+            "test_intent_acc_mean": 0.9576707726763718,
+            "test_intent_acc_std": 0.001645793780145492
+        }
+    },
+    {
+        "trial_number": 15,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9829,
+            "test_slot_f1_mean": 0.9514251409688009,
+            "test_slot_f1_std": 0.0012400506189184526,
+            "test_intent_acc_mean": 0.9574468085106383,
+            "test_intent_acc_std": 0.0033219254141525862
+        }
+    },
+    {
+        "trial_number": 16,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.3,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.981,
+            "test_slot_f1_mean": 0.9501981333920358,
+            "test_slot_f1_std": 0.0022827379050323654,
+            "test_intent_acc_mean": 0.955431131019037,
+            "test_intent_acc_std": 0.0061089279717741855
+        }
+    },
+    {
+        "trial_number": 17,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.1,
+            "optimizer": "Adam",
+            "lr": 0.001,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9815,
+            "test_slot_f1_mean": 0.9508407647151156,
+            "test_slot_f1_std": 0.0013704336546250405,
+            "test_intent_acc_mean": 0.9574468085106382,
+            "test_intent_acc_std": 0.005156042299315266
+        }
+    },
+    {
+        "trial_number": 19,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 450,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 5e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.9407,
+            "test_slot_f1_mean": 0.9020163261721589,
+            "test_slot_f1_std": 0.0026067282712583344,
+            "test_intent_acc_mean": 0.9379619260918253,
+            "test_intent_acc_std": 0.0020769582296743007
+        }
+    },
+    {
+        "trial_number": 20,
+        "part_name": "Model IAS with bidirectionality and dropout",
+        "model_name": "ModelIAS_Bi_Drop",
+        "parameters": {
+            "n_epochs": 100,
+            "runs": 5,
+            "patience_value": 5,
+            "hid_size": 300,
+            "emb_size": 400,
+            "emb_dropout": 0.5,
+            "out_dropout": 0.5,
+            "optimizer": "Adam",
+            "lr": 1e-05,
+            "clip": 5.0,
+            "train_batch_size": 64,
+            "eval_batch_size": 128
+        },
+        "metrics": {
+            "mean_dev_f1": 0.406,
+            "test_slot_f1_mean": 0.28910342958661656,
+            "test_slot_f1_std": 0.2763347092839619,
+            "test_intent_acc_mean": 0.7561030235162374,
+            "test_intent_acc_std": 0.060683131001665225
+        }
+    }
+]

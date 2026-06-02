@@ -1,0 +1,457 @@
+2026-06-02 07:07:36,899 - __main__ - INFO - 
+================ STARTING PIPELINE ================
+2026-06-02 07:07:38,513 - functions - INFO - 
+================ RUNNING OPTUNA SWEEP ================
+2026-06-02 07:07:38,514 - functions - INFO - Varying parameters for folder naming: ['hid_size', 'emb_size', 'emb_dropout', 'out_dropout', 'lr']
+2026-06-02 07:07:38,514 - functions - INFO - Large search space detected (5625 max combinations). Using Smart TPE Search for 20 trials.
+2026-06-02 07:07:38,514 - functions - INFO - 
+Searching for 20 unique hyperparameter combinations...
+2026-06-02 07:07:38,527 - functions - INFO - 
+--- Trial 0 ---
+2026-06-02 07:07:38,527 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 350, 'emb_size': 450, 'emb_dropout': 0.1, 'out_dropout': 0.2, 'optimizer': 'Adam', 'lr': 1e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 07:10:18,600 - functions - INFO - [Memory before cleanup] Allocated: 58.98 MB, Reserved: 272.00 MB
+2026-06-02 07:10:18,810 - functions - INFO - [Memory after cleanup] Allocated: 37.56 MB, Reserved: 82.00 MB
+2026-06-02 07:10:18,811 - functions - INFO - --------------------------------------------------
+2026-06-02 07:12:53,367 - functions - INFO - [Memory before cleanup] Allocated: 58.97 MB, Reserved: 272.00 MB
+2026-06-02 07:12:53,594 - functions - INFO - [Memory after cleanup] Allocated: 37.98 MB, Reserved: 82.00 MB
+2026-06-02 07:12:53,595 - functions - INFO - --------------------------------------------------
+2026-06-02 07:15:23,867 - functions - INFO - [Memory before cleanup] Allocated: 59.52 MB, Reserved: 310.00 MB
+2026-06-02 07:15:24,075 - functions - INFO - [Memory after cleanup] Allocated: 38.57 MB, Reserved: 82.00 MB
+2026-06-02 07:15:24,076 - functions - INFO - --------------------------------------------------
+2026-06-02 07:17:51,793 - functions - INFO - [Memory before cleanup] Allocated: 59.93 MB, Reserved: 310.00 MB
+2026-06-02 07:17:51,997 - functions - INFO - [Memory after cleanup] Allocated: 38.09 MB, Reserved: 64.00 MB
+2026-06-02 07:17:51,997 - functions - INFO - --------------------------------------------------
+2026-06-02 07:20:23,795 - functions - INFO - [Memory before cleanup] Allocated: 59.37 MB, Reserved: 290.00 MB
+2026-06-02 07:20:23,993 - functions - INFO - [Memory after cleanup] Allocated: 38.12 MB, Reserved: 102.00 MB
+2026-06-02 07:20:23,993 - functions - INFO - --------------------------------------------------
+2026-06-02 07:20:24,009 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=350_emb_size=450_emb_dropout=0.1_out_dropout=0.2_lr=1e-05/losses.json
+2026-06-02 07:20:24,395 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=350_emb_size=450_emb_dropout=0.1_out_dropout=0.2_lr=1e-05/loss_plot.png
+2026-06-02 07:20:24,396 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 07:20:24,411 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 07:20:24,411 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 07:20:24,641 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 07:20:24,649 - functions - INFO - 
+--- Trial 1 ---
+2026-06-02 07:20:24,649 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 250, 'emb_size': 300, 'emb_dropout': 0.4, 'out_dropout': 0.2, 'optimizer': 'Adam', 'lr': 5e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 07:22:46,092 - functions - INFO - [Memory before cleanup] Allocated: 38.26 MB, Reserved: 196.00 MB
+2026-06-02 07:22:46,285 - functions - INFO - [Memory after cleanup] Allocated: 27.26 MB, Reserved: 70.00 MB
+2026-06-02 07:22:46,285 - functions - INFO - --------------------------------------------------
+2026-06-02 07:25:03,708 - functions - INFO - [Memory before cleanup] Allocated: 38.76 MB, Reserved: 190.00 MB
+2026-06-02 07:25:03,894 - functions - INFO - [Memory after cleanup] Allocated: 27.26 MB, Reserved: 70.00 MB
+2026-06-02 07:25:03,895 - functions - INFO - --------------------------------------------------
+2026-06-02 07:27:21,145 - functions - INFO - [Memory before cleanup] Allocated: 38.26 MB, Reserved: 222.00 MB
+2026-06-02 07:27:21,337 - functions - INFO - [Memory after cleanup] Allocated: 27.26 MB, Reserved: 72.00 MB
+2026-06-02 07:27:21,337 - functions - INFO - --------------------------------------------------
+2026-06-02 07:29:38,606 - functions - INFO - [Memory before cleanup] Allocated: 39.77 MB, Reserved: 220.00 MB
+2026-06-02 07:29:38,812 - functions - INFO - [Memory after cleanup] Allocated: 27.80 MB, Reserved: 70.00 MB
+2026-06-02 07:29:38,812 - functions - INFO - --------------------------------------------------
+2026-06-02 07:31:55,941 - functions - INFO - [Memory before cleanup] Allocated: 38.80 MB, Reserved: 220.00 MB
+2026-06-02 07:31:56,126 - functions - INFO - [Memory after cleanup] Allocated: 27.80 MB, Reserved: 70.00 MB
+2026-06-02 07:31:56,127 - functions - INFO - --------------------------------------------------
+2026-06-02 07:31:56,130 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=300_emb_dropout=0.4_out_dropout=0.2_lr=5e-05/losses.json
+2026-06-02 07:31:56,350 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=300_emb_dropout=0.4_out_dropout=0.2_lr=5e-05/loss_plot.png
+2026-06-02 07:31:56,351 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 07:31:56,362 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 07:31:56,362 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 07:31:56,584 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 07:31:56,591 - functions - INFO - 
+--- Trial 2 ---
+2026-06-02 07:31:56,591 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 400, 'emb_size': 350, 'emb_dropout': 0.4, 'out_dropout': 0.4, 'optimizer': 'Adam', 'lr': 0.0003, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 07:34:18,276 - functions - INFO - [Memory before cleanup] Allocated: 60.02 MB, Reserved: 350.00 MB
+2026-06-02 07:34:18,468 - functions - INFO - [Memory after cleanup] Allocated: 37.88 MB, Reserved: 62.00 MB
+2026-06-02 07:34:18,468 - functions - INFO - --------------------------------------------------
+2026-06-02 07:36:47,361 - functions - INFO - [Memory before cleanup] Allocated: 61.12 MB, Reserved: 284.00 MB
+2026-06-02 07:36:47,551 - functions - INFO - [Memory after cleanup] Allocated: 38.85 MB, Reserved: 62.00 MB
+2026-06-02 07:36:47,552 - functions - INFO - --------------------------------------------------
+2026-06-02 07:39:08,971 - functions - INFO - [Memory before cleanup] Allocated: 60.15 MB, Reserved: 324.00 MB
+2026-06-02 07:39:09,159 - functions - INFO - [Memory after cleanup] Allocated: 38.52 MB, Reserved: 82.00 MB
+2026-06-02 07:39:09,159 - functions - INFO - --------------------------------------------------
+2026-06-02 07:41:38,314 - functions - INFO - [Memory before cleanup] Allocated: 59.64 MB, Reserved: 330.00 MB
+2026-06-02 07:41:38,527 - functions - INFO - [Memory after cleanup] Allocated: 38.01 MB, Reserved: 82.00 MB
+2026-06-02 07:41:38,527 - functions - INFO - --------------------------------------------------
+2026-06-02 07:44:07,390 - functions - INFO - [Memory before cleanup] Allocated: 60.08 MB, Reserved: 286.00 MB
+2026-06-02 07:44:07,587 - functions - INFO - [Memory after cleanup] Allocated: 37.95 MB, Reserved: 82.00 MB
+2026-06-02 07:44:07,587 - functions - INFO - --------------------------------------------------
+2026-06-02 07:44:07,594 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=350_emb_dropout=0.4_out_dropout=0.4_lr=0.0003/losses.json
+2026-06-02 07:44:07,825 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=350_emb_dropout=0.4_out_dropout=0.4_lr=0.0003/loss_plot.png
+2026-06-02 07:44:07,825 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 07:44:07,842 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 07:44:07,843 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 07:44:08,079 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 07:44:08,087 - functions - INFO - 
+--- Trial 3 ---
+2026-06-02 07:44:08,087 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 400, 'emb_size': 350, 'emb_dropout': 0.1, 'out_dropout': 0.3, 'optimizer': 'Adam', 'lr': 2e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 07:46:39,500 - functions - INFO - [Memory before cleanup] Allocated: 61.43 MB, Reserved: 330.00 MB
+2026-06-02 07:46:39,697 - functions - INFO - [Memory after cleanup] Allocated: 38.83 MB, Reserved: 84.00 MB
+2026-06-02 07:46:39,697 - functions - INFO - --------------------------------------------------
+2026-06-02 07:49:10,668 - functions - INFO - [Memory before cleanup] Allocated: 60.99 MB, Reserved: 368.00 MB
+2026-06-02 07:49:10,865 - functions - INFO - [Memory after cleanup] Allocated: 38.85 MB, Reserved: 82.00 MB
+2026-06-02 07:49:10,865 - functions - INFO - --------------------------------------------------
+2026-06-02 07:51:40,880 - functions - INFO - [Memory before cleanup] Allocated: 61.12 MB, Reserved: 324.00 MB
+2026-06-02 07:51:41,074 - functions - INFO - [Memory after cleanup] Allocated: 39.49 MB, Reserved: 62.00 MB
+2026-06-02 07:51:41,074 - functions - INFO - --------------------------------------------------
+2026-06-02 07:54:16,767 - functions - INFO - [Memory before cleanup] Allocated: 60.76 MB, Reserved: 310.00 MB
+2026-06-02 07:54:16,970 - functions - INFO - [Memory after cleanup] Allocated: 39.12 MB, Reserved: 60.00 MB
+2026-06-02 07:54:16,970 - functions - INFO - --------------------------------------------------
+2026-06-02 07:56:49,529 - functions - INFO - [Memory before cleanup] Allocated: 60.62 MB, Reserved: 326.00 MB
+2026-06-02 07:56:49,718 - functions - INFO - [Memory after cleanup] Allocated: 38.99 MB, Reserved: 84.00 MB
+2026-06-02 07:56:49,718 - functions - INFO - --------------------------------------------------
+2026-06-02 07:56:49,726 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=350_emb_dropout=0.1_out_dropout=0.3_lr=2e-05/losses.json
+2026-06-02 07:56:49,954 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=350_emb_dropout=0.1_out_dropout=0.3_lr=2e-05/loss_plot.png
+2026-06-02 07:56:49,962 - functions - INFO - 
+--- Trial 4 ---
+2026-06-02 07:56:49,962 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 400, 'emb_size': 450, 'emb_dropout': 0.2, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 07:59:21,141 - functions - INFO - [Memory before cleanup] Allocated: 66.69 MB, Reserved: 332.00 MB
+2026-06-02 07:59:21,317 - functions - INFO - [Memory after cleanup] Allocated: 41.96 MB, Reserved: 82.00 MB
+2026-06-02 07:59:21,317 - functions - INFO - --------------------------------------------------
+2026-06-02 08:01:52,037 - functions - INFO - [Memory before cleanup] Allocated: 65.71 MB, Reserved: 346.00 MB
+2026-06-02 08:01:52,219 - functions - INFO - [Memory after cleanup] Allocated: 40.98 MB, Reserved: 82.00 MB
+2026-06-02 08:01:52,219 - functions - INFO - --------------------------------------------------
+2026-06-02 08:04:08,468 - functions - INFO - [Memory before cleanup] Allocated: 67.17 MB, Reserved: 346.00 MB
+2026-06-02 08:04:08,652 - functions - INFO - [Memory after cleanup] Allocated: 41.96 MB, Reserved: 82.00 MB
+2026-06-02 08:04:08,652 - functions - INFO - --------------------------------------------------
+2026-06-02 08:06:16,996 - functions - INFO - [Memory before cleanup] Allocated: 65.71 MB, Reserved: 332.00 MB
+2026-06-02 08:06:17,189 - functions - INFO - [Memory after cleanup] Allocated: 40.98 MB, Reserved: 84.00 MB
+2026-06-02 08:06:17,189 - functions - INFO - --------------------------------------------------
+2026-06-02 08:08:33,142 - functions - INFO - [Memory before cleanup] Allocated: 67.59 MB, Reserved: 334.00 MB
+2026-06-02 08:08:33,344 - functions - INFO - [Memory after cleanup] Allocated: 41.96 MB, Reserved: 82.00 MB
+2026-06-02 08:08:33,344 - functions - INFO - --------------------------------------------------
+2026-06-02 08:08:33,355 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=450_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/losses.json
+2026-06-02 08:08:33,584 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=450_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-06-02 08:08:33,585 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 08:08:33,643 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 08:08:33,644 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 08:08:33,874 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 08:08:33,883 - functions - INFO - 
+--- Trial 5 ---
+2026-06-02 08:08:33,883 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 400, 'emb_size': 500, 'emb_dropout': 0.5, 'out_dropout': 0.2, 'optimizer': 'Adam', 'lr': 0.0001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 08:11:05,409 - functions - INFO - [Memory before cleanup] Allocated: 70.16 MB, Reserved: 292.00 MB
+2026-06-02 08:11:05,597 - functions - INFO - [Memory after cleanup] Allocated: 43.09 MB, Reserved: 84.00 MB
+2026-06-02 08:11:05,597 - functions - INFO - --------------------------------------------------
+2026-06-02 08:13:36,954 - functions - INFO - [Memory before cleanup] Allocated: 69.72 MB, Reserved: 292.00 MB
+2026-06-02 08:13:37,159 - functions - INFO - [Memory after cleanup] Allocated: 42.90 MB, Reserved: 82.00 MB
+2026-06-02 08:13:37,159 - functions - INFO - --------------------------------------------------
+2026-06-02 08:16:08,375 - functions - INFO - [Memory before cleanup] Allocated: 69.77 MB, Reserved: 292.00 MB
+2026-06-02 08:16:08,565 - functions - INFO - [Memory after cleanup] Allocated: 43.49 MB, Reserved: 82.00 MB
+2026-06-02 08:16:08,565 - functions - INFO - --------------------------------------------------
+2026-06-02 08:18:40,382 - functions - INFO - [Memory before cleanup] Allocated: 69.55 MB, Reserved: 334.00 MB
+2026-06-02 08:18:40,578 - functions - INFO - [Memory after cleanup] Allocated: 43.27 MB, Reserved: 82.00 MB
+2026-06-02 08:18:40,578 - functions - INFO - --------------------------------------------------
+2026-06-02 08:21:14,626 - functions - INFO - [Memory before cleanup] Allocated: 68.81 MB, Reserved: 292.00 MB
+2026-06-02 08:21:14,822 - functions - INFO - [Memory after cleanup] Allocated: 42.53 MB, Reserved: 84.00 MB
+2026-06-02 08:21:14,822 - functions - INFO - --------------------------------------------------
+2026-06-02 08:21:14,830 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=500_emb_dropout=0.5_out_dropout=0.2_lr=0.0001/losses.json
+2026-06-02 08:21:15,072 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=500_emb_dropout=0.5_out_dropout=0.2_lr=0.0001/loss_plot.png
+2026-06-02 08:21:15,080 - functions - INFO - 
+--- Trial 6 ---
+2026-06-02 08:21:15,081 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 200, 'emb_size': 300, 'emb_dropout': 0.1, 'out_dropout': 0.4, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 08:23:11,370 - functions - INFO - [Memory before cleanup] Allocated: 33.43 MB, Reserved: 196.00 MB
+2026-06-02 08:23:11,567 - functions - INFO - [Memory after cleanup] Allocated: 24.84 MB, Reserved: 50.00 MB
+2026-06-02 08:23:11,567 - functions - INFO - --------------------------------------------------
+2026-06-02 08:24:46,207 - functions - INFO - [Memory before cleanup] Allocated: 33.43 MB, Reserved: 182.00 MB
+2026-06-02 08:24:46,400 - functions - INFO - [Memory after cleanup] Allocated: 24.84 MB, Reserved: 52.00 MB
+2026-06-02 08:24:46,400 - functions - INFO - --------------------------------------------------
+2026-06-02 08:26:14,519 - functions - INFO - [Memory before cleanup] Allocated: 33.43 MB, Reserved: 184.00 MB
+2026-06-02 08:26:14,729 - functions - INFO - [Memory after cleanup] Allocated: 24.84 MB, Reserved: 52.00 MB
+2026-06-02 08:26:14,729 - functions - INFO - --------------------------------------------------
+2026-06-02 08:27:24,300 - functions - INFO - [Memory before cleanup] Allocated: 33.43 MB, Reserved: 156.00 MB
+2026-06-02 08:27:24,486 - functions - INFO - [Memory after cleanup] Allocated: 24.84 MB, Reserved: 52.00 MB
+2026-06-02 08:27:24,486 - functions - INFO - --------------------------------------------------
+2026-06-02 08:29:28,675 - functions - INFO - [Memory before cleanup] Allocated: 34.16 MB, Reserved: 158.00 MB
+2026-06-02 08:29:28,850 - functions - INFO - [Memory after cleanup] Allocated: 24.84 MB, Reserved: 52.00 MB
+2026-06-02 08:29:28,850 - functions - INFO - --------------------------------------------------
+2026-06-02 08:29:28,856 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=200_emb_size=300_emb_dropout=0.1_out_dropout=0.4_lr=0.001/losses.json
+2026-06-02 08:29:29,085 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=200_emb_size=300_emb_dropout=0.1_out_dropout=0.4_lr=0.001/loss_plot.png
+2026-06-02 08:29:29,093 - functions - INFO - 
+--- Trial 7 ---
+2026-06-02 08:29:29,094 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 400, 'emb_size': 300, 'emb_dropout': 0.3, 'out_dropout': 0.2, 'optimizer': 'Adam', 'lr': 2e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 08:31:57,257 - functions - INFO - [Memory before cleanup] Allocated: 57.38 MB, Reserved: 300.00 MB
+2026-06-02 08:31:57,450 - functions - INFO - [Memory after cleanup] Allocated: 37.30 MB, Reserved: 56.00 MB
+2026-06-02 08:31:57,450 - functions - INFO - --------------------------------------------------
+2026-06-02 08:34:25,922 - functions - INFO - [Memory before cleanup] Allocated: 56.41 MB, Reserved: 320.00 MB
+2026-06-02 08:34:26,138 - functions - INFO - [Memory after cleanup] Allocated: 36.33 MB, Reserved: 76.00 MB
+2026-06-02 08:34:26,138 - functions - INFO - --------------------------------------------------
+2026-06-02 08:36:54,212 - functions - INFO - [Memory before cleanup] Allocated: 56.41 MB, Reserved: 320.00 MB
+2026-06-02 08:36:54,409 - functions - INFO - [Memory after cleanup] Allocated: 36.33 MB, Reserved: 78.00 MB
+2026-06-02 08:36:54,409 - functions - INFO - --------------------------------------------------
+2026-06-02 08:39:22,242 - functions - INFO - [Memory before cleanup] Allocated: 56.41 MB, Reserved: 280.00 MB
+2026-06-02 08:39:22,433 - functions - INFO - [Memory after cleanup] Allocated: 36.33 MB, Reserved: 76.00 MB
+2026-06-02 08:39:22,433 - functions - INFO - --------------------------------------------------
+2026-06-02 08:41:50,296 - functions - INFO - [Memory before cleanup] Allocated: 56.41 MB, Reserved: 320.00 MB
+2026-06-02 08:41:50,476 - functions - INFO - [Memory after cleanup] Allocated: 36.33 MB, Reserved: 78.00 MB
+2026-06-02 08:41:50,477 - functions - INFO - --------------------------------------------------
+2026-06-02 08:41:50,483 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=300_emb_dropout=0.3_out_dropout=0.2_lr=2e-05/losses.json
+2026-06-02 08:41:50,708 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=400_emb_size=300_emb_dropout=0.3_out_dropout=0.2_lr=2e-05/loss_plot.png
+2026-06-02 08:41:50,716 - functions - INFO - 
+--- Trial 8 ---
+2026-06-02 08:41:50,717 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 200, 'emb_size': 350, 'emb_dropout': 0.3, 'out_dropout': 0.4, 'optimizer': 'Adam', 'lr': 0.0001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 08:44:05,795 - functions - INFO - [Memory before cleanup] Allocated: 37.19 MB, Reserved: 148.00 MB
+2026-06-02 08:44:05,984 - functions - INFO - [Memory after cleanup] Allocated: 26.67 MB, Reserved: 76.00 MB
+2026-06-02 08:44:05,985 - functions - INFO - --------------------------------------------------
+2026-06-02 08:46:20,726 - functions - INFO - [Memory before cleanup] Allocated: 35.32 MB, Reserved: 148.00 MB
+2026-06-02 08:46:20,917 - functions - INFO - [Memory after cleanup] Allocated: 25.79 MB, Reserved: 76.00 MB
+2026-06-02 08:46:20,917 - functions - INFO - --------------------------------------------------
+2026-06-02 08:48:36,214 - functions - INFO - [Memory before cleanup] Allocated: 37.19 MB, Reserved: 148.00 MB
+2026-06-02 08:48:36,413 - functions - INFO - [Memory after cleanup] Allocated: 27.65 MB, Reserved: 76.00 MB
+2026-06-02 08:48:36,413 - functions - INFO - --------------------------------------------------
+2026-06-02 08:50:50,591 - functions - INFO - [Memory before cleanup] Allocated: 37.87 MB, Reserved: 148.00 MB
+2026-06-02 08:50:50,766 - functions - INFO - [Memory after cleanup] Allocated: 26.84 MB, Reserved: 76.00 MB
+2026-06-02 08:50:50,766 - functions - INFO - --------------------------------------------------
+2026-06-02 08:53:04,746 - functions - INFO - [Memory before cleanup] Allocated: 36.37 MB, Reserved: 148.00 MB
+2026-06-02 08:53:04,932 - functions - INFO - [Memory after cleanup] Allocated: 26.84 MB, Reserved: 76.00 MB
+2026-06-02 08:53:04,932 - functions - INFO - --------------------------------------------------
+2026-06-02 08:53:04,936 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=200_emb_size=350_emb_dropout=0.3_out_dropout=0.4_lr=0.0001/losses.json
+2026-06-02 08:53:05,157 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=200_emb_size=350_emb_dropout=0.3_out_dropout=0.4_lr=0.0001/loss_plot.png
+2026-06-02 08:53:05,165 - functions - INFO - 
+--- Trial 9 ---
+2026-06-02 08:53:05,166 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 250, 'emb_size': 500, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 08:54:55,986 - functions - INFO - [Memory before cleanup] Allocated: 48.88 MB, Reserved: 236.00 MB
+2026-06-02 08:54:56,171 - functions - INFO - [Memory after cleanup] Allocated: 32.61 MB, Reserved: 76.00 MB
+2026-06-02 08:54:56,171 - functions - INFO - --------------------------------------------------
+2026-06-02 08:56:32,858 - functions - INFO - [Memory before cleanup] Allocated: 47.57 MB, Reserved: 238.00 MB
+2026-06-02 08:56:33,040 - functions - INFO - [Memory after cleanup] Allocated: 31.63 MB, Reserved: 78.00 MB
+2026-06-02 08:56:33,040 - functions - INFO - --------------------------------------------------
+2026-06-02 08:58:37,829 - functions - INFO - [Memory before cleanup] Allocated: 47.37 MB, Reserved: 236.00 MB
+2026-06-02 08:58:38,006 - functions - INFO - [Memory after cleanup] Allocated: 31.79 MB, Reserved: 76.00 MB
+2026-06-02 08:58:38,007 - functions - INFO - --------------------------------------------------
+2026-06-02 08:59:40,378 - functions - INFO - [Memory before cleanup] Allocated: 47.29 MB, Reserved: 236.00 MB
+2026-06-02 08:59:40,578 - functions - INFO - [Memory after cleanup] Allocated: 31.63 MB, Reserved: 76.00 MB
+2026-06-02 08:59:40,578 - functions - INFO - --------------------------------------------------
+2026-06-02 09:01:03,612 - functions - INFO - [Memory before cleanup] Allocated: 47.01 MB, Reserved: 236.00 MB
+2026-06-02 09:01:03,780 - functions - INFO - [Memory after cleanup] Allocated: 31.63 MB, Reserved: 76.00 MB
+2026-06-02 09:01:03,780 - functions - INFO - --------------------------------------------------
+2026-06-02 09:01:03,786 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=500_emb_dropout=0.3_out_dropout=0.5_lr=0.001/losses.json
+2026-06-02 09:01:04,006 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=500_emb_dropout=0.3_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-06-02 09:01:04,007 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 09:01:04,020 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 09:01:04,021 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 09:01:04,239 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 09:01:04,251 - functions - INFO - 
+--- Trial 10 ---
+2026-06-02 09:01:04,251 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 250, 'emb_size': 500, 'emb_dropout': 0.3, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 3e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:03:22,671 - functions - INFO - [Memory before cleanup] Allocated: 48.31 MB, Reserved: 236.00 MB
+2026-06-02 09:03:22,846 - functions - INFO - [Memory after cleanup] Allocated: 32.14 MB, Reserved: 78.00 MB
+2026-06-02 09:03:22,846 - functions - INFO - --------------------------------------------------
+2026-06-02 09:05:41,219 - functions - INFO - [Memory before cleanup] Allocated: 48.04 MB, Reserved: 236.00 MB
+2026-06-02 09:05:41,395 - functions - INFO - [Memory after cleanup] Allocated: 32.66 MB, Reserved: 78.00 MB
+2026-06-02 09:05:41,395 - functions - INFO - --------------------------------------------------
+2026-06-02 09:07:59,711 - functions - INFO - [Memory before cleanup] Allocated: 47.76 MB, Reserved: 236.00 MB
+2026-06-02 09:07:59,895 - functions - INFO - [Memory after cleanup] Allocated: 32.14 MB, Reserved: 78.00 MB
+2026-06-02 09:07:59,895 - functions - INFO - --------------------------------------------------
+2026-06-02 09:10:18,385 - functions - INFO - [Memory before cleanup] Allocated: 47.78 MB, Reserved: 236.00 MB
+2026-06-02 09:10:18,559 - functions - INFO - [Memory after cleanup] Allocated: 32.40 MB, Reserved: 78.00 MB
+2026-06-02 09:10:18,559 - functions - INFO - --------------------------------------------------
+2026-06-02 09:12:37,138 - functions - INFO - [Memory before cleanup] Allocated: 47.78 MB, Reserved: 236.00 MB
+2026-06-02 09:12:37,321 - functions - INFO - [Memory after cleanup] Allocated: 32.40 MB, Reserved: 78.00 MB
+2026-06-02 09:12:37,321 - functions - INFO - --------------------------------------------------
+2026-06-02 09:12:37,325 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=500_emb_dropout=0.3_out_dropout=0.5_lr=3e-05/losses.json
+2026-06-02 09:12:37,548 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=500_emb_dropout=0.3_out_dropout=0.5_lr=3e-05/loss_plot.png
+2026-06-02 09:12:37,560 - functions - INFO - 
+--- Trial 11 ---
+2026-06-02 09:12:37,560 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.2, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:13:55,243 - functions - INFO - [Memory before cleanup] Allocated: 48.99 MB, Reserved: 244.00 MB
+2026-06-02 09:13:55,420 - functions - INFO - [Memory after cleanup] Allocated: 32.77 MB, Reserved: 76.00 MB
+2026-06-02 09:13:55,420 - functions - INFO - --------------------------------------------------
+2026-06-02 09:16:02,012 - functions - INFO - [Memory before cleanup] Allocated: 49.72 MB, Reserved: 246.00 MB
+2026-06-02 09:16:02,205 - functions - INFO - [Memory after cleanup] Allocated: 32.77 MB, Reserved: 76.00 MB
+2026-06-02 09:16:02,205 - functions - INFO - --------------------------------------------------
+2026-06-02 09:18:23,213 - functions - INFO - [Memory before cleanup] Allocated: 49.74 MB, Reserved: 244.00 MB
+2026-06-02 09:18:23,403 - functions - INFO - [Memory after cleanup] Allocated: 32.77 MB, Reserved: 76.00 MB
+2026-06-02 09:18:23,403 - functions - INFO - --------------------------------------------------
+2026-06-02 09:20:44,289 - functions - INFO - [Memory before cleanup] Allocated: 49.65 MB, Reserved: 244.00 MB
+2026-06-02 09:20:44,469 - functions - INFO - [Memory after cleanup] Allocated: 32.68 MB, Reserved: 74.00 MB
+2026-06-02 09:20:44,469 - functions - INFO - --------------------------------------------------
+2026-06-02 09:22:51,838 - functions - INFO - [Memory before cleanup] Allocated: 49.65 MB, Reserved: 244.00 MB
+2026-06-02 09:22:52,035 - functions - INFO - [Memory after cleanup] Allocated: 33.44 MB, Reserved: 76.00 MB
+2026-06-02 09:22:52,035 - functions - INFO - --------------------------------------------------
+2026-06-02 09:22:52,039 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/losses.json
+2026-06-02 09:22:52,282 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-06-02 09:22:52,294 - functions - INFO - 
+--- Trial 12 ---
+2026-06-02 09:22:52,294 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 250, 'emb_size': 450, 'emb_dropout': 0.2, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.0005, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:25:10,969 - functions - INFO - [Memory before cleanup] Allocated: 45.92 MB, Reserved: 232.00 MB
+2026-06-02 09:25:11,151 - functions - INFO - [Memory after cleanup] Allocated: 31.56 MB, Reserved: 78.00 MB
+2026-06-02 09:25:11,151 - functions - INFO - --------------------------------------------------
+2026-06-02 09:26:48,463 - functions - INFO - [Memory before cleanup] Allocated: 44.96 MB, Reserved: 198.00 MB
+2026-06-02 09:26:48,640 - functions - INFO - [Memory after cleanup] Allocated: 30.67 MB, Reserved: 78.00 MB
+2026-06-02 09:26:48,640 - functions - INFO - --------------------------------------------------
+2026-06-02 09:29:06,998 - functions - INFO - [Memory before cleanup] Allocated: 44.83 MB, Reserved: 228.00 MB
+2026-06-02 09:29:07,172 - functions - INFO - [Memory after cleanup] Allocated: 30.54 MB, Reserved: 78.00 MB
+2026-06-02 09:29:07,172 - functions - INFO - --------------------------------------------------
+2026-06-02 09:31:11,777 - functions - INFO - [Memory before cleanup] Allocated: 45.68 MB, Reserved: 198.00 MB
+2026-06-02 09:31:11,964 - functions - INFO - [Memory after cleanup] Allocated: 31.26 MB, Reserved: 78.00 MB
+2026-06-02 09:31:11,965 - functions - INFO - --------------------------------------------------
+2026-06-02 09:32:35,296 - functions - INFO - [Memory before cleanup] Allocated: 45.39 MB, Reserved: 198.00 MB
+2026-06-02 09:32:35,473 - functions - INFO - [Memory after cleanup] Allocated: 30.56 MB, Reserved: 78.00 MB
+2026-06-02 09:32:35,473 - functions - INFO - --------------------------------------------------
+2026-06-02 09:32:35,477 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=450_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/losses.json
+2026-06-02 09:32:35,699 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=250_emb_size=450_emb_dropout=0.2_out_dropout=0.5_lr=0.0005/loss_plot.png
+2026-06-02 09:32:35,711 - functions - INFO - 
+--- Trial 13 ---
+2026-06-02 09:32:35,711 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 350, 'emb_size': 500, 'emb_dropout': 0.2, 'out_dropout': 0.1, 'optimizer': 'Adam', 'lr': 0.0002, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:35:02,974 - functions - INFO - [Memory before cleanup] Allocated: 61.12 MB, Reserved: 328.00 MB
+2026-06-02 09:35:03,167 - functions - INFO - [Memory after cleanup] Allocated: 38.78 MB, Reserved: 72.00 MB
+2026-06-02 09:35:03,167 - functions - INFO - --------------------------------------------------
+2026-06-02 09:37:22,865 - functions - INFO - [Memory before cleanup] Allocated: 60.99 MB, Reserved: 306.00 MB
+2026-06-02 09:37:23,038 - functions - INFO - [Memory after cleanup] Allocated: 38.59 MB, Reserved: 74.00 MB
+2026-06-02 09:37:23,038 - functions - INFO - --------------------------------------------------
+2026-06-02 09:39:42,893 - functions - INFO - [Memory before cleanup] Allocated: 60.94 MB, Reserved: 264.00 MB
+2026-06-02 09:39:43,077 - functions - INFO - [Memory after cleanup] Allocated: 38.59 MB, Reserved: 74.00 MB
+2026-06-02 09:39:43,078 - functions - INFO - --------------------------------------------------
+2026-06-02 09:41:26,177 - functions - INFO - [Memory before cleanup] Allocated: 60.94 MB, Reserved: 264.00 MB
+2026-06-02 09:41:26,359 - functions - INFO - [Memory after cleanup] Allocated: 38.59 MB, Reserved: 74.00 MB
+2026-06-02 09:41:26,359 - functions - INFO - --------------------------------------------------
+2026-06-02 09:43:53,494 - functions - INFO - [Memory before cleanup] Allocated: 60.94 MB, Reserved: 264.00 MB
+2026-06-02 09:43:53,677 - functions - INFO - [Memory after cleanup] Allocated: 38.59 MB, Reserved: 74.00 MB
+2026-06-02 09:43:53,677 - functions - INFO - --------------------------------------------------
+2026-06-02 09:43:53,684 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.1_lr=0.0002/losses.json
+2026-06-02 09:43:53,924 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=350_emb_size=500_emb_dropout=0.2_out_dropout=0.1_lr=0.0002/loss_plot.png
+2026-06-02 09:43:53,936 - functions - INFO - 
+--- Trial 14 ---
+2026-06-02 09:43:53,936 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:45:40,047 - functions - INFO - [Memory before cleanup] Allocated: 51.59 MB, Reserved: 246.00 MB
+2026-06-02 09:45:40,228 - functions - INFO - [Memory after cleanup] Allocated: 34.13 MB, Reserved: 74.00 MB
+2026-06-02 09:45:40,229 - functions - INFO - --------------------------------------------------
+2026-06-02 09:47:26,664 - functions - INFO - [Memory before cleanup] Allocated: 52.14 MB, Reserved: 246.00 MB
+2026-06-02 09:47:26,844 - functions - INFO - [Memory after cleanup] Allocated: 34.46 MB, Reserved: 76.00 MB
+2026-06-02 09:47:26,844 - functions - INFO - --------------------------------------------------
+2026-06-02 09:49:48,561 - functions - INFO - [Memory before cleanup] Allocated: 51.81 MB, Reserved: 244.00 MB
+2026-06-02 09:49:48,740 - functions - INFO - [Memory after cleanup] Allocated: 34.35 MB, Reserved: 74.00 MB
+2026-06-02 09:49:48,740 - functions - INFO - --------------------------------------------------
+2026-06-02 09:51:41,952 - functions - INFO - [Memory before cleanup] Allocated: 51.48 MB, Reserved: 246.00 MB
+2026-06-02 09:51:42,133 - functions - INFO - [Memory after cleanup] Allocated: 34.02 MB, Reserved: 74.00 MB
+2026-06-02 09:51:42,134 - functions - INFO - --------------------------------------------------
+2026-06-02 09:53:07,543 - functions - INFO - [Memory before cleanup] Allocated: 52.31 MB, Reserved: 278.00 MB
+2026-06-02 09:53:07,722 - functions - INFO - [Memory after cleanup] Allocated: 34.10 MB, Reserved: 74.00 MB
+2026-06-02 09:53:07,723 - functions - INFO - --------------------------------------------------
+2026-06-02 09:53:07,727 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.5_lr=0.001/losses.json
+2026-06-02 09:53:07,961 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-06-02 09:53:07,962 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 09:53:07,989 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 09:53:07,989 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 09:53:08,227 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 09:53:08,239 - functions - INFO - 
+--- Trial 15 ---
+2026-06-02 09:53:08,239 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 09:55:29,328 - functions - INFO - [Memory before cleanup] Allocated: 50.05 MB, Reserved: 246.00 MB
+2026-06-02 09:55:29,509 - functions - INFO - [Memory after cleanup] Allocated: 33.82 MB, Reserved: 72.00 MB
+2026-06-02 09:55:29,509 - functions - INFO - --------------------------------------------------
+2026-06-02 09:57:51,042 - functions - INFO - [Memory before cleanup] Allocated: 50.16 MB, Reserved: 244.00 MB
+2026-06-02 09:57:51,221 - functions - INFO - [Memory after cleanup] Allocated: 32.98 MB, Reserved: 72.00 MB
+2026-06-02 09:57:51,222 - functions - INFO - --------------------------------------------------
+2026-06-02 09:59:58,081 - functions - INFO - [Memory before cleanup] Allocated: 50.15 MB, Reserved: 244.00 MB
+2026-06-02 09:59:58,257 - functions - INFO - [Memory after cleanup] Allocated: 33.49 MB, Reserved: 54.00 MB
+2026-06-02 09:59:58,257 - functions - INFO - --------------------------------------------------
+2026-06-02 10:01:36,898 - functions - INFO - [Memory before cleanup] Allocated: 50.15 MB, Reserved: 244.00 MB
+2026-06-02 10:01:37,072 - functions - INFO - [Memory after cleanup] Allocated: 33.94 MB, Reserved: 56.00 MB
+2026-06-02 10:01:37,072 - functions - INFO - --------------------------------------------------
+2026-06-02 10:03:37,351 - functions - INFO - [Memory before cleanup] Allocated: 51.47 MB, Reserved: 244.00 MB
+2026-06-02 10:03:37,538 - functions - INFO - [Memory after cleanup] Allocated: 35.26 MB, Reserved: 54.00 MB
+2026-06-02 10:03:37,539 - functions - INFO - --------------------------------------------------
+2026-06-02 10:03:37,544 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=0.001/losses.json
+2026-06-02 10:03:37,783 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=0.001/loss_plot.png
+2026-06-02 10:03:37,785 - functions - INFO - 
+New best model found! Saving files to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model...
+2026-06-02 10:03:37,811 - functions - INFO - Model saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/model.pt
+2026-06-02 10:03:37,812 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/losses.json
+2026-06-02 10:03:38,053 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model/loss_plot.png
+2026-06-02 10:03:38,068 - functions - INFO - 
+--- Trial 16 ---
+2026-06-02 10:03:38,068 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.3, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 10:05:23,866 - functions - INFO - [Memory before cleanup] Allocated: 49.52 MB, Reserved: 278.00 MB
+2026-06-02 10:05:24,072 - functions - INFO - [Memory after cleanup] Allocated: 33.30 MB, Reserved: 54.00 MB
+2026-06-02 10:05:24,072 - functions - INFO - --------------------------------------------------
+2026-06-02 10:07:47,163 - functions - INFO - [Memory before cleanup] Allocated: 49.44 MB, Reserved: 244.00 MB
+2026-06-02 10:07:47,351 - functions - INFO - [Memory after cleanup] Allocated: 32.59 MB, Reserved: 54.00 MB
+2026-06-02 10:07:47,351 - functions - INFO - --------------------------------------------------
+2026-06-02 10:09:56,426 - functions - INFO - [Memory before cleanup] Allocated: 49.09 MB, Reserved: 258.00 MB
+2026-06-02 10:09:56,621 - functions - INFO - [Memory after cleanup] Allocated: 32.86 MB, Reserved: 52.00 MB
+2026-06-02 10:09:56,621 - functions - INFO - --------------------------------------------------
+2026-06-02 10:11:07,807 - functions - INFO - [Memory before cleanup] Allocated: 49.09 MB, Reserved: 244.00 MB
+2026-06-02 10:11:07,991 - functions - INFO - [Memory after cleanup] Allocated: 32.79 MB, Reserved: 54.00 MB
+2026-06-02 10:11:07,991 - functions - INFO - --------------------------------------------------
+2026-06-02 10:12:19,140 - functions - INFO - [Memory before cleanup] Allocated: 48.77 MB, Reserved: 226.00 MB
+2026-06-02 10:12:19,330 - functions - INFO - [Memory after cleanup] Allocated: 32.47 MB, Reserved: 56.00 MB
+2026-06-02 10:12:19,330 - functions - INFO - --------------------------------------------------
+2026-06-02 10:12:19,336 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.3_lr=0.001/losses.json
+2026-06-02 10:12:19,564 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.3_lr=0.001/loss_plot.png
+2026-06-02 10:12:19,577 - functions - INFO - 
+--- Trial 17 ---
+2026-06-02 10:12:19,577 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.1, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 10:14:06,302 - functions - INFO - [Memory before cleanup] Allocated: 48.68 MB, Reserved: 244.00 MB
+2026-06-02 10:14:06,495 - functions - INFO - [Memory after cleanup] Allocated: 32.47 MB, Reserved: 54.00 MB
+2026-06-02 10:14:06,496 - functions - INFO - --------------------------------------------------
+2026-06-02 10:15:40,571 - functions - INFO - [Memory before cleanup] Allocated: 49.51 MB, Reserved: 278.00 MB
+2026-06-02 10:15:40,770 - functions - INFO - [Memory after cleanup] Allocated: 33.30 MB, Reserved: 88.00 MB
+2026-06-02 10:15:40,771 - functions - INFO - --------------------------------------------------
+2026-06-02 10:18:05,883 - functions - INFO - [Memory before cleanup] Allocated: 49.89 MB, Reserved: 258.00 MB
+2026-06-02 10:18:06,079 - functions - INFO - [Memory after cleanup] Allocated: 32.72 MB, Reserved: 56.00 MB
+2026-06-02 10:18:06,080 - functions - INFO - --------------------------------------------------
+2026-06-02 10:19:40,306 - functions - INFO - [Memory before cleanup] Allocated: 50.46 MB, Reserved: 280.00 MB
+2026-06-02 10:19:40,502 - functions - INFO - [Memory after cleanup] Allocated: 34.24 MB, Reserved: 88.00 MB
+2026-06-02 10:19:40,503 - functions - INFO - --------------------------------------------------
+2026-06-02 10:22:04,969 - functions - INFO - [Memory before cleanup] Allocated: 49.05 MB, Reserved: 244.00 MB
+2026-06-02 10:22:05,166 - functions - INFO - [Memory after cleanup] Allocated: 32.84 MB, Reserved: 56.00 MB
+2026-06-02 10:22:05,166 - functions - INFO - --------------------------------------------------
+2026-06-02 10:22:05,171 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.1_lr=0.001/losses.json
+2026-06-02 10:22:05,401 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.1_lr=0.001/loss_plot.png
+2026-06-02 10:22:05,410 - functions - INFO - 
+--- Trial 18 ---
+2026-06-02 10:22:05,410 - functions - INFO - Duplicate hyperparameters found: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 0.001, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 10:22:05,410 - functions - INFO - Rejecting this trial to force Optuna to explore new parameters
+2026-06-02 10:22:05,422 - functions - INFO - 
+--- Trial 19 ---
+2026-06-02 10:22:05,422 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 450, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 5e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 10:24:29,268 - functions - INFO - [Memory before cleanup] Allocated: 52.19 MB, Reserved: 224.00 MB
+2026-06-02 10:24:29,455 - functions - INFO - [Memory after cleanup] Allocated: 34.73 MB, Reserved: 88.00 MB
+2026-06-02 10:24:29,455 - functions - INFO - --------------------------------------------------
+2026-06-02 10:26:52,104 - functions - INFO - [Memory before cleanup] Allocated: 52.90 MB, Reserved: 224.00 MB
+2026-06-02 10:26:52,289 - functions - INFO - [Memory after cleanup] Allocated: 34.78 MB, Reserved: 88.00 MB
+2026-06-02 10:26:52,289 - functions - INFO - --------------------------------------------------
+2026-06-02 10:29:14,960 - functions - INFO - [Memory before cleanup] Allocated: 51.90 MB, Reserved: 262.00 MB
+2026-06-02 10:29:15,156 - functions - INFO - [Memory after cleanup] Allocated: 34.44 MB, Reserved: 54.00 MB
+2026-06-02 10:29:15,157 - functions - INFO - --------------------------------------------------
+2026-06-02 10:31:37,851 - functions - INFO - [Memory before cleanup] Allocated: 51.61 MB, Reserved: 246.00 MB
+2026-06-02 10:31:38,052 - functions - INFO - [Memory after cleanup] Allocated: 33.98 MB, Reserved: 74.00 MB
+2026-06-02 10:31:38,052 - functions - INFO - --------------------------------------------------
+2026-06-02 10:34:01,362 - functions - INFO - [Memory before cleanup] Allocated: 51.34 MB, Reserved: 246.00 MB
+2026-06-02 10:34:01,554 - functions - INFO - [Memory after cleanup] Allocated: 33.71 MB, Reserved: 76.00 MB
+2026-06-02 10:34:01,555 - functions - INFO - --------------------------------------------------
+2026-06-02 10:34:01,560 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.5_lr=5e-05/losses.json
+2026-06-02 10:34:01,781 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=450_emb_dropout=0.5_out_dropout=0.5_lr=5e-05/loss_plot.png
+2026-06-02 10:34:01,794 - functions - INFO - 
+--- Trial 20 ---
+2026-06-02 10:34:01,795 - functions - INFO - Testing params for Model IAS with bidirectionality and dropout: {'n_epochs': 100, 'runs': 5, 'patience_value': 5, 'hid_size': 300, 'emb_size': 400, 'emb_dropout': 0.5, 'out_dropout': 0.5, 'optimizer': 'Adam', 'lr': 1e-05, 'clip': 5.0, 'train_batch_size': 64, 'eval_batch_size': 128}
+2026-06-02 10:36:23,735 - functions - INFO - [Memory before cleanup] Allocated: 50.36 MB, Reserved: 244.00 MB
+2026-06-02 10:36:23,921 - functions - INFO - [Memory after cleanup] Allocated: 34.15 MB, Reserved: 74.00 MB
+2026-06-02 10:36:23,922 - functions - INFO - --------------------------------------------------
+2026-06-02 10:37:06,791 - functions - INFO - [Memory before cleanup] Allocated: 49.13 MB, Reserved: 244.00 MB
+2026-06-02 10:37:06,979 - functions - INFO - [Memory after cleanup] Allocated: 32.92 MB, Reserved: 54.00 MB
+2026-06-02 10:37:06,980 - functions - INFO - --------------------------------------------------
+2026-06-02 10:39:29,349 - functions - INFO - [Memory before cleanup] Allocated: 50.03 MB, Reserved: 244.00 MB
+2026-06-02 10:39:29,539 - functions - INFO - [Memory after cleanup] Allocated: 32.80 MB, Reserved: 54.00 MB
+2026-06-02 10:39:29,539 - functions - INFO - --------------------------------------------------
+2026-06-02 10:40:12,432 - functions - INFO - [Memory before cleanup] Allocated: 48.83 MB, Reserved: 244.00 MB
+2026-06-02 10:40:12,609 - functions - INFO - [Memory after cleanup] Allocated: 32.62 MB, Reserved: 52.00 MB
+2026-06-02 10:40:12,609 - functions - INFO - --------------------------------------------------
+2026-06-02 10:40:55,387 - functions - INFO - [Memory before cleanup] Allocated: 50.36 MB, Reserved: 244.00 MB
+2026-06-02 10:40:55,585 - functions - INFO - [Memory after cleanup] Allocated: 34.10 MB, Reserved: 52.00 MB
+2026-06-02 10:40:55,585 - functions - INFO - --------------------------------------------------
+2026-06-02 10:40:55,589 - functions - INFO - Losses and parameters saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=1e-05/losses.json
+2026-06-02 10:40:55,830 - functions - INFO - Loss plot successfully generated and saved to /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/hid_size=300_emb_size=400_emb_dropout=0.5_out_dropout=0.5_lr=1e-05/loss_plot.png
+2026-06-02 10:40:55,833 - functions - INFO - 
+================ SWEEP COMPLETE ================
+2026-06-02 10:40:55,833 - functions - INFO - Best hyperparameters found:
+2026-06-02 10:40:55,834 - functions - INFO -   hid_size: 300
+2026-06-02 10:40:55,834 - functions - INFO -   emb_size: 400
+2026-06-02 10:40:55,834 - functions - INFO -   emb_dropout: 0.5
+2026-06-02 10:40:55,834 - functions - INFO -   out_dropout: 0.5
+2026-06-02 10:40:55,834 - functions - INFO -   lr: 0.001
+2026-06-02 10:40:55,834 - functions - INFO - Best validation Dev F1: 0.9829
+2026-06-02 10:40:55,834 - functions - INFO - Best model and plots have been saved to: /home/disi/NLU-RS-Project/NLU/part_A/results/part2a2/sweep_2026-06-02_07-07-36/best_model
