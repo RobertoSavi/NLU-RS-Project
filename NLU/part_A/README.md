@@ -1,5 +1,5 @@
 # NLU Course Project - Part 2: NLU
-This folder contains the code necessary for running the part 1-A of the NLU course project at the University of Trento, focused on intent classification and slot filling.
+This folder contains the code necessary for running the part 2-A of the NLU course project at the University of Trento, focused on intent classification and slot filling.
 
 More details about the project, implementation and results, are provided in the report: [NLU Report](../NLU_report.pdf)
 
