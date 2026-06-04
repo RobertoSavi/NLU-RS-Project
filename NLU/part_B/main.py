@@ -10,6 +10,11 @@ from transformers import AutoTokenizer
 
 logger = logging.getLogger(__name__)
 
+OmegaConf.register_new_resolver(
+    "if",
+    lambda cond, a, b: a if cond else b
+)
+
 # Main pipeline
 @hydra.main(version_base=None, config_path="configs", config_name="config")
 def main(cfg: DictConfig):
@@ -32,7 +37,7 @@ def main(cfg: DictConfig):
     if cfg.testing:
         run_sweep(config, active_params, train_loader, dev_loader, test_loader, lang, tokenizer, out_slot, out_int, pad_index, current_hydra_dir)
     else:
-        evaluate_best_model(config, test_loader, out_slot, out_int, tokenizer, pad_index, original_cwd)
+        evaluate_best_model(config, out_slot, out_int, tokenizer, pad_index, original_cwd)
 
 if __name__ == "__main__":
     main()

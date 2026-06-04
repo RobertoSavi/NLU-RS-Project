@@ -383,7 +383,7 @@ def evaluate_best_model(config, test_loader, vocab_len, pad_index, original_cwd)
         f"eval_bs={config.eval_batch_size}"
     )
     logger.info(f"\n================ EVALUATING PART ================\n{part_name}\n=================================================")
-    best_dir = os.path.join(original_cwd, "results", f"part{config.part}", "best_model")
+    best_dir = os.path.join(original_cwd, "bin", f"part{config.part}", "best_model")
     model, _ = build_model_and_optim(config, vocab_len, pad_index)
     
     logger.info("\n--- Loading Saved Model ---")

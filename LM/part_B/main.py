@@ -9,6 +9,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+OmegaConf.register_new_resolver(
+    "if",
+    lambda cond, a, b: a if cond else b
+)
+
 # Main pipeline
 @hydra.main(version_base=None, config_path="configs", config_name="config")
 def main(cfg: DictConfig):

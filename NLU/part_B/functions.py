@@ -17,10 +17,12 @@ from tqdm import tqdm
 from omegaconf import OmegaConf
 import optuna
 from conll import evaluate
+from functools import partial
+from torch.utils.data import DataLoader
 
 # Import model architectures and device configuration
 from models import JointBERT
-from utils import DEVICE
+from utils import DEVICE, Lang, IntentsAndSlots, collate_fn, load_data
 
 logger = logging.getLogger(__name__)
 
@@ -139,10 +141,10 @@ def eval_loop(data, pad_index, model, lang, tokenizer):
         results = evaluate(ref_slots, hyp_slots)
     except Exception as ex:
         # Sometimes the model predicts a class that is not in REF
-        print("Warning:", ex)
+        logger.info("Warning:", ex)
         ref_s = set([label for sent in ref_slots for _, label in sent])
         hyp_s = set([label for sent in hyp_slots for _, label in sent])
-        print(hyp_s.difference(ref_s))
+        logger.info(hyp_s.difference(ref_s))
         results = {"total":{"f":0}}
         
     report_intent = classification_report(ref_intents, hyp_intents, 
@@ -210,7 +212,7 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, tokenizer, 
         all_losses_train.append(losses_train)
         all_sampled_epochs.append(sampled_epochs)
 
-        print(f'\nRun {run+1} | Dev F1: {best_f1:.4f} | Test Slot F1: {results_test["total"]["f"]:.4f} | Test Intent Acc: {intent_test["accuracy"]:.4f}')
+        logger.info(f'\nRun {run+1} | Dev F1: {best_f1:.4f} | Test Slot F1: {results_test["total"]["f"]:.4f} | Test Intent Acc: {intent_test["accuracy"]:.4f}')
         
         free_memory(model, best_model, optimizer)
     
@@ -226,9 +228,9 @@ def train_model(config, train_loader, dev_loader, test_loader, lang, tokenizer, 
     best_overall_model, _ = max(best_models, key=lambda x: x[1])
     final_best_model = copy.deepcopy(best_overall_model).cpu()
 
-    print(f'Dev F1:     {mean_dev_f1:.4f}')
-    print(f'Test F1:    {mean_slot_f1:.4f} ± {round(slot_f1s.std(), 4)}')
-    print(f'Intent Acc: {mean_int_acc:.4f} ± {round(intent_accs.std(), 4)}')
+    logger.info(f'Dev F1:     {mean_dev_f1:.4f}')
+    logger.info(f'Test F1:    {mean_slot_f1:.4f} ± {round(slot_f1s.std(), 4)}')
+    logger.info(f'Intent Acc: {mean_int_acc:.4f} ± {round(intent_accs.std(), 4)}')
 
     return final_best_model, mean_dev_f1, slot_f1s.tolist(), intent_accs.tolist(), all_losses_train, all_losses_dev, all_sampled_epochs
 
@@ -485,9 +487,11 @@ class LangNamespace:
         self.id2intent = {v: k for k, v in intent2id.items()}
 
 
-def evaluate_best_model(config, test_loader, out_slot, out_int, tokenizer, pad_index, original_cwd) -> None:
+def evaluate_best_model(config, out_slot, out_int, tokenizer, pad_index, original_cwd) -> None:
     part_name = (
         f"part={config.name}\n"
+        f"hid_size={config.get('hid_size', 768)}\n"
+        f"emb_size={config.get('emb_size', 768)}\n"
         f"intent_dropout={config.intent_dropout}\n"
         f"slot_dropout={config.slot_dropout}\n"
         f"optimizer={config.optimizer}\n"
@@ -496,16 +500,29 @@ def evaluate_best_model(config, test_loader, out_slot, out_int, tokenizer, pad_i
         f"eval_bs={config.eval_batch_size}"
     )
     logger.info(f"\n================ EVALUATING PART ================\n{part_name}\n=================================================")
-    best_dir = os.path.join(original_cwd, "results", f"part{config.part}", "best_model")
+    best_dir = os.path.join(original_cwd, "bin", f"part{config.part}", "best_model")
     model, _ = build_model_and_optim(config, out_slot, out_int)
     
     logger.info("\n--- Loading Saved Model ---")
     model, slot2id, intent2id = load_model(model, os.path.join(best_dir, "model.pt"))
     
-    lang = LangNamespace(slot2id, intent2id)
+    # Pass empty lists to bypass the initial frequency counting, then inject the true saved weights
+    saved_lang = Lang(intents=[], slots=[])
+    saved_lang.slot2id = slot2id
+    saved_lang.intent2id = intent2id
+    saved_lang.id2slot = {v: k for k, v in slot2id.items()}
+    saved_lang.id2intent = {v: k for k, v in intent2id.items()}
     
+    # Create the Test Dataset using utils.py methods
+    test_raw = load_data(os.path.join(original_cwd, "dataset/ATIS/test.json"))
+    eval_test_dataset = IntentsAndSlots(test_raw, saved_lang, bert_model="bert-base-uncased")
+    
+    # Create the DataLoader
+    synchronized_test_loader = DataLoader(eval_test_dataset, batch_size=config.eval_batch_size, collate_fn=partial(collate_fn, pad_token=pad_index))
+    
+    # Run evaluation using the synchronized dataloader and the loaded model
     logger.info("\n--- Evaluating Best Model ---")
-    results, report_intent, _ = eval_loop(test_loader, pad_index, model, lang, tokenizer)
+    results, report_intent, _ = eval_loop(synchronized_test_loader, pad_index, model, saved_lang, tokenizer)
     slot_f1 = results['total']['f']
     intent_acc = report_intent['accuracy'] 
     logger.info(f"[Final Test Results] Slot F1: {slot_f1:.4f} | Intent Accuracy: {intent_acc:.4f}")

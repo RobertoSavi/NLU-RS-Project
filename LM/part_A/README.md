@@ -27,7 +27,7 @@ Hydra saves the result in the following format
 │   │   ├── best_model/                           # Final evaluated best model 
 │   │   │   ├── loss_plot.png                     # Loss plot for best model
 │   │   │   ├── losses.json                       # Losses and hyperparams for best model
-│   │   │   └── model.pt                          # Best model saved, used when testing is false
+│   │   │   └── model.pt                          # Best model saved
 │   │   └── sweep_YYYY-MM-DD_HH-MM-SS/            # Sweep folder with date
 │   │       ├── best_model/                       # Best model found during this specific sweep
 │   │       ├── hid_size=XXX_emb_size=XXX_lr=XXX/ # Results for this particular trial/configuration
@@ -49,7 +49,7 @@ To execute the pipeline, you must pass a `part` value to specify the model archi
 You must also pass a `testing` boolean to set the execution mode:
 
 - `true` to run an [**Optuna**](https://optuna.org/) hyperparameter sweep
-- `false` to evaluate the best saved model. (The script will automatically load the weights from the corresponding results/partXXX/best_model/model.pt file shown in the directory tree above).
+- `false` to evaluate the best saved model. (The script will automatically load the weights from the corresponding bin/partXXX/best_model/model.pt file shown in the directory tree above).
 
 **Example command:**
 ```bash

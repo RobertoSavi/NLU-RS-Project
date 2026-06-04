@@ -53,7 +53,7 @@ def load_raw_data(train_path, test_path, portion=0.10):
 
 # Vocabulary wrapper for token-id mappings (Intents and Slots only for BERT)
 class Lang():
-    def __init__(self, intents, slots, cutoff=0):
+    def __init__(self, intents, slots):
         self.slot2id = self.lab2id(slots)
         self.intent2id = self.lab2id(intents, pad=False)
         self.id2slot = {v: k for k, v in self.slot2id.items()}
@@ -74,7 +74,7 @@ def init_lang(train_raw, dev_raw, test_raw):
     slots = set(sum([line['slots'].split() for line in corpus], []))
     intents = set([line['intent'] for line in corpus])
     
-    return Lang(intents, slots, cutoff=0)
+    return Lang(intents, slots)
 
 # Dataset class for Intents and Slots using BERT Tokenizer
 class IntentsAndSlots(data.Dataset):
